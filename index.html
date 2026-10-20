@@ -12,15 +12,15 @@
 <link rel="icon" href="assets/app-icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/app-icon-180.png">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="preload" href="assets/icons.svg" as="image" type="image/svg+xml">
-<link rel="stylesheet" href="assets/css/base.css">
-<link rel="stylesheet" href="assets/css/themes.css">
-<script>try{var t=JSON.parse(localStorage.getItem("alr-v2")||"{}").theme;if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+<link rel="preload" href="assets/icons.svg?v=5" as="image" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/base.css?v=5">
+<link rel="stylesheet" href="assets/css/themes.css?v=5">
+<script>try{var t=JSON.parse(localStorage.getItem("alr-v2")||"{}").theme;if(t==="questlog")t="ironforge";if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
 <header class="top" id="top">
   <div class="bar">
-    <div class="brand"><svg class="brand-mark" aria-hidden="true"><use href="assets/icons.svg#ui-shield"/></svg><span>Legacy Route</span></div>
+    <div class="brand"><svg class="brand-mark" aria-hidden="true"><use href="assets/icons.svg?v=5#ui-shield"/></svg><span>Legacy Route</span></div>
     <div class="search">
       <input id="q" type="search" placeholder="Search…" autocomplete="off" aria-label="Search the guide">
       <kbd>/</kbd>
@@ -33,7 +33,7 @@
         <button type="button" data-look="light"><span class="sw sw-light"></span>Standard light</button>
         <button type="button" data-look="dark"><span class="sw sw-dark"></span>Standard dark</button>
         <hr>
-        <button type="button" data-look="questlog"><span class="sw sw-questlog"></span>Quest Log <small>parchment and ink</small></button>
+        <button type="button" data-look="ironforge"><span class="sw sw-ironforge"></span>Ironforge <small>forge stone and embers</small></button>
         <button type="button" data-look="stormwind"><span class="sw sw-stormwind"></span>Stormwind <small>Alliance blue and gold</small></button>
       </div>
     </details>
@@ -117,7 +117,7 @@
         <thead><tr><th>Slot</th><th>Class</th><th>Race</th><th>Professions</th><th>Feeds the army</th></tr></thead>
         <tbody>
           <tr class="pick"><td>Main</td><td><span class="who"><i data-cls="shaman"></i>Shaman</span></td><td><span class="who"><i data-race="dwarf"></i>Dwarf</span></td><td><span class="profs"><span class="pi"><i data-prof="skinning"></i>Skinning</span> <span class="pi"><i data-prof="leatherworking"></i>Leatherworking</span></span></td><td>Leather, Camp Tent</td></tr>
-          <tr class="pick"><td>Alt 2</td><td><span class="who"><i data-cls="warlock"></i>Warlock</span></td><td><span class="who"><i data-race="human"></i>Human</span></td><td><span class="profs"><span class="pi"><i data-prof="herbalism"></i>Herbalism</span> <span class="pi"><i data-prof="tailoring"></i>Tailoring</span> <span class="pi faint">→ <i data-prof="enchanting"></i>Enchanting at ~30</span></span></td><td>Bags first, herbs early, disenchanting later</td></tr>
+          <tr class="pick"><td>Alt 2</td><td><span class="who"><i data-cls="warlock"></i>Warlock</span></td><td><span class="who"><i data-race="human"></i>Human</span></td><td><span class="profs"><span class="pi"><i data-prof="enchanting"></i>Enchanting</span> <span class="pi"><i data-prof="tailoring"></i>Tailoring</span></span></td><td>Bags, enchants</td></tr>
           <tr class="pick"><td>Alt 3</td><td><span class="who"><i data-cls="warrior"></i>Warrior</span></td><td><span class="who"><i data-race="nightelf"></i>Night Elf</span></td><td><span class="profs"><span class="pi"><i data-prof="mining"></i>Mining</span> <span class="pi"><i data-prof="blacksmithing"></i>Blacksmithing</span></span></td><td>Ore, bars</td></tr>
           <tr class="pick"><td>Alt 4</td><td><span class="who"><i data-cls="priest"></i>Priest</span></td><td><span class="who"><i data-race="nightelf"></i>Night Elf</span></td><td><span class="profs"><span class="pi"><i data-prof="herbalism"></i>Herbalism</span> <span class="pi"><i data-prof="alchemy"></i>Alchemy</span></span></td><td>Potions, elixirs</td></tr>
           <tr><td>Alts 5–9</td><td><span class="who multi"><i data-cls="paladin"></i><i data-cls="hunter"></i><i data-cls="rogue"></i><i data-cls="druid"></i><i data-cls="mage"></i></span><span class="sr">Paladin, Hunter, Rogue, Druid, Mage</span></td><td><span class="who"><i data-race="dwarf"></i><i data-race="human"></i>Any</span></td><td><span class="profs"><span class="pi"><i data-prof="engineering"></i>Hunter: Engineering</span></span></td><td>Rested banks, to 25 only</td></tr>
@@ -147,14 +147,14 @@
     <p class="done"><b>Done when:</b> everyone is 10 with 4 Linen Bags, and the Priest's potions are in the mail.</p>
     <h3>1. Warlock 1–10 (Northshire, Elwynn)</h3>
     <ul>
-      <li>Herbalism + Tailoring. Pick every herb and mail them to the Priest.</li>
+      <li>Enchanting + Tailoring (Stormwind).</li>
       <li>Craft 8 Linen Bags: 4 for yourself, 4 mailed to the Priest.</li>
       <li>Class quests: The Stolen Tome (Imp); Voidwalker at 10 (Gakin's Summons → The Binding).</li>
-      <li>Hold on to every green for Enchanting later. Park at the Lion's Pride Inn, Goldshire.</li>
+      <li>Disenchant every green. Park at the Lion's Pride Inn, Goldshire.</li>
     </ul>
     <h3>2. Priest 1–10 (Teldrassil)</h3>
     <ul>
-      <li>Collect bags and herbs from the mailbox.</li>
+      <li>Collect bags from the mailbox.</li>
       <li>Herbalism early: Eleyna Duskbreeze, Shadowglen /way 59.8 41.4.</li>
       <li>Alchemy in Darnassus (Craftsmen's Terrace). Craft every early elixir and potion you can; mail them to the alts.</li>
       <li>Mail Linen to the Warlock for the Warrior's bags. Class quest: Stars of Elune at 10. Park in Dolanaar.</li>
@@ -242,7 +242,6 @@
       <li>Excavation Site (Wetlands): quests from Lakeshire, Menethil and Ironforge.</li>
       <li>Warrior: Fire Hardened Armor spider fangs, Wetlands /way 46 61.</li>
       <li>Shaman at 30: Call of Air (Arathi Highlands).</li>
-      <li>Warlock at ~30: drop Herbalism, learn Enchanting in Stormwind. 1–150 is cheap now: disenchant the banked greens.</li>
     </ul>
   </div>
 </details>
@@ -314,6 +313,6 @@
 <button class="totop" id="totop" type="button" aria-label="Back to top">&#8593;</button>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="assets/js/app.js"></script>
+<script src="assets/js/app.js?v=5"></script>
 </body>
 </html>

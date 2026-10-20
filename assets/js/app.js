@@ -5,7 +5,7 @@
   var TIERS = [15, 25, 40, 55];
   var CHARS = [
     { id: "shaman", cls: "shaman", race: "dwarf", name: "Dwarf Shaman", slot: "Main", profs: ["Leatherworking"], gather: "Skinning", target: 35, core: true },
-    { id: "warlock", cls: "warlock", race: "human", name: "Human Warlock", slot: "Alt 2", profs: ["Tailoring", "Enchanting"], gather: "Herbalism (to ~30)", gatherIcon: "Herbalism", target: 35, core: true },
+    { id: "warlock", cls: "warlock", race: "human", name: "Human Warlock", slot: "Alt 2", profs: ["Enchanting", "Tailoring"], target: 35, core: true },
     { id: "warrior", cls: "warrior", race: "nightelf", name: "Night Elf Warrior", slot: "Alt 3", profs: ["Blacksmithing"], gather: "Mining", target: 35, core: true },
     { id: "priest", cls: "priest", race: "nightelf", name: "Night Elf Priest", slot: "Alt 4", profs: ["Alchemy"], gather: "Herbalism", target: 35, core: true },
     { id: "paladin", cls: "paladin", name: "Paladin", slot: "Alt 5", profs: [], target: 25 },
@@ -14,7 +14,7 @@
     { id: "druid", cls: "druid", name: "Druid", slot: "Alt 8", profs: [], target: 25 },
     { id: "mage", cls: "mage", name: "Mage", slot: "Alt 9", profs: [], target: 25 }
   ];
-  var SPRITE = "assets/icons.svg";
+  var SPRITE = "assets/icons.svg?v=5";
   var CLASS_NAMES = { shaman: "Shaman", priest: "Priest", warrior: "Warrior", druid: "Druid", paladin: "Paladin", hunter: "Hunter", rogue: "Rogue", warlock: "Warlock", mage: "Mage" };
   var RACE_NAMES = { dwarf: "Dwarf", nightelf: "Night Elf", skyborne: "Skyborne", human: "Human", gnome: "Gnome" };
   function svg(id, cls) { return '<svg class="ico ' + (cls || "") + '" aria-hidden="true"><use href="' + SPRITE + "#" + id + '"/></svg>'; }
@@ -69,9 +69,10 @@
   }
 
   /* ---------- theme ---------- */
-  var LOOKS = { auto: "Standard", light: "Standard light", dark: "Standard dark", questlog: "Quest Log", stormwind: "Stormwind" };
-  var LOOK_BAR = { light: "#ffffff", dark: "#1b1e22", questlog: "#3a2616", stormwind: "#0a1630" };
+  var LOOKS = { auto: "Standard", light: "Standard light", dark: "Standard dark", ironforge: "Ironforge", stormwind: "Stormwind" };
+  var LOOK_BAR = { light: "#ffffff", dark: "#1b1e22", ironforge: "#0e0c0a", stormwind: "#0a1630" };
   function applyTheme() {
+    if (state.theme === "questlog") state.theme = "ironforge";
     if (!LOOKS[state.theme]) state.theme = "auto";
     document.documentElement.setAttribute("data-theme", state.theme);
     var dark = state.theme === "auto" ? matchMedia("(prefers-color-scheme: dark)").matches : null;
@@ -554,7 +555,7 @@
 
   /* ---------- header behavior, scrollspy, back to top ---------- */
   var top = $("#top");
-  function measure() { document.documentElement.style.setProperty("--hdr", top.offsetHeight + "px"); }
+  function measure() { if (top.classList.contains("compact")) return; document.documentElement.style.setProperty("--hdr", top.offsetHeight + "px"); }
   window.addEventListener("resize", measure);
   var lastY = scrollY;
   window.addEventListener("scroll", function () {
@@ -585,5 +586,6 @@
     window.addEventListener("load", function () { navigator.serviceWorker.register("sw.js").catch(function () {}); });
   }
 
+  if (document.fonts) document.fonts.ready.then(measure);
   applyTheme(); measure(); applyFilter(); updateArmy(); 
 })();

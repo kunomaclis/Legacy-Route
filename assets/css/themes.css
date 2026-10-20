@@ -6,65 +6,67 @@
 @font-face { font-family: "Crimson Pro"; font-weight: 600; font-display: swap; src: url("../fonts/crimson-pro-latin-600-normal.woff2") format("woff2"); }
 
 /* =====================================================================
-   Look 1: Quest Log — aged parchment, iron-gall ink, wax-seal red
+   Look 1: Ironforge — dark forge stone, copper trim, ember glow
    ===================================================================== */
-:root[data-theme="questlog"] {
-  --bg: #e6d5ae; --card: #f4e9cf; --text: #3a2817; --muted: #684b2c; --faint: #8b6f4e;
-  --border: #c5a776; --accent: #8e2a1c; --accent-soft: #ecd8b4; --gold: #8a6414; --gold-soft: #efdfb2;
-  --warn: #8a5a00; --warn-soft: #f1e0b6; --danger: #9b1c1c; --danger-soft: #f0d4c2;
-  --ok: #46711f; --ok-soft: #e0e4bf; --stripe: #ede0c1; --radius: 5px;
-  --shadow: 0 1px 0 rgba(255, 250, 235, .6) inset, 0 2px 8px rgba(70, 40, 10, .14);
-  --tok-ring: rgba(58, 40, 23, .6);
-  --leather: #3a2616; --leather-2: #2a1a0e; --leather-ink: #f0dfb4;
+:root[data-theme="ironforge"] {
+  --bg: #0f0d0b; --card: #1d1915; --text: #ece3d3; --muted: #b3a690; --faint: #857a68;
+  --border: rgba(200, 120, 60, .26); --accent: #f08a3c; --accent-soft: rgba(240, 138, 60, .13);
+  --gold: #e8a55a; --gold-soft: rgba(232, 165, 90, .12);
+  --warn: #f2b84b; --warn-soft: rgba(242, 184, 75, .1); --danger: #ff7b6b; --danger-soft: rgba(255, 123, 107, .1);
+  --ok: #8fcf6a; --ok-soft: rgba(143, 207, 106, .12); --stripe: rgba(255, 255, 255, .03); --radius: 6px;
+  --shadow: 0 10px 28px rgba(0, 0, 0, .45);
+  --tok-ring: rgba(0, 0, 0, .5);
+  color-scheme: dark;
 }
-[data-theme="questlog"] body {
-  font-family: "Crimson Pro", "Palatino Linotype", Palatino, Georgia, serif; font-size: 17px; line-height: 1.5;
+[data-theme="ironforge"] body {
   background-color: var(--bg);
   background-image:
-    radial-gradient(ellipse at 15% 0%, rgba(255, 250, 230, .75), transparent 55%),
-    radial-gradient(ellipse at 100% 100%, rgba(140, 95, 45, .28), transparent 60%),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .24 0 0 0 0 .12 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    radial-gradient(1200px 520px at 50% 115%, rgba(255, 110, 30, .2), transparent 70%),
+    radial-gradient(800px 400px at 0% -10%, rgba(200, 120, 60, .08), transparent 70%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .9 0 0 0 0 .8 0 0 0 .035 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    linear-gradient(#16130f, #0b0907);
   background-attachment: fixed;
 }
-[data-theme="questlog"] h1, [data-theme="questlog"] h2, [data-theme="questlog"] h3,
-[data-theme="questlog"] .brand, [data-theme="questlog"] details.phase-d > summary,
-[data-theme="questlog"] details.tracker > summary, [data-theme="questlog"] th { font-family: "Cinzel", Georgia, serif; }
-[data-theme="questlog"] h1 { color: #4a1c0f; font-weight: 700; letter-spacing: .01em; }
-[data-theme="questlog"] h2 { color: #5a2412; font-weight: 700; }
-[data-theme="questlog"] h2::after { content: ""; display: block; width: 180px; height: 9px; margin-top: 6px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 9'%3E%3Cpath d='M0 4.5h78M102 4.5h78' stroke='%238a6414' stroke-width='1'/%3E%3Cpath d='M90 0l4.5 4.5L90 9l-4.5-4.5z' fill='%238e2a1c'/%3E%3Ccircle cx='80' cy='4.5' r='1.5' fill='%238a6414'/%3E%3Ccircle cx='100' cy='4.5' r='1.5' fill='%238a6414'/%3E%3C/svg%3E") no-repeat; }
-[data-theme="questlog"] .phase h3 { color: #5a2412; font-size: 15px; }
-[data-theme="questlog"] .panel h3 { font-family: "Cinzel", serif; color: var(--gold); letter-spacing: .08em; }
-[data-theme="questlog"] .lead, [data-theme="questlog"] p.done { font-style: italic; }
-[data-theme="questlog"] .top { background: linear-gradient(180deg, var(--leather), var(--leather-2)); border-bottom: 2px solid #8a6414; backdrop-filter: none; }
-[data-theme="questlog"] .brand { color: var(--leather-ink); }
-[data-theme="questlog"] .brand-mark { color: #d9b25c; }
-[data-theme="questlog"] nav.sections a { color: #d8c393; }
-[data-theme="questlog"] nav.sections a.active { background: rgba(240, 223, 180, .14); color: #ffe7a6; }
-[data-theme="questlog"] .chips .lab { color: #bfa774; }
-[data-theme="questlog"] .chip { background: #f4e9cf; border-color: #8a6414; color: #4a321d; }
-[data-theme="questlog"] .chip[aria-pressed="true"]:not([style]) { background: var(--accent); border-color: #d9b25c; color: #fff3d6; }
-[data-theme="questlog"] .iconbtn { background: #4a311b; border-color: #7a5a32; color: var(--leather-ink); }
-[data-theme="questlog"] .search input { background: #f4e9cf; border-color: #8a6414; }
-[data-theme="questlog"] .panel, [data-theme="questlog"] details.phase-d, [data-theme="questlog"] details.tracker,
-[data-theme="questlog"] .char, [data-theme="questlog"] .card, [data-theme="questlog"] .stat {
-  box-shadow: inset 0 0 0 3px var(--card), inset 0 0 0 4px rgba(138, 100, 20, .35), 0 2px 6px rgba(70, 40, 10, .12);
+[data-theme="ironforge"] h1, [data-theme="ironforge"] h2, [data-theme="ironforge"] .brand,
+[data-theme="ironforge"] details.phase-d > summary, [data-theme="ironforge"] details.tracker > summary,
+[data-theme="ironforge"] .panel h3, [data-theme="ironforge"] th { font-family: "Cinzel", Georgia, serif; }
+[data-theme="ironforge"] h1 { color: #ffb36b; font-weight: 700; letter-spacing: .02em; text-shadow: 0 0 26px rgba(255, 120, 40, .35); }
+[data-theme="ironforge"] h2 { color: #f0a25a; font-weight: 700; letter-spacing: .03em; }
+[data-theme="ironforge"] h2::after { content: ""; display: block; width: 180px; height: 9px; margin-top: 6px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 9'%3E%3Cpath d='M0 4.5h78M102 4.5h78' stroke='%23b8743c' stroke-width='1'/%3E%3Cpath d='M90 0l4.5 4.5L90 9l-4.5-4.5z' fill='%23ff8a3c'/%3E%3Ccircle cx='80' cy='4.5' r='1.5' fill='%23b8743c'/%3E%3Ccircle cx='100' cy='4.5' r='1.5' fill='%23b8743c'/%3E%3C/svg%3E") no-repeat; }
+[data-theme="ironforge"] .phase h3 { color: #f1d9b8; }
+[data-theme="ironforge"] .panel h3 { color: var(--gold); letter-spacing: .1em; }
+[data-theme="ironforge"] .top { background: rgba(14, 12, 10, .9); border-bottom: 1px solid rgba(240, 138, 60, .38); }
+[data-theme="ironforge"] .brand { color: #ffb36b; }
+[data-theme="ironforge"] .brand-mark { color: #f08a3c; filter: drop-shadow(0 0 6px rgba(255, 120, 40, .55)); }
+[data-theme="ironforge"] nav.sections a.active { background: rgba(240, 138, 60, .14); color: #ffb36b; }
+[data-theme="ironforge"] .chip, [data-theme="ironforge"] .iconbtn, [data-theme="ironforge"] .btn { background: rgba(255, 255, 255, .04); border-color: rgba(200, 120, 60, .32); color: var(--text); }
+[data-theme="ironforge"] .chip[aria-pressed="true"]:not([style]) { background: linear-gradient(#ffa75a, #c8601f); border-color: #c8601f; color: #1c0d03; }
+[data-theme="ironforge"] .search input { background: rgba(0, 0, 0, .35); border-color: rgba(200, 120, 60, .32); }
+[data-theme="ironforge"] .panel, [data-theme="ironforge"] details.phase-d, [data-theme="ironforge"] details.tracker,
+[data-theme="ironforge"] .char, [data-theme="ironforge"] .card, [data-theme="ironforge"] .stat, [data-theme="ironforge"] .table-wrap {
+  background: linear-gradient(180deg, #221d18, #17140f);
+  border-color: rgba(200, 120, 60, .26);
+  box-shadow: inset 0 1px 0 rgba(255, 200, 150, .06), inset 0 0 0 3px rgba(0, 0, 0, .25), 0 10px 28px rgba(0, 0, 0, .4);
 }
-[data-theme="questlog"] details.phase-d > summary { color: #4a1c0f; }
-[data-theme="questlog"] th { background: #e6d1a3; color: #5a2412; letter-spacing: .05em; font-size: 11.5px; }
-[data-theme="questlog"] .btn { background: #f4e9cf; border-color: #a88a58; }
-[data-theme="questlog"] .btn.primary { background: radial-gradient(circle at 35% 30%, #b13a28, #7a1f13); border-color: #5c160d; color: #fff1d0; }
-[data-theme="questlog"] .num-in, [data-theme="questlog"] .stepbtn { background: #fbf4e2; border-color: #c5a776; }
-[data-theme="questlog"] .meter { background: #e9dbb9; border-color: #c5a776; }
-[data-theme="questlog"] .meter.gold > i { background: linear-gradient(90deg, #8a6414, #d9b25c); }
-[data-theme="questlog"] .tok { box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .35), 0 0 0 1.5px #a07a2c; }
-[data-theme="questlog"] .way { background: #f1e2b8; color: #6b4a0d; }
-[data-theme="questlog"] .toast { background: var(--leather); color: var(--leather-ink); border: 1px solid #8a6414; }
-[data-theme="questlog"] .tabbar { background: linear-gradient(180deg, var(--leather), var(--leather-2)); border-top: 2px solid #8a6414; }
-[data-theme="questlog"] .tabbar a, [data-theme="questlog"] .tabbar button { color: #cdb684; }
-[data-theme="questlog"] .tabbar a.active { color: #ffe7a6; }
-[data-theme="questlog"] .totop { background: var(--leather); color: var(--leather-ink); border-color: #8a6414; }
-[data-theme="questlog"] .menu-panel { background: #f4e9cf; border-color: #8a6414; }
+[data-theme="ironforge"] .char { border-top-color: var(--line); box-shadow: inset 0 1px 0 rgba(255, 200, 150, .06), 0 -6px 22px -12px var(--cls), 0 10px 28px rgba(0, 0, 0, .4); }
+[data-theme="ironforge"] details.phase-d[open] { border-color: rgba(240, 138, 60, .48); }
+[data-theme="ironforge"] th { background: rgba(240, 138, 60, .07); color: #eaa35e; letter-spacing: .06em; font-size: 11.5px; }
+[data-theme="ironforge"] tbody tr:nth-child(even) td { background: rgba(255, 255, 255, .02); }
+[data-theme="ironforge"] tr.pick td { background: rgba(240, 138, 60, .06) !important; }
+[data-theme="ironforge"] .btn.primary { background: linear-gradient(#ffa75a, #c8601f); border-color: #c8601f; color: #1c0d03; font-weight: 600; }
+[data-theme="ironforge"] .num-in, [data-theme="ironforge"] .stepbtn { background: rgba(0, 0, 0, .32); border-color: rgba(200, 120, 60, .28); color: var(--text); }
+[data-theme="ironforge"] .meter { background: rgba(0, 0, 0, .35); border-color: rgba(200, 120, 60, .22); }
+[data-theme="ironforge"] .meter.gold > i { background: linear-gradient(90deg, #b8521a, #ffb36b); box-shadow: 0 0 10px rgba(255, 120, 40, .55); }
+[data-theme="ironforge"] .tok { box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .45), 0 0 0 1.5px #b8743c, 0 0 9px color-mix(in srgb, var(--cls) 45%, transparent); }
+[data-theme="ironforge"] .way { background: rgba(240, 138, 60, .12); color: #ffb36b; }
+[data-theme="ironforge"] .callout { background: rgba(255, 255, 255, .035); }
+[data-theme="ironforge"] .toast { background: #1d1915; border: 1px solid rgba(240, 138, 60, .6); }
+[data-theme="ironforge"] .tabbar { background: rgba(14, 12, 10, .94); border-top: 1px solid rgba(240, 138, 60, .38); }
+[data-theme="ironforge"] .tabbar a.active { color: #ffb36b; }
+[data-theme="ironforge"] .menu-panel { background: #1d1915; border-color: rgba(240, 138, 60, .4); }
+[data-theme="ironforge"] .totop { background: #1d1915; border-color: rgba(240, 138, 60, .4); color: #ffb36b; }
+[data-theme="ironforge"] .badge.zero { background: rgba(255, 255, 255, .06); }
 
 /* =====================================================================
    Look 2: Stormwind — Alliance navy, gilded trim, lion's-gate glow
@@ -129,5 +131,6 @@
 @media (max-width: 640px) {
   [data-theme="stormwind"] .table-wrap { background: none; box-shadow: none; }
   [data-theme="stormwind"] .table-wrap tr { background: linear-gradient(180deg, rgba(26, 50, 100, .72), rgba(11, 24, 52, .78)); border-color: rgba(227, 180, 72, .28); }
-  [data-theme="questlog"] .table-wrap { box-shadow: none; }
+  [data-theme="ironforge"] .table-wrap { background: none; box-shadow: none; }
+  [data-theme="ironforge"] .table-wrap tr { background: linear-gradient(180deg, #221d18, #17140f); border-color: rgba(200, 120, 60, .26); }
 }
