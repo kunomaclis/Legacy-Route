@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1d2024">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Legacy Route">
+<title>Alliance Legacy Point Route – WoW Forever</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231f5fbf'/%3E%3Cpath d='M32 10l18 8v14c0 11-8 19-18 22-10-3-18-11-18-22V18z' fill='%23f2c14e'/%3E%3C/svg%3E">
+<style>
+  :root {
+    --bg: #f5f4f0; --card: #ffffff; --text: #1f2328; --muted: #5d6670; --faint: #858d96;
+    --border: #e1dfda; --accent: #1f5fbf; --accent-soft: #e8f0fc; --gold: #b7791f; --gold-soft: #fbf1dc;
+    --warn: #9a6700; --warn-soft: #fff6dd; --danger: #b42318; --danger-soft: #fdecea;
+    --ok: #1a7f37; --ok-soft: #e6f4ea; --stripe: #faf9f7; --shadow: 0 1px 2px rgba(0,0,0,.05), 0 4px 16px rgba(0,0,0,.04);
+    --hdr: 112px; --radius: 12px;
+  }
+  :root[data-theme="dark"] {
+    --bg: #131518; --card: #1b1e22; --text: #e6e8eb; --muted: #a3abb4; --faint: #7b848d;
+    --border: #2d3238; --accent: #6ea8ff; --accent-soft: #1b2738; --gold: #e8b860; --gold-soft: #2c2415;
+    --warn: #e3b341; --warn-soft: #2b2415; --danger: #ff7b72; --danger-soft: #311a19;
+    --ok: #56d364; --ok-soft: #16281b; --stripe: #1f2226; --shadow: 0 1px 2px rgba(0,0,0,.3);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root[data-theme="auto"] {
+      --bg: #131518; --card: #1b1e22; --text: #e6e8eb; --muted: #a3abb4; --faint: #7b848d;
+      --border: #2d3238; --accent: #6ea8ff; --accent-soft: #1b2738; --gold: #e8b860; --gold-soft: #2c2415;
+      --warn: #e3b341; --warn-soft: #2b2415; --danger: #ff7b72; --danger-soft: #311a19;
+      --ok: #56d364; --ok-soft: #16281b; --stripe: #1f2226; --shadow: 0 1px 2px rgba(0,0,0,.3);
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before { transition: none !important; animation: none !important; } }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font: 15px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; -webkit-tap-highlight-color: transparent; }
+  a { color: var(--accent); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+  button, input { font: inherit; color: inherit; }
+
+  /* ---------- header ---------- */
+  .top { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--card) 92%, transparent);
+    backdrop-filter: saturate(1.4) blur(10px); -webkit-backdrop-filter: saturate(1.4) blur(10px);
+    border-bottom: 1px solid var(--border); padding-top: env(safe-area-inset-top); }
+  .bar { display: flex; align-items: center; gap: 8px; padding: 8px 16px; max-width: 1180px; margin: 0 auto; }
+  .brand { font-weight: 700; white-space: nowrap; font-size: 14px; display: flex; align-items: center; gap: 8px; }
+  .brand i { width: 22px; height: 22px; border-radius: 6px; background: var(--accent); display: inline-grid; place-items: center; }
+  .brand i::after { content: ""; width: 10px; height: 12px; background: #f2c14e; clip-path: polygon(50% 0, 100% 20%, 100% 55%, 50% 100%, 0 55%, 0 20%); }
+  .search { flex: 1; position: relative; min-width: 0; }
+  .search input { width: 100%; height: 36px; border-radius: 9px; border: 1px solid var(--border); background: var(--bg);
+    padding: 0 64px 0 34px; font-size: 16px; }
+  .search::before { content: ""; position: absolute; left: 11px; top: 11px; width: 10px; height: 10px; border: 2px solid var(--faint); border-radius: 50%; }
+  .search::after { content: ""; position: absolute; left: 22px; top: 22px; width: 6px; height: 2px; background: var(--faint); transform: rotate(45deg); }
+  .search .count { position: absolute; right: 10px; top: 8px; font-size: 12px; color: var(--faint); pointer-events: none; }
+  .search kbd { position: absolute; right: 8px; top: 7px; font: 11px/1 ui-monospace, monospace; color: var(--faint);
+    border: 1px solid var(--border); border-radius: 4px; padding: 4px 6px; }
+  .search input:focus ~ kbd, .search input:not(:placeholder-shown) ~ kbd { display: none; }
+  .iconbtn { height: 36px; min-width: 36px; padding: 0 10px; border-radius: 9px; border: 1px solid var(--border); background: var(--card);
+    cursor: pointer; font-size: 13px; color: var(--muted); white-space: nowrap; }
+  .iconbtn:hover { color: var(--text); border-color: var(--faint); }
+  .menu { position: relative; }
+  .menu summary { list-style: none; display: inline-flex; align-items: center; }
+  .menu summary::-webkit-details-marker { display: none; }
+  .menu-panel { position: absolute; right: 0; top: 42px; background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    box-shadow: 0 12px 32px rgba(0,0,0,.18); padding: 6px; min-width: 230px; z-index: 30; }
+  .menu-panel button { display: block; width: 100%; text-align: left; background: none; border: 0; padding: 9px 12px; border-radius: 8px; cursor: pointer; font-size: 14px; }
+  .menu-panel button:hover { background: var(--accent-soft); }
+  .menu-panel hr { border: 0; border-top: 1px solid var(--border); margin: 6px 4px; }
+  .menu-panel .danger { color: var(--danger); }
+  .chips { display: flex; gap: 6px; overflow-x: auto; padding: 0 16px 8px; max-width: 1180px; margin: 0 auto; scrollbar-width: none; transition: max-height .2s, padding .2s, opacity .2s; max-height: 60px; }
+  .chips::-webkit-scrollbar, nav.sections::-webkit-scrollbar { display: none; }
+  .chips .lab { font-size: 12px; color: var(--faint); align-self: center; white-space: nowrap; margin-right: 2px; }
+  .chip { border: 1px solid var(--border); background: var(--card); border-radius: 999px; padding: 4px 12px; font-size: 13px; cursor: pointer; white-space: nowrap; color: var(--muted); }
+  .chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+  :root[data-theme="dark"] .chip[aria-pressed="true"] { color: #0d1117; }
+  @media (prefers-color-scheme: dark) { :root[data-theme="auto"] .chip[aria-pressed="true"] { color: #0d1117; } }
+  nav.sections { display: flex; gap: 2px; overflow-x: auto; padding: 0 12px 6px; max-width: 1180px; margin: 0 auto; scrollbar-width: none; }
+  nav.sections a { color: var(--muted); text-decoration: none; font-size: 13px; padding: 4px 10px; border-radius: 6px; white-space: nowrap; }
+  nav.sections a:hover { color: var(--accent); }
+  nav.sections a.active { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+  .top.compact .chips { max-height: 0; padding-bottom: 0; opacity: 0; overflow: hidden; }
+
+  /* ---------- layout ---------- */
+  main { max-width: 1180px; margin: 0 auto; padding: 20px 16px 80px; }
+  section.sec { scroll-margin-top: calc(var(--hdr) + 8px); }
+  h1 { font-size: clamp(24px, 5vw, 32px); margin: 4px 0 8px; letter-spacing: -.01em; }
+  h2 { font-size: 21px; margin: 40px 0 10px; letter-spacing: -.01em; }
+  h3 { font-size: 16px; margin: 20px 0 8px; }
+  p { margin: 6px 0; }
+  .meta { color: var(--faint); font-size: 13px; }
+  .lead { color: var(--muted); max-width: 820px; }
+  .small { font-size: 13.5px; }
+  .muted { color: var(--muted); }
+  .faint { color: var(--faint); font-size: 13px; }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin: 20px 0; }
+  .stat { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; }
+  .stat b { display: block; font-size: 26px; }
+  .stat span { color: var(--muted); font-size: 13px; }
+  .stat.ok b { color: var(--ok); }
+  .split { display: grid; grid-template-columns: 3fr 2fr; gap: 24px; align-items: start; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 860px) { .split, .grid2 { grid-template-columns: 1fr; } .split > section[style] { margin-top: 0 !important; } .split h3[style] { margin-top: 20px !important; } }
+
+  /* ---------- tables ---------- */
+  .table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius); background: var(--card); }
+  table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+  th, td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; font-size: 12.5px; background: var(--stripe); }
+  tr:last-child td { border-bottom: none; }
+  tbody tr:nth-child(even) td { background: var(--stripe); }
+  tr.pick td { background: var(--accent-soft) !important; }
+  td.num, th.num { text-align: right; }
+  @media (max-width: 640px) {
+    .table-wrap { border: 0; background: none; overflow: visible; }
+    .table-wrap table, .table-wrap tbody, .table-wrap tr, .table-wrap td { display: block; width: 100%; }
+    .table-wrap thead { display: none; }
+    .table-wrap tr { background: var(--card); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; padding: 6px 0; }
+    .table-wrap tbody tr:nth-child(even) td { background: none; }
+    .table-wrap tr.pick { border-color: var(--accent); }
+    .table-wrap tr.pick td { background: none !important; }
+    .table-wrap td { border: 0; padding: 4px 14px; display: grid; grid-template-columns: 38% 1fr; gap: 10px; text-align: left !important; }
+    .table-wrap td::before { content: attr(data-label); color: var(--faint); font-size: 12px; }
+    .table-wrap td:first-child { font-weight: 600; display: block; font-size: 14.5px; padding-top: 6px; }
+    .table-wrap td:first-child::before { display: none; }
+    .table-wrap td:empty { display: none; }
+  }
+
+  /* ---------- lists, callouts, cards ---------- */
+  ol, ul { margin: 6px 0; padding-left: 22px; }
+  li { margin: 4px 0; }
+  .callout { border: 1px solid var(--border); border-left: 4px solid var(--accent); background: var(--accent-soft);
+    border-radius: 10px; padding: 12px 16px; font-size: 14px; }
+  .callout.warn { border-left-color: var(--warn); background: var(--warn-soft); }
+  .callout.danger { border-left-color: var(--danger); background: var(--danger-soft); }
+  .callout strong { display: block; margin-bottom: 4px; }
+  .callout ol { margin-bottom: 0; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; margin-bottom: 12px; font-size: 14px; }
+  .pill { font-size: 11px; padding: 2px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); margin-left: 6px; font-weight: 600; }
+  hr { border: none; border-top: 1px solid var(--border); margin: 40px 0 0; }
+  .btn { border: 1px solid var(--border); background: var(--card); border-radius: 8px; padding: 6px 12px; font-size: 13px; cursor: pointer; }
+  .btn:hover { border-color: var(--faint); }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  :root[data-theme="dark"] .btn.primary { color: #0d1117; }
+  @media (prefers-color-scheme: dark) { :root[data-theme="auto"] .btn.primary { color: #0d1117; } }
+  .btn.sm { padding: 4px 10px; font-size: 12.5px; }
+  .way { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--gold-soft); color: var(--gold); border: 1px dashed color-mix(in srgb, var(--gold) 50%, transparent);
+    border-radius: 6px; padding: 0 6px; cursor: copy; white-space: nowrap; }
+  .way:hover { border-style: solid; }
+  mark.hl { background: #ffe066; color: #1f2328; border-radius: 3px; padding: 0 1px; }
+
+  /* ---------- dashboard ---------- */
+  .dash { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 12px; margin-top: 16px; }
+  .panel { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+  .panel h3 { margin: 0; font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--faint); font-weight: 600; }
+  .big { font-size: 30px; font-weight: 700; line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .big small { font-size: 15px; color: var(--muted); font-weight: 500; }
+  .cd { display: flex; gap: 8px; }
+  .cd div { flex: 1; background: var(--stripe); border-radius: 8px; text-align: center; padding: 8px 4px; }
+  .cd b { display: block; font-size: 24px; font-variant-numeric: tabular-nums; }
+  .cd span { font-size: 11px; color: var(--faint); text-transform: uppercase; letter-spacing: .05em; }
+  .next-text { font-size: 14px; }
+  .next-ctx { font-size: 12px; color: var(--faint); }
+  .row-btns { display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto; }
+  .meter { position: relative; height: 8px; background: var(--stripe); border: 1px solid var(--border); border-radius: 999px; overflow: visible; }
+  .meter > i { position: absolute; inset: 0 auto 0 0; width: 0; background: var(--accent); border-radius: 999px; transition: width .3s; }
+  .meter.ok > i { background: var(--ok); }
+  .meter.gold > i { background: linear-gradient(90deg, var(--gold), #f2c14e); }
+  .meter.rested > i { background: linear-gradient(90deg, #7b5cd6, #4ea3ff); }
+  .meter .tick { position: absolute; top: -3px; bottom: -3px; width: 2px; background: var(--faint); opacity: .5; border-radius: 2px; }
+  .meter .tick.hit { background: var(--ok); opacity: 1; }
+  .tiers { position: relative; height: 18px; font-size: 11px; color: var(--faint); }
+  .tiers span { position: absolute; transform: translateX(-50%); white-space: nowrap; }
+  .tiers span.hit { color: var(--ok); font-weight: 600; }
+  .kv { display: flex; justify-content: space-between; gap: 8px; font-size: 13px; }
+  .kv span:first-child { color: var(--muted); }
+
+  /* ---------- army ---------- */
+  .army-tools { display: flex; flex-wrap: wrap; gap: 10px 20px; align-items: center; margin: 8px 0 14px; font-size: 14px; }
+  .army-tools label { display: inline-flex; gap: 8px; align-items: center; cursor: pointer; }
+  .army-tools input[type=number] { width: 64px; }
+  .army { display: grid; grid-template-columns: repeat(auto-fill, minmax(255px, 1fr)); gap: 12px; }
+  .char { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; display: flex; flex-direction: column; gap: 10px; box-shadow: var(--shadow); }
+  .char.core { border-top: 3px solid var(--accent); }
+  .char.done { border-top-color: var(--ok); }
+  .char.next { outline: 2px solid #7b5cd6; outline-offset: -1px; }
+  .char.f-hit { outline: 2px solid var(--accent); outline-offset: -1px; }
+  .char header { display: flex; justify-content: space-between; gap: 8px; align-items: start; }
+  .char header small { display: block; color: var(--faint); font-size: 12px; }
+  .badge { font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: var(--ok-soft); color: var(--ok); white-space: nowrap; }
+  .badge.zero { background: var(--stripe); color: var(--faint); }
+  .lvl, .prof { display: flex; align-items: center; gap: 6px; font-size: 13px; }
+  .lvl .lab, .prof .lab { color: var(--muted); min-width: 0; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .num-in { width: 58px; height: 34px; text-align: center; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); font-size: 16px; font-variant-numeric: tabular-nums; -moz-appearance: textfield; }
+  .num-in::-webkit-inner-spin-button, .num-in::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+  .stepbtn { width: 34px; height: 34px; border-radius: 8px; border: 1px solid var(--border); background: var(--stripe); cursor: pointer; font-size: 18px; line-height: 1; touch-action: manipulation; }
+  .stepbtn:active { transform: scale(.94); }
+  .prof-wrap { display: flex; flex-direction: column; gap: 6px; }
+  .rest { display: flex; flex-direction: column; gap: 6px; padding-top: 8px; border-top: 1px dashed var(--border); }
+  .rest-row { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 12.5px; color: var(--muted); }
+  .parked-tag { color: #7b5cd6; font-weight: 600; }
+
+  /* ---------- route ---------- */
+  .route-tools { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 6px; }
+  details.phase-d { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); margin: 10px 0; box-shadow: var(--shadow); }
+  details.phase-d > summary { cursor: pointer; padding: 14px 16px; font-weight: 600; list-style: none; display: grid; grid-template-columns: auto 1fr auto; gap: 4px 10px; align-items: baseline; }
+  details.phase-d > summary::-webkit-details-marker { display: none; }
+  details.phase-d > summary::before { content: "\25B8"; color: var(--faint); transition: transform .15s; grid-row: span 2; }
+  details.phase-d[open] > summary::before { transform: rotate(90deg); }
+  summary .lv { color: var(--muted); font-weight: 400; font-size: 13px; grid-column: 2; grid-row: 2; }
+  .pp { grid-column: 3; grid-row: 1 / span 2; align-self: center; display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--faint); font-weight: 500; font-variant-numeric: tabular-nums; }
+  .pp .meter { width: 70px; }
+  .pp.complete { color: var(--ok); }
+  .phase { padding: 0 18px 16px; font-size: 14px; }
+  @media (max-width: 640px) { .phase { padding: 0 12px 12px; } .pp .meter { width: 44px; } }
+  .goal { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 12px 14px; background: var(--stripe); border-radius: 8px; margin-bottom: 8px; }
+  @media (max-width: 700px) { .goal { grid-template-columns: 1fr; gap: 8px; } }
+  .goal span { display: block; color: var(--faint); font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
+  ul.steps { list-style: none; padding: 0; }
+  li.step { display: flex; gap: 10px; align-items: flex-start; padding: 6px 8px; margin: 2px -8px; border-radius: 8px; cursor: pointer; transition: background .15s, opacity .15s; }
+  li.step:hover { background: var(--stripe); }
+  li.step input { width: 18px; height: 18px; margin: 2px 0 0; flex-shrink: 0; accent-color: var(--ok); cursor: pointer; }
+  li.step.checked > span { color: var(--faint); text-decoration: line-through; text-decoration-color: color-mix(in srgb, var(--faint) 60%, transparent); }
+  li.flash { animation: flash 1.6s ease-out; }
+  @keyframes flash { 0%, 30% { background: var(--gold-soft); box-shadow: 0 0 0 2px var(--gold); } 100% { background: transparent; box-shadow: none; } }
+
+  /* ---------- filters / search ---------- */
+  .f-dim { opacity: .32; }
+  .f-dim:hover { opacity: .8; }
+  li.f-hit, tr.f-hit td:first-child { box-shadow: inset 3px 0 0 var(--accent); }
+  .s-miss { display: none !important; }
+  .search-empty { display: none; text-align: center; padding: 40px 0; color: var(--muted); }
+  body.searching .search-empty.show { display: block; }
+
+  /* ---------- checklist ---------- */
+  .checklist { list-style: none; padding: 0; }
+  .checklist li { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; margin: 6px 0; }
+  .checklist label { display: flex; gap: 12px; cursor: pointer; font-size: 14px; }
+  .checklist input { width: 20px; height: 20px; margin-top: 1px; flex-shrink: 0; accent-color: var(--ok); }
+  .checklist input:checked + div { color: var(--faint); text-decoration: line-through; }
+  .progress { font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 10px; }
+  .progress .meter { flex: 0 0 160px; }
+
+  /* ---------- floating ---------- */
+  .toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom)); transform: translate(-50%, 20px); background: #1f2328; color: #fff;
+    padding: 10px 16px; border-radius: 10px; font-size: 14px; opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; z-index: 50; max-width: 90vw; }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+  .totop { position: fixed; right: 16px; bottom: calc(20px + env(safe-area-inset-bottom)); width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--border);
+    background: var(--card); box-shadow: 0 4px 14px rgba(0,0,0,.15); cursor: pointer; opacity: 0; pointer-events: none; transition: opacity .2s; z-index: 15; font-size: 18px; }
+  .totop.show { opacity: 1; pointer-events: auto; }
+  .tabbar { display: none; }
+  @media (max-width: 760px) {
+    nav.sections { display: none; }
+    .brand span, .search kbd { display: none; }
+    .hide-sm { display: none; }
+    .tabbar { display: grid; grid-template-columns: repeat(5, 1fr); position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+      background: color-mix(in srgb, var(--card) 94%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      border-top: 1px solid var(--border); padding-bottom: env(safe-area-inset-bottom); }
+    .tabbar a, .tabbar button { background: none; border: 0; color: var(--muted); text-decoration: none; font-size: 11px; padding: 8px 0 7px; display: flex; flex-direction: column; align-items: center; gap: 3px; cursor: pointer; }
+    .tabbar a.active { color: var(--accent); font-weight: 600; }
+    .tabbar svg { width: 20px; height: 20px; }
+    main { padding-bottom: 110px; }
+    .totop { bottom: calc(72px + env(safe-area-inset-bottom)); }
+    .toast { bottom: calc(76px + env(safe-area-inset-bottom)); }
+  }
+
+  @media print {
+    .top, .tabbar, .totop, .toast, .route-tools, .row-btns, .stepbtn, .rest button, #army-section, .dash .panel.np { display: none !important; }
+    body { background: #fff; color: #000; }
+    details.phase-d { break-inside: auto; box-shadow: none; }
+    .f-dim { opacity: 1; }
+  }
+</style>
+</head>
+<body>
+<header class="top" id="top">
+  <div class="bar">
+    <div class="brand"><i aria-hidden="true"></i><span>Legacy Route</span></div>
+    <div class="search">
+      <input id="q" type="search" placeholder="Search…" autocomplete="off" aria-label="Search the guide">
+      <kbd>/</kbd>
+      <span class="count" id="q-count"></span>
+    </div>
+    <button class="iconbtn" id="theme-btn" type="button" aria-label="Change theme">Auto</button>
+    <details class="menu" id="menu">
+      <summary class="iconbtn" aria-label="More options">More</summary>
+      <div class="menu-panel">
+        <button type="button" data-act="expand">Expand all phases</button>
+        <button type="button" data-act="collapse">Collapse all phases</button>
+        <button type="button" data-act="wake" id="wake-btn" hidden>Keep screen on</button>
+        <hr>
+        <button type="button" data-act="export">Export progress (file)</button>
+        <button type="button" data-act="import">Import progress…</button>
+        <button type="button" data-act="print">Print or save as PDF</button>
+        <hr>
+        <button type="button" data-act="reset" class="danger">Reset all progress</button>
+      </div>
+    </details>
+    <input type="file" id="import-file" accept="application/json,.json" hidden>
+  </div>
+  <div class="chips" role="group" aria-label="Focus on a character">
+    <span class="lab">Focus:</span>
+    <button class="chip" data-f="all" aria-pressed="true">Everyone</button>
+    <button class="chip" data-f="shaman" aria-pressed="false">Shaman</button>
+    <button class="chip" data-f="priest" aria-pressed="false">Priest</button>
+    <button class="chip" data-f="warrior" aria-pressed="false">Warrior</button>
+    <button class="chip" data-f="druid" aria-pressed="false">Druid</button>
+    <button class="chip" data-f="support" aria-pressed="false">Support alts</button>
+  </div>
+  <nav class="sections" aria-label="Sections">
+    <a href="#dashboard">Dashboard</a><a href="#army-section">Army</a><a href="#rotation">Rotation</a><a href="#roster">Roster</a>
+    <a href="#start">Start order</a><a href="#hubs">Hubs</a><a href="#quests">Class quests</a><a href="#route">Route</a>
+    <a href="#checklist">Checklist</a><a href="#legacy">Legacy Points</a><a href="#fixes">Horde fixes</a><a href="#mount">Mount</a><a href="#launch">Launch checks</a>
+  </nav>
+</header>
+
+<main id="main">
+<section class="sec" id="dashboard">
+
+
+<p class="meta">WoW Forever, Alliance version of Ceedsy's "Ultimate Alt Army Blueprint" (10/12/2026). Based on beta build 1.60.1.70450. Reviewed October 19, 2026.</p>
+<h1>Alliance Legacy Point Route</h1>
+<p class="lead">Level a Main and eight alts together, and organize their professions so the whole army earns as many Legacy Points as possible. Rotate between characters so each one always plays with rested XP. The Horde dungeons from the original guide are replaced with ones near Stormwind and Ironforge, and the roster uses nine different classes so every level-25 point counts.</p>
+
+<div class="stats">
+  <div class="stat"><b>9</b><span>Characters, one per class</span></div>
+  <div class="stat"><b>4</b><span>Core characters, to level 35</span></div>
+  <div class="stat"><b>5</b><span>Support alts, to level 25</span></div>
+  <div class="stat ok"><b>15 to 19</b><span>Legacy Points earned (16 spendable)</span></div>
+</div>
+
+
+  <div class="dash">
+    <div class="panel np">
+      <h3>Launch countdown</h3>
+      <div class="cd" id="cd"><div><b>–</b><span>days</span></div><div><b>–</b><span>hrs</span></div><div><b>–</b><span>min</span></div><div><b>–</b><span>sec</span></div></div>
+      <div class="faint" id="cd-local"></div>
+    </div>
+    <div class="panel">
+      <h3>Legacy Points</h3>
+      <div class="big"><span id="lp-total">0</span> <small>earned · <span id="lp-spend">0</span>/16 spendable</small></div>
+      <div class="meter gold" id="lp-meter"><i></i></div>
+      <div class="tiers" id="lp-tiers"></div>
+      <div class="faint" id="lp-next"></div>
+    </div>
+    <div class="panel np">
+      <h3>Next step on the route</h3>
+      <div class="next-ctx" id="ns-ctx"></div>
+      <div class="next-text" id="ns-text"></div>
+      <div class="meter ok" id="ns-meter"><i></i></div>
+      <div class="faint" id="ns-count"></div>
+      <div class="row-btns"><button class="btn primary" id="ns-go" type="button">Show me</button><button class="btn" id="ns-done" type="button">Mark done</button></div>
+    </div>
+    <div class="panel np">
+      <h3>Who to play next</h3>
+      <div class="next-text" id="pn-text"></div>
+      <div class="faint" id="pn-sub"></div>
+      <div class="kv"><span>Nearest level point</span><span id="near-lvl">–</span></div>
+      <div class="kv"><span>Nearest profession point</span><span id="near-prof">–</span></div>
+      <div class="row-btns"><a class="btn" href="#army-section">Open army tracker</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="army-section">
+  <h2>Army tracker</h2>
+  <p class="small muted">Enter levels and crafting skill to keep a live Legacy Point count. Tap <b>Park</b> when you log a character out in an inn, city or Cozy Sleeping Bag, and the tracker estimates their rested XP so you know who to play next. Everything saves on this device; use <b>More → Export</b> to move it to another device.</p>
+  <div class="army-tools">
+    <label><input type="checkbox" id="opt-wr"> Well Rested perk at rank 5 (20% faster, 20% higher cap)</label>
+    <label>Other Legacy challenges done <input type="number" class="num-in" id="opt-extra" min="0" max="99" inputmode="numeric"></label>
+  </div>
+  <div class="army" id="army"></div>
+  <p class="faint">Rested estimate uses the Classic rule (5% of a level per 8 hours in an inn, capped at 1.5 levels) and assumes rested XP was empty when you parked. Treat it as a guide, not an exact number.</p>
+</section>
+
+<section class="sec" id="rotation">
+<div class="split">
+  <section>
+    <h2>How the rotation works</h2>
+    <ol>
+      <li>Play one character until its rested XP runs out.</li>
+      <li>Park it in an inn or a city. It starts building rested XP again.</li>
+      <li>Switch to the next character, which has been resting while you played the others.</li>
+      <li>Save dungeons for when a character is fully rested. Rested XP doubles kill XP, and dungeons are mostly kills.</li>
+      <li>Mail materials around as you go, so every character's profession keeps climbing.</li>
+    </ol>
+  </section>
+  <section>
+    <h3 style="margin-top:40px">Terms used on this page</h3>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Term</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr><td>Legacy Points</td><td>Account-wide points from one-time challenges. You spend them on perks, up to 16 per character.</td></tr>
+        <tr><td>Rested XP</td><td>Bonus XP you build while logged out in an inn or city. It doubles XP from kills, not from quests.</td></tr>
+        <tr><td>Parking</td><td>Logging a character out in an inn or city so it builds rested XP while you play someone else.</td></tr>
+        <tr><td>Core four</td><td>Your Main plus the three crafting alts. They go to level 35.</td></tr>
+        <tr><td>Support alts</td><td>Five extra characters, one for each remaining class. They only go to 25, for the class point.</td></tr>
+        <tr><td>Gauntlet</td><td>Several dungeons in a row, run while rested XP is full.</td></tr>
+        <tr><td>Camp object</td><td>A placeable rest spot or buff from the Camping system, unlocked through professions and dungeon blueprints.</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+</div>
+
+</section>
+<section class="sec" id="roster">
+<h2>Your roster</h2>
+<p class="small muted">The first four rows are your picks. Race only affects where a character starts, so support alts can be any race. Skyborne needs the Skyborne Heroic Pack or a higher edition.</p>
+<div class="table-wrap"><table>
+  <thead><tr><th>Slot</th><th>Character</th><th>Starts in</th><th>Professions</th><th>Supply chain role</th><th>Legacy Points it earns</th></tr></thead>
+  <tbody>
+    <tr class="pick"><td>Main</td><td>Dwarf Shaman</td><td>Dun Morogh</td><td>Skinning + Leatherworking</td><td>Leather for the army, Camp Tent</td><td>Shaman + Leatherworking</td></tr>
+    <tr class="pick"><td>Alt 2</td><td>Night Elf Priest</td><td>Teldrassil</td><td>Tailoring + Enchanting</td><td>Bags for everyone, disenchants all greens</td><td>Priest + Tailoring + Enchanting</td></tr>
+    <tr class="pick"><td>Alt 3</td><td>Night Elf Warrior</td><td>Teldrassil</td><td>Mining + Blacksmithing</td><td>Ore and bars for the army</td><td>Warrior + Blacksmithing</td></tr>
+    <tr class="pick"><td>Alt 4</td><td>Skyborne Druid</td><td>Zephras Isle</td><td>Herbalism + Alchemy</td><td>Potions and elixirs</td><td>Druid + Alchemy</td></tr>
+    <tr><td>Alt 5</td><td>Paladin</td><td>Any</td><td>None needed</td><td>Rested bank</td><td>Paladin</td></tr>
+    <tr><td>Alt 6</td><td>Hunter</td><td>Any</td><td>Engineering (Mining optional)</td><td>Uses the Warrior's ore and bars</td><td>Hunter + Engineering</td></tr>
+    <tr><td>Alt 7</td><td>Rogue</td><td>Any</td><td>None needed</td><td>Rested bank</td><td>Rogue</td></tr>
+    <tr><td>Alt 8</td><td>Warlock (Human or Gnome)</td><td>Any</td><td>None needed</td><td>Rested bank</td><td>Warlock</td></tr>
+    <tr><td>Alt 9</td><td>Mage</td><td>Any</td><td>None needed</td><td>Rested bank</td><td>Mage</td></tr>
+  </tbody>
+</table></div>
+
+</section>
+<section class="sec" id="start">
+<div class="split">
+  <section>
+    <h2>Start order</h2>
+    <p class="small muted">Alchemy goes online first because potions and elixirs speed up everyone else. The Priest trains early, waits for Linen, then makes every bag in one sitting.</p>
+    <ol>
+      <li><b>Priest to 5:</b> train Tailoring and Enchanting in Darnassus and park there.</li>
+      <li><b>Druid to about 15:</b> Herbalism on Zephras Isle, then Alchemy in Stormwind. This gets potions flowing as early as possible.</li>
+      <li><b>Shaman to 10:</b> Skinning and Leatherworking. Mail all Linen to the Priest.</li>
+      <li><b>Warrior to 10:</b> Apprentice Mining. Mail all Linen and greens to the Priest.</li>
+      <li><b>Priest back on:</b> turn the army's Linen into bags for everyone, disenchant the greens, then level 5 to 10.</li>
+    </ol>
+  </section>
+  <section style="margin-top:40px">
+    <div class="callout" id="ne-trip">
+      <strong>Night Elf trip to the Eastern Kingdoms</strong>
+      <ol>
+        <li>Leave Teldrassil at about level 11: take the portal down to Rut'theran Village and fly to Auberdine.</li>
+        <li>Warrior: learn Blacksmithing in Auberdine, and Journeyman Mining from Kurdram Stonehammer (/way 38.2 41.0). Darkshore copper and tin feed Rough Sharpening Stones to 45, then Rough Grinding Stones to 83.</li>
+        <li>Quest in Darkshore to 13 or 14. Pick up Researching the Corruption from Gershala Nightwhisper in Auberdine for Blackfathom Deeps later.</li>
+        <li>Take the new direct boat from Auberdine to Stormwind Harbor, then set your hearthstone in Stormwind.</li>
+        <li>Take the Deeprun Tram to Ironforge for Hall of Thanes. From then on the Night Elves follow the same route as everyone else.</li>
+      </ol>
+    </div>
+  </section>
+</div>
+
+</section>
+<section class="sec" id="hubs">
+<h2>Home hubs</h2>
+<div class="table-wrap"><table>
+  <thead><tr><th>City</th><th>Used for</th><th>Why</th></tr></thead>
+  <tbody>
+    <tr><td>Stormwind</td><td>Main hub for the whole army</td><td>The Stockade is inside the city and Deadmines is one zone over. The boat to Auberdine, the tram to Ironforge and the Skyborne portal all arrive here.</td></tr>
+    <tr><td>Ironforge</td><td>Hall of Thanes and Gnomeregan</td><td>The Hall of Thanes portal is inside the High Seat (/way 43.5 52.0), so you can park right at the door.</td></tr>
+    <tr><td>Auberdine</td><td>Kalimdor side</td><td>Blacksmithing and Mining trainers, Blackfathom Deeps quests, the route south to Wailing Caverns, and the boat to Stormwind.</td></tr>
+  </tbody>
+</table></div>
+<p class="faint">Mail works between all cities, so the supply chain doesn't care where anyone lives. Each character can place one camp object, and all camp objects share a one-hour cooldown.</p>
+
+</section>
+<section class="sec" id="quests">
+<h2>Class quests on the route</h2>
+<p class="small muted">Only the core four's class quests that sit on or next to the route. Each one is also listed in its phase below.</p>
+<div class="table-wrap"><table>
+  <thead><tr><th>Class</th><th>Quest</th><th>Level</th><th>Where it fits</th></tr></thead>
+  <tbody>
+    <tr><td>Shaman</td><td>Call of Earth</td><td>4 to 6</td><td>Phase 1, Coldridge Valley</td></tr>
+    <tr><td>Shaman</td><td>Call of Fire</td><td>10</td><td>Phase 1, Dun Morogh</td></tr>
+    <tr><td>Shaman</td><td>Call of Water</td><td>20 to 23</td><td>Phase 3, threads Loch Modan, Wetlands, Redridge, Ashenvale and Westfall</td></tr>
+    <tr><td>Shaman</td><td>Call of Air</td><td>30</td><td>Phase 4, Arathi Highlands, next to the Wetlands</td></tr>
+    <tr><td>Shaman</td><td>Tempest's Weapons (first step)</td><td>30 to 34</td><td>Phase 5, Charlga Razorflank in Razorfen Kraul</td></tr>
+    <tr><td>Priest</td><td>Stars of Elune (Night Elf)</td><td>10</td><td>Phase 1, Dolanaar</td></tr>
+    <tr><td>Priest</td><td>Elune's Grace (Night Elf)</td><td>20</td><td>Phase 3, Stormwind Cathedral</td></tr>
+    <tr><td>Warrior</td><td>Defensive Stance quest (Night Elf version)</td><td>10</td><td>Phase 1, Darnassus warrior trainer</td></tr>
+    <tr><td>Warrior</td><td>Fire Hardened Armor</td><td>20 to 28</td><td>Phase 3 and 4: Lakeshire, Stormwind, then the Wetlands</td></tr>
+    <tr><td>Druid</td><td>Bear Form (The Great Ursera Spirit, Strength and Mercy)</td><td>10 to 12</td><td>Phase 1, Zephras Isle</td></tr>
+    <tr><td>Druid</td><td>Teleport: Moonglade (Child of Nature)</td><td>About 15</td><td>Phase 1, Dalaran landing, then Sheldras Moontree in Stormwind</td></tr>
+    <tr><td>Druid</td><td>Cure Poison (Lessons Anew)</td><td>14 to 20</td><td>Phase 3: Moonglade, then Cliffspring Falls in Darkshore</td></tr>
+    <tr><td>Druid</td><td>Cat Form (The Great Cat Spirit)</td><td>20</td><td>Phase 3: Darnassus, Moonglade, then the Stormrage Barrow Dens</td></tr>
+  </tbody>
+</table></div>
+<p class="faint">Skip these, because they pull you off the route: the Warrior's Whirlwind Weapon (needs Barrens and Desolace runs, and the reward is at 40), the last Stonetalon step of Fire Hardened Armor unless you're passing through, and the Druid's Aquatic Form unless you're already in Moonglade and Darkshore. For the support alts, do the class quests in their starting zone and skip the rest.</p>
+
+</section>
+<section class="sec" id="route">
+<hr>
+<h2>The route</h2>
+<p class="small muted">Open one phase at a time. Tap any step to tick it off, and each phase shows its progress. Tap a gold waypoint like <span class="way">/way 43.0 43.6</span> to copy it.</p>
+<div class="route-tools"><button class="btn sm" type="button" data-route="expand">Expand all</button><button class="btn sm" type="button" data-route="collapse">Collapse all</button></div>
+
+<details class="phase-d">
+  <summary>Phase 1: Set up the supply chain <span class="lv">Priest 1 to 5, Druid 1 to 15, Shaman and Warrior 1 to 10, then Priest 5 to 10</span></summary>
+  <div class="phase">
+    <div class="goal">
+      <div><span>Goal</span>Get Alchemy running as early as possible, and have the Priest turn everyone's Linen into bags.</div>
+      <div><span>You're done when</span>The Druid is in Stormwind with Alchemy. Shaman, Warrior and Priest are 10. Every core character has its bags. Everyone is parked.</div>
+    </div>
+    <h3>1. Night Elf Priest to 5 (Teldrassil)</h3>
+    <ul>
+      <li>Level to 5 in Shadowglen. Trainers usually want level 5; if one teaches you at 4, take it.</li>
+      <li>Run to Darnassus and train Tailoring and Enchanting on the Craftsmen's Terrace.</li>
+      <li>Park in Darnassus. The Priest comes back once the others have Linen to send.</li>
+    </ul>
+    <h3>2. Skyborne Druid to about 15 (Zephras Isle, then Stormwind)</h3>
+    <ul>
+      <li>At 5, learn Herbalism from Halassa Fernbreeze in Shen'dar Village (/way 43.0 43.6). Pick every herb you pass and keep them for Alchemy.</li>
+      <li>Class quests on the isle: A Student of Nature at 2 (Rorian to Xyton Silverwind in Thendal Grove), then The Great Ursera Spirit and Strength and Mercy from Lotheluum Starbreeze for Bear Form.</li>
+      <li>Park at the Calmbreeze Inn in Shen'dar Village whenever you swap characters.</li>
+      <li>At about 15, take the skycutter from the tower south of Valanaar to the Dalaran landing. Pick up Child of Nature from Alfina Nightgaze, then take the Skyborne Portal to Stormwind.</li>
+      <li>In Stormwind: learn Alchemy and hand Child of Nature to Sheldras Moontree for Teleport: Moonglade. Make Elixir of Minor Defense with your stored herbs to reach 75, then mail potions and elixirs to the army.</li>
+      <li>Park in Stormwind.</li>
+    </ul>
+    <h3>3. Dwarf Shaman to 10 (Dun Morogh)</h3>
+    <ul>
+      <li>Class quests: Archaic Rune (Sten Stoutarm to Teo Hammerstorm in Anvilmar), then Call of Earth from Teo Hammerstorm. At 10, Call of Fire from Ingrid Dunwald to Bruegs Kindleborn at the South Gate.</li>
+      <li>Take Skinning from the free gathering manual quest around level 3 or 4.</li>
+      <li>Around level 5, do The Great Outdoors. It unlocks Camping.</li>
+      <li>Train Leatherworking in Ironforge. Make Light Armor Kits from your own Light Leather to reach 55.</li>
+      <li>At Leatherworking 20, the Camping 101 quest teaches the Camp Tent (5 Light Leather each), a rested-XP camp object.</li>
+      <li>Mail all Linen Cloth to the Priest.</li>
+      <li>Pick up A Visitor to Dun Morogh from Beldin Steelgrill at Steelgrill's Depot. It starts the Hall of Thanes chain.</li>
+      <li>Park in the Kharanos inn or in Ironforge.</li>
+    </ul>
+    <h3>4. Night Elf Warrior to 10 (Teldrassil)</h3>
+    <ul>
+      <li>Class quest at 10: the Night Elf Defensive Stance quest from the warrior trainer in Darnassus.</li>
+      <li>Learn Apprentice Mining from Fanorran Stilloak in Shadowglen (/way 58.2 41.6). There's no copper on Teldrassil, so mining starts in Darkshore.</li>
+      <li>Mail all Linen Cloth and every green to the Priest.</li>
+      <li>Park in Dolanaar. Blacksmithing comes in Auberdine at the start of Phase 2.</li>
+    </ul>
+    <h3>5. Night Elf Priest, 5 to 10 (bags for everyone)</h3>
+    <ul>
+      <li>Collect the Linen from the mailbox. Make 4 Linen Bags each for the Druid, Shaman and Warrior, mail them out, and keep 4 for yourself (16 in total). Make more for the support alts later.</li>
+      <li>Disenchant every green the army mailed you. Enchanting: Inferior Stamina bracers to 25, then Minor Deflect bracers to 90.</li>
+      <li>Class quest at 10: Stars of Elune, from Laurna Morninglight in Dolanaar.</li>
+      <li>Park in the Dolanaar inn or in Darnassus.</li>
+      <li>Optional: create the five support alts now and park them, so they start building rested XP.</li>
+    </ul>
+  </div>
+</details>
+
+<details class="phase-d">
+  <summary>Phase 2: First dungeon gauntlet <span class="lv">Levels 13 to 21</span></summary>
+  <div class="phase">
+    <div class="goal">
+      <div><span>Goal</span>Run Hall of Thanes, Deadmines and Wailing Caverns on each core character while rested.</div>
+      <div><span>You're done when</span>All four core characters are 20 or 21. One crafting profession has reached 150, which unlocks Legacy.</div>
+    </div>
+    <h3>Night Elves only: getting to the Eastern Kingdoms</h3>
+    <ul><li>Follow the <a href="#ne-trip">Night Elf trip</a> under Start order.</li></ul>
+    <h3>Quests to pick up first, at level 13 or 14 (Ironforge and Dun Morogh)</h3>
+    <ul>
+      <li>Night Elves and the Druid: pick up A Visitor to Dun Morogh from Beldin Steelgrill at Steelgrill's Depot.</li>
+      <li>Old Ironforge Incursion chain: start with Farsen above the quarry (/way 64.8 58.5). Nip 'Em in the Bud (10 Dark Iron Spies), then Dark Iron Map, then Underground Map, then Old Ironforge Incursion (kill the final boss).</li>
+      <li>Important Heirlooms from Thom Filch (Old Ironforge, /way 32.6 44.6) and The Restless Dead from Afadra Dunwall.</li>
+      <li>Found inside: An Ancient Grudge and The Treaty of Understanding (can't be shared).</li>
+      <li>Knowledge in the Deeps from Gerrig Bonegrip in the Forlorn Cave. Keep it for Blackfathom Deeps later.</li>
+      <li>Park in Ironforge, next to the Hall of Thanes door.</li>
+    </ul>
+    <h3>Hall of Thanes (levels 13 to 18, 5 quests)</h3>
+    <ul><li>Run it fully rested and turn in every quest before moving on. The Druid is already about 15, which is still inside the range.</li></ul>
+    <h3>Westfall and Stormwind, before Deadmines</h3>
+    <ul>
+      <li>Destruction in Deadmines chain from Alba Fairmoon at Sentinel Hill (from level 9). Step 5 needs 10 Rough Dynamite, so buy or craft it in advance.</li>
+      <li>The Defias Brotherhood chain from Gryan Stoutmantle, and Red Silk Bandanas from Scout Riell.</li>
+      <li>In Stormwind: Collecting Memories and Oh Brother from Wilder Thistlenettle (the mine outside the instance is all elites, so bring the group), and Underground Assault from Gnoarn in Tinker Town.</li>
+      <li>Level 14: start the Cozy Sleeping Bag chain at the Burned-Out Remains, Alexston Farmstead, Westfall (/way 37 50). The bag works like an inn anywhere, even while you're logged out, so any character can park anywhere.</li>
+    </ul>
+    <h3>Deadmines (levels 14 to 24, 7 quests)</h3>
+    <ul>
+      <li>Drops the Journeyman Campfire and Cookie's Feast camp blueprints.</li>
+      <li>The Unsent Letter starts the Stockade Riots chain for Phase 3.</li>
+    </ul>
+    <h3>Wailing Caverns (levels 15 to 24, 5 Alliance quests)</h3>
+    <ul>
+      <li>Getting there: take the boat from Stormwind to Auberdine, then run south through Ashenvale into the Barrens. Or, once you have the Booty Bay flight path, take the Booty Bay to Ratchet boat. The Druid can use Teleport: Moonglade and fly to Auberdine.</li>
+      <li>Ratchet: Raptor Horns, then Smart Drinks (Mebok Mizzyrix), and Trouble at the Docks.</li>
+      <li>Above the entrance: Deviate Hides and Deviate Eradication. The Glowing Shard drops inside.</li>
+      <li>Lots of leather here for the Shaman to skin.</li>
+    </ul>
+    <h3>Optional: Ruins of Lordaeron (levels 16 to 22)</h3>
+    <ul>
+      <li>4 Alliance quests, all inside, about 35,000 XP in total. Drops the Fermenter blueprint (the next Alchemy camp object).</li>
+      <li>Only worth it with a group already there. The walk is a boat from Menethil to Southshore, then north through Silverpine.</li>
+    </ul>
+    <h3>Professions during this phase</h3>
+    <ul>
+      <li>Get Leatherworking or Tailoring to 150 first. That unlocks Legacy before anyone reaches 25. Spend the first point on Working Overtime.</li>
+      <li>The Druid keeps herbing along the route and gets Alchemy to 150.</li>
+      <li>Skinning can only be done once per kill now, not once per group member. The Shaman should skin everything.</li>
+    </ul>
+  </div>
+</details>
+
+<details class="phase-d">
+  <summary>Phase 3: Stockade, Blackfathom Deeps, and the first Legacy points <span class="lv">Levels 21 to 25</span></summary>
+  <div class="phase">
+    <div class="goal">
+      <div><span>Goal</span>Replace the Horde guide's Shadowfang Keep step with Alliance dungeons that have quests, and reach 25 on the core four.</div>
+      <div><span>You're done when</span>All four core characters are 25. You have about 9 Legacy Points.</div>
+    </div>
+    <h3>Why Shadowfang Keep is out</h3>
+    <ul><li>Its quests are Horde-only, except one Paladin quest. The Stockade replaces it. Blackfathom Deeps does the same job as in the original guide.</li></ul>
+    <h3>Questing between dungeons</h3>
+    <ul><li>Darkshore (16 to 21), then Redridge (20 to 23), then Duskwood (22 to 26), then Ashenvale (25 to 29).</li></ul>
+    <h3>Class quests that fit this stretch</h3>
+    <ul>
+      <li>Shaman, Call of Water (20 to 23): Eldrun Stormbreaker (Ironforge) to Norric Lochthane (Loch Modan) to Hervdana Saegrund (Wetlands). Fill waterskins below her cave, at Stonewatch Falls in Redridge and at the Astranaar lake in Ashenvale, then finish at Stendel's Pond in Westfall.</li>
+      <li>Priest, Elune's Grace (20): pick it up in Stormwind Cathedral during a Stormwind stop.</li>
+      <li>Warrior, Fire Hardened Armor (20): the Darnassus or Stormwind warrior trainer sends you to Yorus Barleybrew at the Lakeshire inn (timed run into the Rethban Caverns), then Furen Longbeard in Stormwind. The Wetlands spider fangs come in Phase 4.</li>
+      <li>Druid, while questing in Darkshore: Cure Poison (Mathrengyl Bearwalker in Darnassus, then Moonglade, then Cliffspring Falls) and, at 20, Cat Form (Darnassus, then Moonglade, then the Stormrage Barrow Dens). Take the Auberdine boat if you don't have the Rut'theran flight path.</li>
+    </ul>
+    <h3>The Stockade (levels 22 to 30, 6 quests)</h3>
+    <ul>
+      <li>Stormwind: Quell the Uprising and The Color of Blood.</li>
+      <li>Along the route: What Comes Around (Guard Berton, Lakeshire), Crime and Punishment (Councilman Millstipe, Darkshire), The Fury Runs Deep (Motley Garmason, Dun Modr, after The Dark Iron War), and The Stockade Riots (from the Deadmines letter).</li>
+      <li>Every quest giver is on your Redridge and Duskwood route, so there's no extra travel.</li>
+    </ul>
+    <h3>Blackfathom Deeps (levels 21 to 30), then on to 25</h3>
+    <ul>
+      <li>Quests: Knowledge in the Deeps (already in your log), Researching the Corruption (Auberdine), In Search of Thaelrid and Twilight Falls (Craftsmen's Terrace, Darnassus), and Blackfathom Villainy (inside).</li>
+      <li>Finish Ashenvale to reach 25.</li>
+    </ul>
+    <h3>Optional: Shadowfang Keep, Main only</h3>
+    <ul><li>Razorclaw the Butcher drops the Tanning Rack blueprint, the next Leatherworking camp object. Worth one run at 22 to 24.</li></ul>
+    <h3>Gnomeregan prep</h3>
+    <ul><li>At 20, pick up the Gnomeregan quests: Save Techbot's Brain! and Essential Artificials (Tinker Town), Gnogaine (Ozzie Togglevolt, Kharanos), and Gyrodrillmatic Excavationators (Shoni, Stormwind).</li></ul>
+  </div>
+</details>
+
+<details class="phase-d">
+  <summary>Phase 4: Add the support alts and prepare the Excavation Site <span class="lv">Core four 25 to 29; support alts 1 to 14</span></summary>
+  <div class="phase">
+    <div class="goal">
+      <div><span>Goal</span>Bring the five support alts online while the core four move toward 30.</div>
+      <div><span>You're done when</span>Support alts are 14 with the Phase 2 quests in their logs. The core four have the Excavation Site quests.</div>
+    </div>
+    <h3>Support alts</h3>
+    <ul>
+      <li>Level each to 6 or 7 and park. Then take them to 10, doing their starting-zone class quests.</li>
+      <li>Starting as a Dwarf or Human puts them closest to Hall of Thanes and Deadmines. A Night Elf follows the same Teldrassil trip as your Priest and Warrior.</li>
+      <li>At 14, pick up the same Phase 2 quests: the Hall of Thanes chain, the Westfall Deadmines chains and the Stormwind Deadmines quests.</li>
+    </ul>
+    <h3>Core four: 25 to 29</h3>
+    <ul><li>Ashenvale, then Thousand Needles (28 to 31). In Astranaar, pick up Seeking Caitlin from Llana, the reagent vendor.</li></ul>
+    <h3>Excavation Site: Wetlands (8 Alliance quests, against 4 for Horde)</h3>
+    <ul>
+      <li>Songblade Search (Dorin Songblade, Lakeshire), then Fallen in the Fen (inside).</li>
+      <li>Seeking Caitlin, then Lost in the Thicket Things (Caitlin Grassman, Menethil), then Heartwoven.</li>
+      <li>Highland Hides (James Halloran, Menethil, after Young Crocolisk Skins). This was bugged on the beta, so check it at launch.</li>
+      <li>Horrors in the Highland (Rethiel the Greenwarden, central Wetlands), after Tramping Paws, Fire Taboo and Blisters on the Land.</li>
+      <li>Lost Relic Carry, then Prehistoric Prism: the Titan Relic drops from the Relic Guardian (28%). Prospector Whelgar sends you to High Explorer Magellas in Ironforge.</li>
+      <li>Entrance: the hill southeast of Whelgar's Excavation Site.</li>
+    </ul>
+    <h3>Class quests while in the Wetlands</h3>
+    <ul>
+      <li>Warrior, Fire Hardened Armor: Scorched Spider Fangs from the Leech Stalkers and Cave Stalkers around /way 46 61.</li>
+      <li>Shaman at 30, Call of Air: Eldrun Stormbreaker in Ironforge sends you to Veyric Thunderhame in the northern hills of Arathi Highlands, one zone over.</li>
+    </ul>
+  </div>
+</details>
+
+<details class="phase-d">
+  <summary>Phase 5: City of Dalaran and the push to 35 <span class="lv">Core four 28 to 35; support alts 14 to 25</span></summary>
+  <div class="phase">
+    <div class="goal">
+      <div><span>Goal</span>Finish the core four at 35, get professions to 225, and bring every support alt to 25.</div>
+      <div><span>You're done when</span>Core four are 35, support alts are 25, and you're at or near the 16-point cap.</div>
+    </div>
+    <h3>City of Dalaran (levels 28 to 33)</h3>
+    <ul><li>Alliance needs no key. Talk to the Image of Archmage Modera outside the city, then enter through the Cantrips &amp; Crows sewers.</li></ul>
+    <h3>More dungeons and zones toward 35</h3>
+    <ul>
+      <li>Gnomeregan (levels 25 to 38, 13 quests, most from Ironforge). The Horde route doesn't get this one.</li>
+      <li>Razorfen Kraul (levels 25 to 34): Mortality Wanes (inside) and The Crone of the Kraul (Feralas). The Shaman's Call of Air chain continues with Charlga Razorflank, the last boss.</li>
+      <li>Scarlet Monastery Graveyard and Library: Mythology of the Titans (Librarian Mae Paledust, Ironforge).</li>
+      <li>Quest zones: Hillsbrad (30 to 33), Desolace (31 to 34), or the new Riverglades (30 to 45, Farholde Keep flight path, reached from Redridge).</li>
+    </ul>
+    <h3>Professions to 225</h3>
+    <ul>
+      <li>The cheapest to push are Enchanting, Leatherworking, Alchemy and Tailoring. Each one that reaches 225 is another point.</li>
+      <li>Supply crates for the Azeroth Commerce Authority pay Merchant's Favor. The first 50 coins buy a recipe.</li>
+    </ul>
+    <h3>Support alts: gauntlet, then 25</h3>
+    <ul>
+      <li>Run Hall of Thanes, Deadmines and Wailing Caverns, then park at 20. With the Cozy Sleeping Bag you can park at a dungeon door and still build rested XP.</li>
+      <li>Take each to 25 through the Stockade and Blackfathom Deeps. The Hunter gets Engineering to 150 with the Warrior's ore and bars.</li>
+    </ul>
+  </div>
+</details>
+
+</section>
+<section class="sec" id="checklist">
+<h2>Milestone checklist</h2>
+<p class="progress"><span class="meter ok" id="miles-meter"><i></i></span><span id="progress-text"></span><button type="button" class="btn sm" id="reset-miles">Reset</button></p>
+<ul class="checklist" id="milestones">
+  <li><label><input type="checkbox"><div><b>Priest reaches 5:</b> Tailoring and Enchanting trained. Parked in Darnassus.</div></label></li>
+  <li><label><input type="checkbox"><div><b>Druid reaches about 15:</b> Herbalism trained and herbs banked. Bear Form done. In Stormwind with Alchemy and Teleport: Moonglade. First potions mailed. Parked.</div></label></li>
+  <li><label><input type="checkbox"><div><b>Shaman reaches 10:</b> Earth and Fire class quests done. Skinning and Leatherworking trained. Camping unlocked. Linen mailed to the Priest. Parked.</div></label></li>
+  <li><label><input type="checkbox"><div><b>Warrior reaches 10:</b> Defensive Stance quest done. Apprentice Mining learned. Linen and greens mailed to the Priest. Parked.</div></label></li>
+  <li><label><input type="checkbox"><div><b>Priest reaches 10:</b> 4 Linen Bags mailed to each core character. Greens disenchanted. Stars of Elune done. Parked.</div></label></li>
+  <li><label><input type="checkbox"><div><b>Core three reach 13 or 14:</b> Warrior has Blacksmithing from Auberdine. Night Elves are in Stormwind with their hearthstone set there. Everyone has the Hall of Thanes and Old Ironforge quests and is parked in Ironforge.</div></label></li>
+  <li><label><input type="checkbox"><div><b>Core four reach 20 or 21:</b> Hall of Thanes, Deadmines and Wailing Caverns done.</div></label></li>
+  <li><label><input type="checkbox"><div><b>First crafting skill hits 150:</b> Legacy unlocked. First point in Working Overtime.</div></label></li>
+  <li><label><input type="checkbox"><div><b>Core four reach 23 or 24:</b> Stockade done. Level-20 class quests done or in progress.</div></label></li>
+  <li><label><input type="checkbox"><div><b>Core four reach 25:</b> Blackfathom Deeps done. Druid has Cat Form. About 9 Legacy Points.</div></label></li>
+  <li><label><input type="checkbox"><div><b>Support alts reach 14:</b> Phase 2 quests in their logs.</div></label></li>
+  <li><label><input type="checkbox"><div><b>Core four reach 30:</b> Excavation Site and City of Dalaran done. Shaman has started Call of Air.</div></label></li>
+  <li><label><input type="checkbox"><div><b>Support alts reach 25:</b> 5 more class points plus Engineering 150: about 15 in total, 16 with any skill at 225.</div></label></li>
+</ul>
+
+</section>
+<section class="sec" id="legacy">
+<hr>
+<h2>Legacy Points</h2>
+<div class="table-wrap"><table>
+  <thead><tr><th>Stage</th><th>From leveling</th><th>From professions</th><th class="num">Running total</th></tr></thead>
+  <tbody>
+    <tr><td>Core four reach 25</td><td>4 classes</td><td>Leatherworking, Tailoring, Enchanting, Blacksmithing, Alchemy at 150: 5</td><td class="num">9</td></tr>
+    <tr><td>Support alts reach 25</td><td>5 more classes</td><td>Hunter's Engineering at 150: 1</td><td class="num">15</td></tr>
+    <tr><td>First 225s</td><td></td><td>Any of Enchanting, Leatherworking, Alchemy, Tailoring: 1 to 4</td><td class="num">16 to 19</td></tr>
+    <tr><td>Novice Spelunker</td><td></td><td>Every level 15 to 25 dungeon cleared once (list unpublished)</td><td class="num">+1 if possible</td></tr>
+  </tbody>
+</table></div>
+<p class="faint">Each challenge is worth 1 point. You can spend 16 per character at launch, so you hit the cap around the end of Phase 5. Points past 16 still count toward the reward track. Long term this roster can collect all 45 points from leveling and crafting: 27 from leveling (9 classes at 25, 45 and 60) and 18 from crafting (6 professions at 150, 225 and 300).</p>
+
+<div class="split">
+  <section>
+    <h3>Perks in these builds (values at max rank)</h3>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Perk</th><th>What it does</th><th>Who takes it</th></tr></thead>
+      <tbody>
+        <tr><td>Well Rested</td><td>Rested XP builds 20% faster and its cap is 20% higher</td><td>Everyone</td></tr>
+        <tr><td>Talented</td><td>Talent points start at level 5 instead of 10. Needs Well Rested first</td><td>Everyone</td></tr>
+        <tr><td>Working Overtime</td><td>20% more chance of a skill-up from any profession</td><td>Core four, until professions are done</td></tr>
+        <tr><td>Thrill of Adventure</td><td>Each killing blow restores 5% Health and Mana. Doesn't work in dungeons</td><td>Support alts, while questing</td></tr>
+        <tr><td>Bountiful Harvest</td><td>Twice as many Scarce materials from Mining, Herbalism and Skinning</td><td>Optional swap for gatherers</td></tr>
+        <tr><td>Field Guide</td><td>Shorter camp cooldown (8% at rank 1, up to 25% at rank 3)</td><td>The spare point on the Shaman</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+  <section>
+    <h3>16-point builds</h3>
+    <div class="card"><b>While professions climb</b><span class="pill">Core four</span>
+      <p>Well Rested 5, Talented 5, Working Overtime 5, plus 1 spare. On the Shaman the spare goes to Field Guide. When professions reach 300, swap Working Overtime out for 10g.</p></div>
+    <div class="card"><b>Rested banks</b><span class="pill">Support alts</span>
+      <p>Well Rested 5, Talented 5, Thrill of Adventure 5, plus 1 spare: 16 in total. Thrill of Adventure only works while questing, not in dungeons. An alt that gathers can take Bountiful Harvest instead.</p></div>
+  </section>
+</div>
+
+</section>
+<section class="sec" id="fixes">
+<h2>Where the Horde guide needs fixing</h2>
+<p class="small muted">These apply to both factions. They come from Blizzard's Legacy announcement, the beta client data and the beta patch notes.</p>
+<div class="grid2">
+  <div class="callout danger"><strong>Level points are per class, not per character</strong>Blizzard awards the level 25, 45 and 60 points once for each class. Nine characters only earn nine points if they are nine different classes, so the roster has one of each.</div>
+  <div class="callout danger"><strong>Gathering professions earn no points</strong>Only Alchemy, Blacksmithing, Enchanting, Engineering, Leatherworking and Tailoring count, at 150, 225 and 300. Your core four cover five of these, so the Hunter takes Engineering for the sixth.</div>
+  <div class="callout warn"><strong>The original alt build is 21 points</strong>Well Rested 5, Talented 5, Bountiful Harvest 5, Thrill of Adventure 5, plus 1, adds up to 21. The cap is 16. The fixed builds are in the Legacy section.</div>
+  <div class="callout warn"><strong>Dungeon XP has changed</strong>Oct 1: bonus XP from dungeon quests was cut by half. Oct 8: dungeon kills give 20% more XP. Rested XP only doubles kill XP, so entering a dungeon fully rested is worth more than before.</div>
+  <div class="callout"><strong>Legacy can open before level 25</strong>It unlocks the first time a character reaches 25, gets a crafting profession to 150, or explores the whole map. Getting Leatherworking or Tailoring to 150 early opens it sooner.</div>
+  <div class="callout"><strong>Changing perks costs 10 gold</strong>A class trainer resets your Legacy perks for 10g. Use Working Overtime while professions are climbing, then swap it out.</div>
+</div>
+
+</section>
+<section class="sec" id="mount">
+<h2>The 55-point mount</h2>
+<p class="small">The Legacy reward track unlocks cosmetics at 15, 25, 40 and 55 points. The 55 reward is the Reins of the Spectral Bear. Blizzard hasn't said whether it's epic speed, so treat "free epic mount" as unconfirmed. Beyond the 45 points from leveling and crafting, there are 3 dungeon challenges (levels 15 to 25, 26 to 45 and 46 to 60), Explorer (1), the Lord Valthalak set quest (1), Hyjal Summit and Barrow Deeps (2), and up to 12 from PvP.</p>
+
+</section>
+<section class="sec" id="launch">
+<h2>Check these at launch</h2>
+<p class="faint">Launch: November 4, 3 p.m. PT.</p>
+<div class="callout warn"><strong>Novice Spelunker may need Ragefire Chasm</strong>This challenge asks you to defeat the final boss of every level 15 to 25 dungeon, and the list isn't published. If it includes Ragefire Chasm (inside Orgrimmar) and Ruins of Lordaeron, plan one late run at high level, or skip this point.</div>
+<ul class="small">
+  <li>Perk costs aren't published. The builds above assume 1 point per rank.</li>
+  <li>Quest XP above level 30 comes from Classic data, because the beta stopped at 30.</li>
+  <li>Highland Hides and Prehistoric Prism (Excavation Site) were bugged on the beta.</li>
+  <li>Dungeon XP changed more than once during the beta. Expect more changes.</li>
+  <li>Class quest steps come from route data, not from play. Check givers and order in game.</li>
+  <li>Whether Zephras Isle has an Alchemy trainer isn't confirmed. If it does, train Alchemy at 5 on the isle instead of waiting for Stormwind.</li>
+  <li>The minimum level for crafting trainers isn't confirmed. The plan assumes 5.</li>
+</ul>
+
+</section>
+
+
+<div class="search-empty" id="search-empty">No matches. Try a zone, NPC, quest or profession name.</div>
+
+<p class="faint" style="margin-top:32px">Sources: Blizzard's Legacy, Deep Dive and pre-purchase posts; beta client tables (ken-fs/wowforever); Nutrichi/wowforever dungeon, profession, Legacy perk and news pages (citing Wowhead and Warcraft Tavern); fitzforge/polestar Alliance routes, class quest and profession guides; benjamh681/wow-forever-atlas travel data.</p>
+
+</main>
+
+<nav class="tabbar" aria-label="Quick navigation">
+  <a href="#dashboard" data-tab="dashboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>Home</a>
+  <a href="#army-section" data-tab="army-section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"/><circle cx="17" cy="7" r="2.5"/><path d="M17 12.5c2.5 0 4 1.6 4.6 4"/></svg>Army</a>
+  <a href="#route" data-tab="route"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="6" r="2.5"/><path d="M8.5 18H15a3.5 3.5 0 0 0 0-7H9a3.5 3.5 0 0 1 0-7h6.5"/></svg>Route</a>
+  <a href="#checklist" data-tab="checklist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l2 2 3-3M4 13l2 2 3-3M4 20l2 2 3-3"/><path d="M12 7h8M12 14h8M12 21h8"/></svg>Checklist</a>
+  <button type="button" id="tab-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>Search</button>
+</nav>
+<button class="totop" id="totop" type="button" aria-label="Back to top">&#8593;</button>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  "use strict";
+  var KEY = "alr-v2";
+  var LAUNCH = Date.UTC(2026, 10, 4, 23, 0, 0);
+  var TIERS = [15, 25, 40, 55];
+  var CHARS = [
+    { id: "shaman", name: "Dwarf Shaman", slot: "Main", role: "Skinning + Leatherworking", profs: ["Leatherworking"], target: 35, core: true },
+    { id: "priest", name: "Night Elf Priest", slot: "Alt 2", role: "Tailoring + Enchanting", profs: ["Tailoring", "Enchanting"], target: 35, core: true },
+    { id: "warrior", name: "Night Elf Warrior", slot: "Alt 3", role: "Mining + Blacksmithing", profs: ["Blacksmithing"], target: 35, core: true },
+    { id: "druid", name: "Skyborne Druid", slot: "Alt 4", role: "Herbalism + Alchemy", profs: ["Alchemy"], target: 35, core: true },
+    { id: "paladin", name: "Paladin", slot: "Alt 5", role: "Rested bank", profs: [], target: 25 },
+    { id: "hunter", name: "Hunter", slot: "Alt 6", role: "Engineering", profs: ["Engineering"], target: 25 },
+    { id: "rogue", name: "Rogue", slot: "Alt 7", role: "Rested bank", profs: [], target: 25 },
+    { id: "warlock", name: "Warlock", slot: "Alt 8", role: "Rested bank", profs: [], target: 25 },
+    { id: "mage", name: "Mage", slot: "Alt 9", role: "Rested bank", profs: [], target: 25 }
+  ];
+  var CLASS_RE = {
+    shaman: /\bshaman\b/i, priest: /\bpriest\b/i, warrior: /\bwarrior\b/i, druid: /\bdruid\b/i,
+    support: /\b(support alts?|hunter|paladin|rogue|warlock|mage)\b/i
+  };
+  var TOPIC_RE = {
+    shaman: /\b(dwarf|leatherworking|skinning|skin|main only)\b/i,
+    priest: /\b(tailoring|enchanting|disenchant\w*|night elf|night elves)\b/i,
+    warrior: /\b(blacksmithing|mining|night elf|night elves)\b/i,
+    druid: /\b(skyborne|zephras|herbalism|herbing|alchemy)\b/i,
+    support: /\b(engineering)\b/i
+  };
+
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var clamp = function (v, lo, hi) { return Math.max(lo, Math.min(hi, v)); };
+
+  /* ---------- state ---------- */
+  function defaults() {
+    var chars = {};
+    CHARS.forEach(function (c) { chars[c.id] = { level: 1, prof: {}, parkedAt: null }; });
+    return { v: 2, chars: chars, steps: {}, milestones: {}, open: { "0": true }, wellRested: false, extra: 0, theme: "auto", filter: "all" };
+  }
+  function load() {
+    var d = defaults(), s = null;
+    try { s = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+    if (s && typeof s === "object") {
+      Object.keys(d).forEach(function (k) { if (k !== "chars" && s[k] !== undefined) d[k] = s[k]; });
+      if (s.chars) CHARS.forEach(function (c) { if (s.chars[c.id]) d.chars[c.id] = Object.assign(d.chars[c.id], s.chars[c.id]); });
+    } else {
+      try {
+        var old = JSON.parse(localStorage.getItem("alliance-legacy-route-checklist"));
+        if (Array.isArray(old)) old.forEach(function (v, i) { if (v) d.milestones[i] = true; });
+      } catch (e) {}
+    }
+    return d;
+  }
+  var state = load();
+  var saveTimer;
+  function save() {
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(function () { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }, 120);
+  }
+
+  /* ---------- toast ---------- */
+  var toastTimer;
+  function toast(msg) {
+    var t = $("#toast");
+    t.textContent = msg; t.classList.add("show");
+    clearTimeout(toastTimer); toastTimer = setTimeout(function () { t.classList.remove("show"); }, 2200);
+  }
+
+  /* ---------- theme ---------- */
+  var THEMES = ["auto", "light", "dark"], THEME_LABEL = { auto: "Auto", light: "Light", dark: "Dark" };
+  function applyTheme() {
+    document.documentElement.setAttribute("data-theme", state.theme);
+    $("#theme-btn").textContent = THEME_LABEL[state.theme];
+    var dark = state.theme === "dark" || (state.theme === "auto" && matchMedia("(prefers-color-scheme: dark)").matches);
+    $('meta[name="theme-color"]').setAttribute("content", dark ? "#1b1e22" : "#ffffff");
+  }
+  $("#theme-btn").addEventListener("click", function () {
+    state.theme = THEMES[(THEMES.indexOf(state.theme) + 1) % 3]; applyTheme(); save();
+    toast("Theme: " + THEME_LABEL[state.theme]);
+  });
+
+  /* ---------- tables: labels for stacked mobile view ---------- */
+  $$(".table-wrap table").forEach(function (t) {
+    var heads = $$("thead th", t).map(function (th) { return th.textContent; });
+    $$("tbody tr", t).forEach(function (tr) { $$("td", tr).forEach(function (td, i) { td.setAttribute("data-label", heads[i] || ""); }); });
+  });
+
+  /* ---------- route steps ---------- */
+  var phases = $$("details.phase-d");
+  var steps = [];
+  phases.forEach(function (d, pi) {
+    var sum = $("summary", d);
+    sum.insertAdjacentHTML("beforeend", '<span class="pp"><span class="meter ok"><i></i></span><span class="ppn"></span></span>');
+    var title = sum.firstChild.textContent.trim();
+    var h3 = null, hi = -1;
+    $$(".phase > *", d).forEach(function (el) {
+      if (el.tagName === "H3") { h3 = el; hi++; return; }
+      if (el.tagName !== "UL") return;
+      el.classList.add("steps");
+      $$(":scope > li", el).forEach(function (li, i) {
+        var id = "p" + pi + "-" + hi + "-" + i;
+        var span = document.createElement("span");
+        while (li.firstChild) span.appendChild(li.firstChild);
+        var cb = document.createElement("input");
+        cb.type = "checkbox"; cb.setAttribute("aria-label", "Mark step done");
+        li.appendChild(cb); li.appendChild(span);
+        li.classList.add("step"); li.dataset.step = id;
+        steps.push({ id: id, li: li, cb: cb, phase: pi, details: d, ctx: title.replace(/\s+/g, " ") + (h3 ? " › " + h3.textContent : ""), h3: h3 });
+        if (state.steps[id]) { cb.checked = true; li.classList.add("checked"); }
+      });
+    });
+    d.open = !!state.open[pi];
+    d.addEventListener("toggle", function () {
+      if (document.body.classList.contains("searching") || printing) return;
+      state.open[pi] = d.open; save();
+    });
+  });
+  function setStep(s, val) {
+    s.cb.checked = val; s.li.classList.toggle("checked", val);
+    if (val) state.steps[s.id] = true; else delete state.steps[s.id];
+    save(); refreshProgress();
+  }
+  steps.forEach(function (s) {
+    s.cb.addEventListener("change", function () { setStep(s, s.cb.checked); });
+    s.li.addEventListener("click", function (e) {
+      if (e.target.closest("input, a, button") || String(window.getSelection())) return;
+      setStep(s, !s.cb.checked);
+    });
+  });
+  function refreshProgress() {
+    phases.forEach(function (d, pi) {
+      var ps = steps.filter(function (s) { return s.phase === pi; });
+      var done = ps.filter(function (s) { return s.cb.checked; }).length;
+      var pp = $(".pp", d);
+      $(".meter > i", pp).style.width = (ps.length ? done / ps.length * 100 : 0) + "%";
+      $(".ppn", pp).textContent = done + "/" + ps.length;
+      pp.classList.toggle("complete", done === ps.length && ps.length > 0);
+    });
+    var doneAll = steps.filter(function (s) { return s.cb.checked; }).length;
+    $("#ns-meter > i").style.width = (steps.length ? doneAll / steps.length * 100 : 0) + "%";
+    $("#ns-count").textContent = doneAll + " of " + steps.length + " route steps done (" + Math.round(doneAll / Math.max(1, steps.length) * 100) + "%)";
+    var next = nextStep();
+    if (next) {
+      $("#ns-ctx").textContent = next.ctx;
+      var t = next.li.querySelector("span").textContent.trim();
+      $("#ns-text").textContent = t.length > 170 ? t.slice(0, 167) + "…" : t;
+      $("#ns-go").disabled = $("#ns-done").disabled = false;
+    } else {
+      $("#ns-ctx").textContent = "";
+      $("#ns-text").textContent = "Every route step is done. Nice work.";
+      $("#ns-go").disabled = $("#ns-done").disabled = true;
+    }
+  }
+  function nextStep() {
+    var f = state.filter;
+    var pool = steps.filter(function (s) { return !s.cb.checked; });
+    if (f !== "all") {
+      var mine = pool.filter(function (s) { return !s.li.classList.contains("f-dim"); });
+      if (mine.length) pool = mine;
+    }
+    return pool[0] || null;
+  }
+  function reveal(el) {
+    var d = el.closest("details.phase-d");
+    if (d && !d.open) d.open = true;
+    setTimeout(function () {
+      el.scrollIntoView({ behavior: "smooth", block: "center" });
+      el.classList.remove("flash"); void el.offsetWidth; el.classList.add("flash");
+    }, 60);
+  }
+  $("#ns-go").addEventListener("click", function () { var n = nextStep(); if (n) reveal(n.li); });
+  $("#ns-done").addEventListener("click", function () { var n = nextStep(); if (n) { setStep(n, true); toast("Step done"); } });
+
+  /* ---------- milestones ---------- */
+  var miles = $$("#milestones input");
+  function refreshMiles() {
+    var done = miles.filter(function (b) { return b.checked; }).length;
+    $("#progress-text").textContent = done + " of " + miles.length + " milestones done";
+    $("#miles-meter > i").style.width = (done / miles.length * 100) + "%";
+  }
+  miles.forEach(function (b, i) {
+    b.checked = !!state.milestones[i];
+    b.addEventListener("change", function () {
+      if (b.checked) state.milestones[i] = true; else delete state.milestones[i];
+      save(); refreshMiles();
+      if (b.checked && miles.every(function (x) { return x.checked; })) toast("All milestones complete. The army is ready.");
+    });
+  });
+  $("#reset-miles").addEventListener("click", function () {
+    if (!confirm("Clear all milestone checkboxes?")) return;
+    miles.forEach(function (b) { b.checked = false; }); state.milestones = {}; save(); refreshMiles();
+  });
+
+  /* ---------- waypoints: click to copy ---------- */
+  function wrapWaypoints(root) {
+    var re = /\/way\s+\d+(?:\.\d+)?\s+\d+(?:\.\d+)?/g;
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) { return re.test(n.nodeValue) && !n.parentNode.closest("script, button, .way") ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT; }
+    });
+    var nodes = []; while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(function (n) {
+      var frag = document.createDocumentFragment(), txt = n.nodeValue, last = 0, m;
+      re.lastIndex = 0;
+      while ((m = re.exec(txt))) {
+        frag.appendChild(document.createTextNode(txt.slice(last, m.index)));
+        var b = document.createElement("button");
+        b.type = "button"; b.className = "way"; b.textContent = m[0]; b.title = "Copy waypoint";
+        frag.appendChild(b); last = m.index + m[0].length;
+      }
+      frag.appendChild(document.createTextNode(txt.slice(last)));
+      n.parentNode.replaceChild(frag, n);
+    });
+  }
+  wrapWaypoints($("#main"));
+  function copyText(t) {
+    function fallback() {
+      var ta = document.createElement("textarea"); ta.value = t; ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); } catch (e) {}
+      ta.remove();
+    }
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(t).catch(fallback); else fallback();
+    toast("Copied " + t + " — paste it in game chat");
+  }
+  document.addEventListener("click", function (e) {
+    var w = e.target.closest(".way"); if (w) { e.preventDefault(); copyText(w.textContent); }
+  });
+
+  /* ---------- army tracker ---------- */
+  function rested(s) {
+    if (!s.parkedAt) return null;
+    var wr = state.wellRested ? 1.2 : 1, rate = 0.05 / 8 * wr, cap = 1.5 * wr;
+    var h = Math.max(0, (Date.now() - s.parkedAt) / 36e5);
+    var r = Math.min(cap, h * rate);
+    return { r: r, cap: cap, pct: r / cap, full: r >= cap, hoursLeft: (cap - r) / rate };
+  }
+  function fmtHours(h) {
+    if (h < 1) return Math.max(1, Math.ceil(h * 60)) + "m";
+    if (h < 48) return Math.floor(h) + "h " + Math.round((h % 1) * 60) + "m";
+    return (h / 24).toFixed(1) + " days";
+  }
+  function charPoints(c) {
+    var s = state.chars[c.id];
+    var lv = [25, 45, 60].filter(function (l) { return s.level >= l; }).length, pr = 0;
+    c.profs.forEach(function (p) { var v = s.prof[p] || 0; pr += [150, 225, 300].filter(function (t) { return v >= t; }).length; });
+    return lv + pr;
+  }
+  function tickHTML(marks, max) {
+    return marks.map(function (m) { return '<span class="tick" data-v="' + m + '" style="left:calc(' + (m / max * 100) + '% - 1px)"></span>'; }).join("");
+  }
+  function cardHTML(c) {
+    var s = state.chars[c.id];
+    var profs = c.profs.map(function (p) {
+      return '<div class="prof-wrap"><div class="prof"><span class="lab">' + p + '</span>' +
+        '<button class="stepbtn" type="button" data-act="prof" data-p="' + p + '" data-d="-5" aria-label="' + p + ' minus 5">&minus;</button>' +
+        '<input class="num-in" type="number" inputmode="numeric" min="0" max="300" data-prof="' + p + '" value="' + (s.prof[p] || 0) + '" aria-label="' + p + ' skill">' +
+        '<button class="stepbtn" type="button" data-act="prof" data-p="' + p + '" data-d="5" aria-label="' + p + ' plus 5">+</button>' +
+        '</div><span class="meter" data-pbar="' + p + '"><i></i>' + tickHTML([150, 225], 300) + '</span></div>';
+    }).join("");
+    return '<article class="char' + (c.core ? " core" : "") + '" data-id="' + c.id + '">' +
+      '<header><div><b>' + c.name + '</b><small>' + c.slot + ' · ' + c.role + ' · target ' + c.target + '</small></div><span class="badge" data-k="pts"></span></header>' +
+      '<div class="lvl"><span class="lab">Level</span>' +
+        '<button class="stepbtn" type="button" data-act="lvl" data-d="-1" aria-label="Level down">&minus;</button>' +
+        '<input class="num-in" type="number" inputmode="numeric" min="1" max="60" data-k="level" value="' + s.level + '" aria-label="Level">' +
+        '<button class="stepbtn" type="button" data-act="lvl" data-d="1" aria-label="Level up">+</button></div>' +
+      '<span class="meter" data-k="lvlbar"><i></i>' + tickHTML([25, 45], 60) + '<span class="tick" style="left:calc(' + (c.target / 60 * 100) + '% - 1px);background:var(--accent);opacity:1"></span></span>' +
+      profs +
+      '<div class="rest"><span class="meter rested" data-k="restbar"><i></i></span>' +
+        '<div class="rest-row"><span data-k="resttext"></span><button class="btn sm" type="button" data-act="park"></button></div></div>' +
+      '</article>';
+  }
+  var army = $("#army");
+  army.innerHTML = CHARS.map(cardHTML).join("");
+  function updateCard(c) {
+    var card = army.querySelector('[data-id="' + c.id + '"]'), s = state.chars[c.id];
+    var pts = charPoints(c), b = card.querySelector('[data-k="pts"]');
+    b.textContent = pts + (pts === 1 ? " pt" : " pts"); b.classList.toggle("zero", pts === 0);
+    card.classList.toggle("done", s.level >= c.target);
+    var lb = card.querySelector('[data-k="lvlbar"]');
+    lb.querySelector("i").style.width = (s.level / 60 * 100) + "%";
+    lb.classList.toggle("ok", s.level >= c.target);
+    $$(".tick[data-v]", lb).forEach(function (t) { t.classList.toggle("hit", s.level >= +t.dataset.v); });
+    c.profs.forEach(function (p) {
+      var v = s.prof[p] || 0, m = card.querySelector('[data-pbar="' + p + '"]');
+      m.querySelector("i").style.width = (v / 300 * 100) + "%";
+      $$(".tick", m).forEach(function (t) { t.classList.toggle("hit", v >= +t.dataset.v); });
+      m.classList.toggle("ok", v >= 150);
+    });
+    var r = rested(s), rt = card.querySelector('[data-k="resttext"]'), rb = card.querySelector('[data-k="restbar"] i'), btn = card.querySelector('[data-act="park"]');
+    if (r) {
+      rb.style.width = (r.pct * 100) + "%";
+      rt.innerHTML = '<span class="parked-tag">Parked</span> · ~' + Math.round(r.r * 100) + "% of a level" + (r.full ? " · full" : " · full in " + fmtHours(r.hoursLeft));
+      btn.textContent = "Play";
+    } else {
+      rb.style.width = "0%"; rt.textContent = "Playing, not resting"; btn.textContent = "Park";
+    }
+  }
+  function updateArmy() {
+    CHARS.forEach(updateCard);
+    var total = CHARS.reduce(function (a, c) { return a + charPoints(c); }, 0) + (+state.extra || 0);
+    $("#lp-total").textContent = total;
+    $("#lp-spend").textContent = Math.min(16, total);
+    $("#lp-meter > i").style.width = Math.min(100, total / 55 * 100) + "%";
+    $("#lp-tiers").innerHTML = TIERS.map(function (t) {
+      return '<span class="' + (total >= t ? "hit" : "") + '" style="left:' + Math.min(96, Math.max(4, t / 55 * 100)) + '%">' + t + (t === 55 ? " bear" : "") + "</span>";
+    }).join("");
+    $("#lp-meter").innerHTML = '<i style="width:' + Math.min(100, total / 55 * 100) + '%"></i>' + TIERS.map(function (t) {
+      return '<span class="tick' + (total >= t ? " hit" : "") + '" style="left:calc(' + (t / 55 * 100) + '% - 1px)"></span>';
+    }).join("") + '<span class="tick" style="left:calc(' + (16 / 55 * 100) + '% - 1px);background:var(--accent);opacity:1" title="16 spendable"></span>';
+    var nt = TIERS.filter(function (t) { return t > total; })[0];
+    $("#lp-next").textContent = nt ? (nt - total) + " more to the " + nt + "-point reward" + (nt === 55 ? " (Reins of the Spectral Bear)" : "") + ". Blue mark = 16 spendable cap." : "Spectral Bear unlocked.";
+
+    var bestL = null, bestP = null;
+    CHARS.forEach(function (c) {
+      var s = state.chars[c.id];
+      var nl = [25, 45, 60].filter(function (l) { return s.level < l; })[0];
+      if (nl && (!bestL || nl - s.level < bestL.away)) bestL = { away: nl - s.level, txt: c.name + " → " + nl + " (" + (nl - s.level) + " lvl)" };
+      c.profs.forEach(function (p) {
+        var v = s.prof[p] || 0, np = [150, 225, 300].filter(function (t) { return v < t; })[0];
+        if (np && (!bestP || np - v < bestP.away)) bestP = { away: np - v, txt: p + " → " + np + " (" + (np - v) + ")" };
+      });
+    });
+    $("#near-lvl").textContent = bestL ? bestL.txt : "All done";
+    $("#near-prof").textContent = bestP ? bestP.txt : "All done";
+
+    var cands = CHARS.map(function (c) { return { c: c, s: state.chars[c.id], r: rested(state.chars[c.id]) }; })
+      .filter(function (x) { return x.r && x.s.level < x.c.target; })
+      .sort(function (a, b) { return b.r.pct - a.r.pct; });
+    $$(".char.next", army).forEach(function (el) { el.classList.remove("next"); });
+    if (cands.length) {
+      var top = cands[0];
+      army.querySelector('[data-id="' + top.c.id + '"]').classList.add("next");
+      $("#pn-text").innerHTML = "<b>" + top.c.name + "</b> · level " + top.s.level;
+      $("#pn-sub").textContent = "~" + Math.round(top.r.r * 100) + "% of a level rested" + (top.r.full ? " (full, you're losing rested time)" : ", full in " + fmtHours(top.r.hoursLeft)) +
+        (cands[1] ? ". After that: " + cands[1].c.name + "." : ".");
+    } else {
+      $("#pn-text").textContent = "No one is parked yet.";
+      $("#pn-sub").textContent = "Tap Park on a character in the army tracker when you log them out.";
+    }
+  }
+  function setLevel(c, v) { state.chars[c.id].level = clamp(Math.round(+v || 1), 1, 60); }
+  army.addEventListener("click", function (e) {
+    var b = e.target.closest("button[data-act]"); if (!b) return;
+    var card = b.closest(".char"), c = CHARS.filter(function (x) { return x.id === card.dataset.id; })[0], s = state.chars[c.id];
+    if (b.dataset.act === "lvl") {
+      var before = charPoints(c);
+      setLevel(c, s.level + (+b.dataset.d)); card.querySelector('[data-k="level"]').value = s.level;
+      if (charPoints(c) > before) toast(c.name + " earned a Legacy Point");
+    } else if (b.dataset.act === "prof") {
+      var p = b.dataset.p, before2 = charPoints(c);
+      s.prof[p] = clamp((s.prof[p] || 0) + (+b.dataset.d), 0, 300);
+      card.querySelector('[data-prof="' + p + '"]').value = s.prof[p];
+      if (charPoints(c) > before2) toast(p + " earned a Legacy Point");
+    } else if (b.dataset.act === "park") {
+      if (s.parkedAt) { s.parkedAt = null; toast("Now playing " + c.name); }
+      else { s.parkedAt = Date.now(); toast(c.name + " parked. Rested XP is building."); }
+    }
+    save(); updateArmy();
+  });
+  army.addEventListener("change", function (e) {
+    var inp = e.target; if (!inp.matches("input")) return;
+    var card = inp.closest(".char"), c = CHARS.filter(function (x) { return x.id === card.dataset.id; })[0], s = state.chars[c.id];
+    if (inp.dataset.k === "level") { setLevel(c, inp.value); inp.value = s.level; }
+    if (inp.dataset.prof) { s.prof[inp.dataset.prof] = clamp(Math.round(+inp.value || 0), 0, 300); inp.value = s.prof[inp.dataset.prof]; }
+    save(); updateArmy();
+  });
+  army.addEventListener("focusin", function (e) { if (e.target.matches(".num-in")) e.target.select(); });
+  var wr = $("#opt-wr"), extra = $("#opt-extra");
+  wr.checked = !!state.wellRested; extra.value = state.extra || 0;
+  wr.addEventListener("change", function () { state.wellRested = wr.checked; save(); updateArmy(); });
+  extra.addEventListener("change", function () { state.extra = clamp(Math.round(+extra.value || 0), 0, 99); extra.value = state.extra; save(); updateArmy(); });
+
+  /* ---------- character focus filter ---------- */
+  function tagsOf(text) {
+    var out = [];
+    Object.keys(CLASS_RE).forEach(function (k) { if (CLASS_RE[k].test(text)) out.push(k); });
+    if (out.length) return out;
+    Object.keys(TOPIC_RE).forEach(function (k) { if (TOPIC_RE[k].test(text)) out.push(k); });
+    return out;
+  }
+  var filterUnits = [];
+  steps.forEach(function (s) {
+    var ht = s.h3 ? tagsOf(s.h3.textContent) : [];
+    filterUnits.push({ el: s.li, tags: ht.length ? ht : tagsOf(s.li.textContent) });
+  });
+  $$("#quests tbody tr, #roster tbody tr").forEach(function (tr) { filterUnits.push({ el: tr, tags: tagsOf(tr.cells[0].textContent + " " + tr.cells[1].textContent) }); });
+  $$("#milestones li, #start ol > li, #ne-trip li").forEach(function (li) { filterUnits.push({ el: li, tags: tagsOf(li.textContent) }); });
+  function applyFilter() {
+    var f = state.filter;
+    $$(".chip").forEach(function (ch) { ch.setAttribute("aria-pressed", String(ch.dataset.f === f)); });
+    filterUnits.forEach(function (u) {
+      var tagged = u.tags.length > 0, mine = u.tags.indexOf(f) >= 0;
+      u.el.classList.toggle("f-dim", f !== "all" && tagged && !mine);
+      u.el.classList.toggle("f-hit", f !== "all" && mine);
+    });
+    $$(".char", army).forEach(function (card) {
+      var c = CHARS.filter(function (x) { return x.id === card.dataset.id; })[0];
+      card.classList.toggle("f-hit", f !== "all" && (f === c.id || (f === "support" && !c.core)));
+    });
+    refreshProgress();
+  }
+  $$(".chip").forEach(function (ch) {
+    ch.addEventListener("click", function () {
+      state.filter = ch.dataset.f; save(); applyFilter();
+      if (ch.dataset.f !== "all") toast("Highlighting " + ch.textContent + " steps. Others are dimmed.");
+    });
+  });
+
+  /* ---------- search ---------- */
+  var searchInput = $("#q"), openBefore = null;
+  var units = $$("#main li, #main tbody tr, #main .grid2 > .callout, #launch > .callout").filter(function (el) { return !el.closest("#dashboard, #army-section"); });
+  function clearMarks() {
+    $$("mark.hl").forEach(function (m) { var p = m.parentNode; p.replaceChild(document.createTextNode(m.textContent), m); p.normalize(); });
+  }
+  function markIn(el, q) {
+    var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null), nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(function (n) {
+      var low = n.nodeValue.toLowerCase(), idx = low.indexOf(q);
+      if (idx < 0 || n.parentNode.closest("button.way")) return;
+      var frag = document.createDocumentFragment(), last = 0;
+      while (idx >= 0) {
+        frag.appendChild(document.createTextNode(n.nodeValue.slice(last, idx)));
+        var m = document.createElement("mark"); m.className = "hl"; m.textContent = n.nodeValue.slice(idx, idx + q.length);
+        frag.appendChild(m); last = idx + q.length; idx = low.indexOf(q, last);
+      }
+      frag.appendChild(document.createTextNode(n.nodeValue.slice(last)));
+      n.parentNode.replaceChild(frag, n);
+    });
+  }
+  function runSearch() {
+    var q = searchInput.value.trim().toLowerCase();
+    clearMarks();
+    $$(".s-miss").forEach(function (el) { el.classList.remove("s-miss"); });
+    if (!q) {
+      document.body.classList.remove("searching");
+      $("#q-count").textContent = "";
+      if (openBefore) { phases.forEach(function (d, i) { d.open = openBefore[i]; }); openBefore = null; }
+      return;
+    }
+    if (!openBefore) openBefore = phases.map(function (d) { return d.open; });
+    document.body.classList.add("searching");
+    var n = 0;
+    units.forEach(function (u) {
+      var hit = u.textContent.toLowerCase().indexOf(q) >= 0;
+      if (hit) { n++; markIn(u, q); } else u.classList.add("s-miss");
+    });
+    $$("#main ul, #main ol").forEach(function (l) {
+      if (l.closest("#dashboard, #army-section")) return;
+      if (l.children.length && !l.querySelector(":scope > li:not(.s-miss)")) l.classList.add("s-miss");
+    });
+    $$("#main .table-wrap").forEach(function (t) { if (!t.querySelector("tbody tr:not(.s-miss)")) t.classList.add("s-miss"); });
+    $$(".phase h3").forEach(function (h) { var nx = h.nextElementSibling; if (nx && nx.classList.contains("s-miss")) h.classList.add("s-miss"); });
+    phases.forEach(function (d) { var any = d.querySelector("li:not(.s-miss)"); if (any) d.open = true; else d.classList.add("s-miss"); });
+    $$("section.sec").forEach(function (sec) {
+      if (sec.id === "dashboard" || sec.id === "army-section") { sec.classList.add("s-miss"); return; }
+      var any = sec.querySelector("li:not(.s-miss), tbody tr:not(.s-miss), .grid2 > .callout:not(.s-miss), #launch > .callout:not(.s-miss)");
+      var txtHit = !any && sec.textContent.toLowerCase().indexOf(q) >= 0;
+      if (!any && !txtHit) sec.classList.add("s-miss");
+      else if (txtHit) markIn(sec, q);
+    });
+    $("#q-count").textContent = n + (n === 1 ? " hit" : " hits");
+    $("#search-empty").classList.toggle("show", !$("section.sec:not(.s-miss)"));
+  }
+  var searchTimer;
+  searchInput.addEventListener("input", function () { clearTimeout(searchTimer); searchTimer = setTimeout(runSearch, 140); });
+  searchInput.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") { searchInput.value = ""; runSearch(); searchInput.blur(); }
+    if (e.key === "Enter") { var m = $("mark.hl"); if (m) { m.scrollIntoView({ behavior: "smooth", block: "center" }); searchInput.blur(); } }
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "/" && !e.target.closest("input, textarea")) { e.preventDefault(); searchInput.focus(); }
+  });
+  $("#tab-search").addEventListener("click", function () { window.scrollTo({ top: 0 }); searchInput.focus(); });
+
+  function setAllPhases(open) { phases.forEach(function (d, i) { d.open = open; state.open[i] = open; }); save(); }
+  $$("[data-route]").forEach(function (b) { b.addEventListener("click", function () { setAllPhases(b.dataset.route === "expand"); }); });
+
+  /* ---------- menu actions ---------- */
+  var menu = $("#menu");
+  document.addEventListener("click", function (e) { if (menu.open && !e.target.closest("#menu")) menu.open = false; });
+  var wakeLock = null, wantWake = false;
+  if ("wakeLock" in navigator) $("#wake-btn").hidden = false;
+  function requestWake() {
+    return navigator.wakeLock.request("screen").then(function (l) {
+      wakeLock = l; l.addEventListener("release", function () { wakeLock = null; });
+    });
+  }
+  document.addEventListener("visibilitychange", function () { if (wantWake && !wakeLock && document.visibilityState === "visible") requestWake().catch(function () {}); });
+  $(".menu-panel").addEventListener("click", function (e) {
+    var b = e.target.closest("button[data-act]"); if (!b) return;
+    var act = b.dataset.act; menu.open = false;
+    if (act === "expand" || act === "collapse") {
+      setAllPhases(act === "expand");
+    } else if (act === "wake") {
+      if (wantWake) { wantWake = false; if (wakeLock) wakeLock.release(); b.textContent = "Keep screen on"; toast("Screen can sleep again"); }
+      else requestWake().then(function () { wantWake = true; b.textContent = "Let screen sleep"; toast("Screen will stay on while this page is open"); })
+        .catch(function () { toast("This browser won't keep the screen on"); });
+    } else if (act === "export") {
+      var blob = new Blob([JSON.stringify(state, null, 2)], { type: "application/json" });
+      var a = document.createElement("a"); a.href = URL.createObjectURL(blob);
+      a.download = "legacy-route-progress-" + new Date().toISOString().slice(0, 10) + ".json";
+      document.body.appendChild(a); a.click(); a.remove(); setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+      toast("Progress exported");
+    } else if (act === "import") {
+      $("#import-file").click();
+    } else if (act === "print") {
+      window.print();
+    } else if (act === "reset") {
+      if (!confirm("Reset levels, skills, parked times, steps and milestones? This can't be undone. Export first if you want a backup.")) return;
+      var keepTheme = state.theme; state = defaults(); state.theme = keepTheme;
+      try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (err) {}
+      location.reload();
+    }
+  });
+  $("#import-file").addEventListener("change", function () {
+    var f = this.files[0]; if (!f) return;
+    var reader = new FileReader();
+    reader.onload = function () {
+      try {
+        var s = JSON.parse(reader.result);
+        if (!s || typeof s !== "object" || !s.chars) throw new Error("bad");
+        localStorage.setItem(KEY, JSON.stringify(s)); location.reload();
+      } catch (err) { toast("That file isn't a Legacy Route progress export"); }
+    };
+    reader.readAsText(f);
+  });
+  var printing = false, openPrint = null;
+  window.addEventListener("beforeprint", function () { printing = true; openPrint = phases.map(function (d) { return d.open; }); phases.forEach(function (d) { d.open = true; }); });
+  window.addEventListener("afterprint", function () { if (openPrint) phases.forEach(function (d, i) { d.open = openPrint[i]; }); printing = false; });
+
+  /* ---------- countdown ---------- */
+  var cdCells = $$("#cd b");
+  $("#cd-local").textContent = "Nov 4, 3:00 p.m. PT · your time: " + new Date(LAUNCH).toLocaleString([], { weekday: "short", month: "short", day: "numeric", hour: "numeric", minute: "2-digit" });
+  function tick() {
+    var ms = LAUNCH - Date.now();
+    if (ms <= 0) { $("#cd").innerHTML = '<div style="flex:1"><b style="color:var(--ok)">Live</b><span>WoW Forever has launched</span></div>'; return false; }
+    var s = Math.floor(ms / 1000);
+    [Math.floor(s / 86400), Math.floor(s % 86400 / 3600), Math.floor(s % 3600 / 60), s % 60].forEach(function (v, i) { cdCells[i].textContent = i ? String(v).padStart(2, "0") : v; });
+    return true;
+  }
+  if (tick()) { var cdTimer = setInterval(function () { if (!tick()) clearInterval(cdTimer); }, 1000); }
+  setInterval(updateArmy, 60000);
+
+  /* ---------- header behavior, scrollspy, back to top ---------- */
+  var top = $("#top");
+  function measure() { document.documentElement.style.setProperty("--hdr", top.offsetHeight + "px"); }
+  window.addEventListener("resize", measure);
+  var lastY = scrollY;
+  window.addEventListener("scroll", function () {
+    var y = scrollY;
+    if (Math.abs(y - lastY) > 12) { top.classList.toggle("compact", y > lastY && y > 300); lastY = y; }
+    $("#totop").classList.toggle("show", y > 900);
+  }, { passive: true });
+  $("#totop").addEventListener("click", function () { window.scrollTo({ top: 0, behavior: "smooth" }); });
+  var navLinks = $$("nav.sections a, .tabbar a");
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        var id = en.target.id;
+        navLinks.forEach(function (a) { a.classList.toggle("active", a.getAttribute("href") === "#" + id); });
+        var act = $("nav.sections a.active"); if (act && act.scrollIntoView) act.parentNode.scrollLeft = act.offsetLeft - 40;
+      });
+    }, { rootMargin: "-30% 0px -65% 0px" });
+    $$("section.sec").forEach(function (s) { io.observe(s); });
+  }
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest('a[href^="#"]'); if (!a) return;
+    var t = document.getElementById(a.getAttribute("href").slice(1)); if (!t) return;
+    var d = t.closest("details.phase-d"); if (d) d.open = true;
+  });
+
+  applyTheme(); measure(); applyFilter(); updateArmy(); refreshMiles();
+})();
+</script>
+</body>
+</html>
