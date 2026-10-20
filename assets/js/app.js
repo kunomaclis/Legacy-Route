@@ -5,7 +5,7 @@
   var TIERS = [15, 25, 40, 55];
   var CHARS = [
     { id: "shaman", cls: "shaman", race: "dwarf", name: "Dwarf Shaman", slot: "Main", profs: ["Leatherworking"], gather: "Skinning", target: 35, core: true },
-    { id: "warlock", cls: "warlock", race: "human", name: "Human Warlock", slot: "Alt 2", profs: ["Tailoring", "Enchanting"], target: 35, core: true },
+    { id: "warlock", cls: "warlock", race: "human", name: "Human Warlock", slot: "Alt 2", profs: ["Tailoring", "Enchanting"], gather: "Herbalism (to ~30)", gatherIcon: "Herbalism", target: 35, core: true },
     { id: "warrior", cls: "warrior", race: "nightelf", name: "Night Elf Warrior", slot: "Alt 3", profs: ["Blacksmithing"], gather: "Mining", target: 35, core: true },
     { id: "priest", cls: "priest", race: "nightelf", name: "Night Elf Priest", slot: "Alt 4", profs: ["Alchemy"], gather: "Herbalism", target: 35, core: true },
     { id: "paladin", cls: "paladin", name: "Paladin", slot: "Alt 5", profs: [], target: 25 },
@@ -266,7 +266,7 @@
         '</div><span class="meter" data-pbar="' + p + '"><i></i>' + tickHTML([150, 225], 300) + '</span></div>';
     }).join("");
     var sub = (c.race ? raceIcon(c.race) + RACE_NAMES[c.race] : "Any race") + " · " + c.slot + " · to " + c.target;
-    var gather = c.gather ? '<span class="gather">' + profIcon(c.gather) + c.gather + "</span>" : "";
+    var gather = c.gather ? '<span class="gather">' + profIcon(c.gatherIcon || c.gather) + c.gather + "</span>" : "";
     return '<article class="char' + (c.core ? " core" : "") + '" data-id="' + c.id + '" style="--cls:var(--c-' + c.cls + ')">' +
       '<header>' + token(c.cls, "lg") + '<div class="char-name"><b>' + (c.race ? c.name : CLASS_NAMES[c.cls]) + '</b><small>' + sub + '</small></div><span class="badge" data-k="pts"></span></header>' +
       '<div class="lvl"><span class="lab">Level</span>' +

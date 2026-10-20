@@ -1,4 +1,4 @@
-const CACHE = "legacy-route-v2";
+const CACHE = "legacy-route-v3";
 const ASSETS = [
   "./", "index.html", "manifest.webmanifest",
   "assets/css/base.css", "assets/css/themes.css", "assets/js/app.js", "assets/icons.svg", "assets/app-icon.svg",
