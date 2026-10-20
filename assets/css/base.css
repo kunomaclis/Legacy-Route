@@ -77,7 +77,6 @@ h1 { font-size: clamp(24px, 5vw, 32px); margin: 4px 0 8px; letter-spacing: -.01e
 h2 { font-size: 21px; margin: 40px 0 10px; letter-spacing: -.01em; }
 h3 { font-size: 16px; margin: 20px 0 8px; }
 p { margin: 6px 0; }
-.meta { color: var(--faint); font-size: 13px; }
 .lead { color: var(--muted); max-width: 820px; }
 .small { font-size: 13.5px; }
 .muted { color: var(--muted); }
@@ -90,30 +89,6 @@ p { margin: 6px 0; }
 .split { display: grid; grid-template-columns: 3fr 2fr; gap: 24px; align-items: start; }
 .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 @media (max-width: 860px) { .split, .grid2 { grid-template-columns: 1fr; } .split > section[style] { margin-top: 0 !important; } .split h3[style] { margin-top: 20px !important; } }
-
-/* ---------- tables ---------- */
-.table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius); background: var(--card); }
-table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
-th, td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
-th { color: var(--muted); font-weight: 600; font-size: 12.5px; background: var(--stripe); }
-tr:last-child td { border-bottom: none; }
-tbody tr:nth-child(even) td { background: var(--stripe); }
-tr.pick td { background: var(--accent-soft) !important; }
-td.num, th.num { text-align: right; }
-@media (max-width: 640px) {
-  .table-wrap { border: 0; background: none; overflow: visible; }
-  .table-wrap table, .table-wrap tbody, .table-wrap tr, .table-wrap td { display: block; width: 100%; }
-  .table-wrap thead { display: none; }
-  .table-wrap tr { background: var(--card); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; padding: 6px 0; }
-  .table-wrap tbody tr:nth-child(even) td { background: none; }
-  .table-wrap tr.pick { border-color: var(--accent); }
-  .table-wrap tr.pick td { background: none !important; }
-  .table-wrap td { border: 0; padding: 4px 14px; display: grid; grid-template-columns: 38% 1fr; gap: 10px; text-align: left !important; }
-  .table-wrap td::before { content: attr(data-label); color: var(--faint); font-size: 12px; }
-  .table-wrap td:first-child { font-weight: 600; display: block; font-size: 14.5px; padding-top: 6px; }
-  .table-wrap td:first-child::before { display: none; }
-  .table-wrap td:empty { display: none; }
-}
 
 /* ---------- lists, callouts, cards ---------- */
 ol, ul { margin: 6px 0; padding-left: 22px; }
@@ -219,7 +194,7 @@ summary .lv { color: var(--muted); font-weight: 400; font-size: 13px; grid-colum
 ul.steps { list-style: none; padding: 0; }
 li.step { display: flex; gap: 10px; align-items: flex-start; padding: 6px 8px; margin: 2px -8px; border-radius: 8px; cursor: pointer; transition: background .15s, opacity .15s; }
 li.step:hover { background: var(--stripe); }
-li.step input { width: 18px; height: 18px; margin: 2px 0 0; flex-shrink: 0; accent-color: var(--ok); cursor: pointer; }
+li.step input { width: var(--check-size); height: var(--check-size); flex-shrink: 0; accent-color: var(--ok); cursor: pointer; }
 li.step.checked > span { color: var(--faint); text-decoration: line-through; text-decoration-color: color-mix(in srgb, var(--faint) 60%, transparent); }
 li.flash { animation: flash 1.6s ease-out; }
 @keyframes flash { 0%, 30% { background: var(--gold-soft); box-shadow: 0 0 0 2px var(--gold); } 100% { background: transparent; box-shadow: none; } }
@@ -227,7 +202,7 @@ li.flash { animation: flash 1.6s ease-out; }
 /* ---------- filters / search ---------- */
 .f-dim { opacity: .32; }
 .f-dim:hover { opacity: .8; }
-li.f-hit, tr.f-hit td:first-child { box-shadow: inset 3px 0 0 var(--focus, var(--accent)); }
+li.f-hit { box-shadow: inset 3px 0 0 var(--focus, var(--accent)); }
 .s-miss { display: none !important; }
 .search-empty { display: none; text-align: center; padding: 40px 0; color: var(--muted); }
 body.searching .search-empty.show { display: block; }
@@ -272,45 +247,72 @@ body.searching .search-empty.show { display: block; }
   .f-dim { opacity: 1; }
 }
 
-/* ---------- class colors, icons ---------- */
+/* ---------- class colors, icons ----------
+   Every icon + text pair is an inline-flex row with align-items: center, and icons that lead a
+   wrapping line (route steps) are offset by half the line-height gap. No per-icon pixel nudges. */
 :root {
   --c-shaman: #0070dd; --c-priest: #ffffff; --c-warrior: #c69b6d; --c-druid: #ff7c0a; --c-paladin: #f48cba;
   --c-hunter: #aad372; --c-rogue: #fff468; --c-warlock: #8788ee; --c-mage: #3fc7eb;
   --tok-ink: #15171b; --tok-ring: rgba(0, 0, 0, .28);
+  --tok-chip: 16px; --tok-xs: 17px; --tok-group: 18px; --tok-sm: 20px; --tok-md: 22px; --tok-lg: 34px;
+  --ico-size: 16px; --ico-gap: 6px; --check-size: 18px;
 }
-.ico { width: 1em; height: 1em; flex-shrink: 0; vertical-align: -.15em; }
-.tok { --s: 22px; display: inline-grid; place-items: center; width: var(--s); height: var(--s); border-radius: 50%; flex-shrink: 0;
+.ico { width: 1em; height: 1em; flex-shrink: 0; }
+.tok { --s: var(--tok-md); display: inline-grid; place-items: center; width: var(--s); height: var(--s); border-radius: 50%; flex-shrink: 0;
   background: var(--cls); color: var(--tok-ink); box-shadow: inset 0 0 0 1px var(--tok-ring); vertical-align: middle; }
-.tok .ico { width: calc(var(--s) * .64); height: calc(var(--s) * .64); }
-.tok.xs { --s: 17px; vertical-align: middle; position: relative; top: -1px; }
-.tok.sm { --s: 20px; }
-.tok.lg { --s: 34px; }
-.race-ico, .prof-ico { display: inline-flex; color: var(--muted); vertical-align: -2px; }
-.race-ico .ico, .prof-ico .ico { width: 16px; height: 16px; }
-.who { display: inline-flex; align-items: center; gap: 7px; }
+.tok .ico { width: 64%; height: 64%; }
+.tok.xs { --s: var(--tok-xs); }
+.tok.sm { --s: var(--tok-sm); }
+.tok.lg { --s: var(--tok-lg); }
+.race-ico, .prof-ico { display: inline-flex; color: var(--muted); vertical-align: middle; }
+.race-ico .ico, .prof-ico .ico { width: var(--ico-size); height: var(--ico-size); }
+.who, .pi, .gather, .prof .lab, .chip, .card-h { display: inline-flex; align-items: center; gap: var(--ico-gap); }
 .who.multi { gap: 3px; }
-.profs { display: inline-flex; align-items: center; gap: 5px; flex-wrap: wrap; }
-.pi { display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; margin-right: 8px; }
+.profs { display: inline-flex; align-items: center; gap: 4px 12px; flex-wrap: wrap; }
+.pi { white-space: nowrap; }
+.gather { font-size: 12.5px; color: var(--muted); }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
-.phase h3:has(.h-icons) { display: flex; align-items: center; }
-.h-icons { display: inline-flex; align-items: center; gap: 3px; margin-right: 8px; flex-shrink: 0; }
+.phase h3:has(.h-icons) { display: flex; align-items: flex-start; gap: 8px; }
+.h-icons { display: inline-flex; align-items: center; gap: 3px; flex-shrink: 0; height: var(--tok-sm); margin-top: calc((1lh - var(--tok-sm)) / 2); }
 .h-icons .race-ico { margin-left: 3px; }
 .phase h3.cls-h { border-left: 3px solid var(--line); padding-left: 10px; }
-li.step > span .tok.xs { margin-right: 2px; }
-.chip { display: inline-flex; align-items: center; gap: 6px; }
-.chip .tok { --s: 16px; }
+li.step > input { --s: var(--check-size); }
+li.step > input, li.step > .tok { margin: 0; margin-top: calc((1lh - var(--s)) / 2); }
+.chip .tok { --s: var(--tok-chip); }
 .chip[style][aria-pressed="true"] { background: var(--cls); border-color: var(--cls); color: var(--tok-ink); }
 .chip[style][aria-pressed="true"] .tok { box-shadow: inset 0 0 0 1.5px var(--tok-ink); }
-.card .who.multi { margin-right: 6px; vertical-align: -5px; }
-.card .who.multi .tok { --s: 18px; }
-.prof .lab { display: inline-flex; align-items: center; gap: 6px; }
-.gather { font-size: 12.5px; color: var(--muted); display: inline-flex; align-items: center; gap: 6px; }
+.card-h { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 4px; }
+.card-h .tok { --s: var(--tok-group); }
+.card-h .pill { margin-left: 0; }
 .meter.cls > i { background: var(--line); }
 .meter .tick.tgt { background: var(--text); opacity: .7; }
 
+/* Class colors as lines: on light looks pull toward the text color so pale classes (Priest, Rogue) stay visible. */
+:root { --line-pct: 80%; }
+:root[data-theme="dark"], :root[data-theme="stormwind"], :root[data-theme="ironforge"] { --line-pct: 100%; }
+@media (prefers-color-scheme: dark) { :root[data-theme="auto"] { --line-pct: 100%; } }
+.char, .rc, .cls-h, .meter.cls { --line: color-mix(in srgb, var(--cls) var(--line-pct), var(--text)); }
+
+/* ---------- roster ---------- */
+.roster { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+@media (max-width: 640px) { .roster { grid-template-columns: 1fr; } }
+.rc { background: var(--card); border: 1px solid var(--border); border-top: 3px solid var(--line); border-radius: var(--radius);
+  padding: 14px 16px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 12px; font-size: 13.5px; min-width: 0; }
+.rc header { display: flex; align-items: center; gap: 10px; }
+.rc header b { display: block; font-size: 15px; }
+.rc header small { display: block; color: var(--faint); font-size: 12px; }
+.rc dl { margin: 0; display: grid; grid-template-columns: max-content 1fr; gap: 8px 14px; align-items: baseline; }
+.rc dt { color: var(--faint); font-size: 11px; text-transform: uppercase; letter-spacing: .06em; }
+.rc dd { margin: 0; min-width: 0; }
+.rc dd .profs { display: flex; }
+.rc dd .who { display: flex; align-items: flex-start; }
+.rc dd .who > .race-ico { margin-top: calc((1lh - var(--ico-size)) / 2); }
+.rc.f-hit { outline: 2px solid var(--cls); outline-offset: -1px; }
+.rc.support { grid-column: 1 / -1; --cls: var(--faint); }
+.rc .members { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+
 /* ---------- look picker ---------- */
 .looks button { display: flex; align-items: center; gap: 10px; }
-.looks small { color: var(--faint); font-size: 12px; margin-left: auto; padding-left: 8px; }
 .looks button[aria-current="true"] { background: var(--accent-soft); font-weight: 600; }
 .sw { width: 22px; height: 22px; border-radius: 6px; flex-shrink: 0; border: 1px solid rgba(0,0,0,.2); }
 .sw-auto { background: linear-gradient(135deg, #ffffff 50%, #1b1e22 50%); }
@@ -318,11 +320,3 @@ li.step > span .tok.xs { margin-right: 2px; }
 .sw-dark { background: #1b1e22; }
 .sw-ironforge { background: radial-gradient(circle at 50% 110%, #ff8a3c, #2a211a 70%); border-color: #b8743c; }
 .sw-stormwind { background: linear-gradient(135deg, #0d2350 55%, #d4a843 55%); border-color: #d4a843; }
-
-/* Class colors as lines: pull toward the text color so pale classes (Priest, Rogue) stay visible on light looks. */
-.char, .cls-h, .meter.cls { --line: color-mix(in srgb, var(--cls) 80%, var(--text)); }
-:root[data-theme="dark"] .char, :root[data-theme="dark"] .cls-h, :root[data-theme="dark"] .meter.cls,
-:root[data-theme="stormwind"] .char, :root[data-theme="stormwind"] .cls-h, :root[data-theme="stormwind"] .meter.cls,
-:root[data-theme="ironforge"] .char, :root[data-theme="ironforge"] .cls-h, :root[data-theme="ironforge"] .meter.cls { --line: var(--cls); }
-@media (prefers-color-scheme: dark) { :root[data-theme="auto"] .char, :root[data-theme="auto"] .cls-h, :root[data-theme="auto"] .meter.cls { --line: var(--cls); } }
-#basics td:first-child { white-space: nowrap; }

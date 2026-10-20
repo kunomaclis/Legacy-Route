@@ -29,9 +29,8 @@
 }
 [data-theme="ironforge"] h1, [data-theme="ironforge"] h2, [data-theme="ironforge"] .brand,
 [data-theme="ironforge"] details.phase-d > summary, [data-theme="ironforge"] details.tracker > summary,
-[data-theme="ironforge"] .panel h3, [data-theme="ironforge"] th { font-family: "Cinzel", Georgia, serif; }
-[data-theme="ironforge"] h1 { color: #ffb36b; font-weight: 700; letter-spacing: .02em; text-shadow: 0 0 26px rgba(255, 120, 40, .35); }
-[data-theme="ironforge"] h2 { color: #f0a25a; font-weight: 700; letter-spacing: .03em; }
+[data-theme="ironforge"] .panel h3, [data-theme="ironforge"] h1 { color: #d9975a; font-weight: 700; letter-spacing: .02em; text-shadow: 0 0 22px rgba(255, 120, 40, .12); }
+[data-theme="ironforge"] h2 { color: #d09257; font-weight: 700; letter-spacing: .03em; }
 [data-theme="ironforge"] h2::after { content: ""; display: block; width: 180px; height: 9px; margin-top: 6px;
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 9'%3E%3Cpath d='M0 4.5h78M102 4.5h78' stroke='%23b8743c' stroke-width='1'/%3E%3Cpath d='M90 0l4.5 4.5L90 9l-4.5-4.5z' fill='%23ff8a3c'/%3E%3Ccircle cx='80' cy='4.5' r='1.5' fill='%23b8743c'/%3E%3Ccircle cx='100' cy='4.5' r='1.5' fill='%23b8743c'/%3E%3C/svg%3E") no-repeat; }
 [data-theme="ironforge"] .phase h3 { color: #f1d9b8; }
@@ -44,16 +43,13 @@
 [data-theme="ironforge"] .chip[aria-pressed="true"]:not([style]) { background: linear-gradient(#ffa75a, #c8601f); border-color: #c8601f; color: #1c0d03; }
 [data-theme="ironforge"] .search input { background: rgba(0, 0, 0, .35); border-color: rgba(200, 120, 60, .32); }
 [data-theme="ironforge"] .panel, [data-theme="ironforge"] details.phase-d, [data-theme="ironforge"] details.tracker,
-[data-theme="ironforge"] .char, [data-theme="ironforge"] .card, [data-theme="ironforge"] .stat, [data-theme="ironforge"] .table-wrap {
+[data-theme="ironforge"] .char, [data-theme="ironforge"] .rc, [data-theme="ironforge"] .card, [data-theme="ironforge"] .stat {
   background: linear-gradient(180deg, #221d18, #17140f);
   border-color: rgba(200, 120, 60, .26);
   box-shadow: inset 0 1px 0 rgba(255, 200, 150, .06), inset 0 0 0 3px rgba(0, 0, 0, .25), 0 10px 28px rgba(0, 0, 0, .4);
 }
-[data-theme="ironforge"] .char { border-top-color: var(--line); box-shadow: inset 0 1px 0 rgba(255, 200, 150, .06), 0 -6px 22px -12px var(--cls), 0 10px 28px rgba(0, 0, 0, .4); }
+[data-theme="ironforge"] .char, [data-theme="ironforge"] .rc { border-top-color: var(--line); box-shadow: inset 0 1px 0 rgba(255, 200, 150, .06), 0 -6px 22px -12px var(--cls), 0 10px 28px rgba(0, 0, 0, .4); }
 [data-theme="ironforge"] details.phase-d[open] { border-color: rgba(240, 138, 60, .48); }
-[data-theme="ironforge"] th { background: rgba(240, 138, 60, .07); color: #eaa35e; letter-spacing: .06em; font-size: 11.5px; }
-[data-theme="ironforge"] tbody tr:nth-child(even) td { background: rgba(255, 255, 255, .02); }
-[data-theme="ironforge"] tr.pick td { background: rgba(240, 138, 60, .06) !important; }
 [data-theme="ironforge"] .btn.primary { background: linear-gradient(#ffa75a, #c8601f); border-color: #c8601f; color: #1c0d03; font-weight: 600; }
 [data-theme="ironforge"] .num-in, [data-theme="ironforge"] .stepbtn { background: rgba(0, 0, 0, .32); border-color: rgba(200, 120, 60, .28); color: var(--text); }
 [data-theme="ironforge"] .meter { background: rgba(0, 0, 0, .35); border-color: rgba(200, 120, 60, .22); }
@@ -91,8 +87,7 @@
 }
 [data-theme="stormwind"] h1, [data-theme="stormwind"] h2, [data-theme="stormwind"] .brand,
 [data-theme="stormwind"] details.phase-d > summary, [data-theme="stormwind"] details.tracker > summary,
-[data-theme="stormwind"] .panel h3, [data-theme="stormwind"] th { font-family: "Cinzel", Georgia, serif; }
-[data-theme="stormwind"] h1 { color: #f5d77f; font-weight: 700; letter-spacing: .02em; text-shadow: 0 0 28px rgba(227, 180, 72, .28); }
+[data-theme="stormwind"] .panel h3, [data-theme="stormwind"] h1 { color: #f5d77f; font-weight: 700; letter-spacing: .02em; text-shadow: 0 0 28px rgba(227, 180, 72, .28); }
 [data-theme="stormwind"] h2 { color: #f0cd6a; font-weight: 700; letter-spacing: .03em; padding-bottom: 8px;
   border-bottom: 1px solid; border-image: linear-gradient(90deg, rgba(227, 180, 72, .7), transparent 70%) 1; }
 [data-theme="stormwind"] .phase h3 { color: #f3e3b3; }
@@ -105,16 +100,13 @@
 [data-theme="stormwind"] .chip[aria-pressed="true"]:not([style]) { background: linear-gradient(#f3d27a, #c99630); border-color: #c99630; color: #1a1205; }
 [data-theme="stormwind"] .search input { background: rgba(0, 0, 0, .3); border-color: rgba(227, 180, 72, .3); }
 [data-theme="stormwind"] .panel, [data-theme="stormwind"] details.phase-d, [data-theme="stormwind"] details.tracker,
-[data-theme="stormwind"] .char, [data-theme="stormwind"] .card, [data-theme="stormwind"] .stat, [data-theme="stormwind"] .table-wrap {
+[data-theme="stormwind"] .char, [data-theme="stormwind"] .rc, [data-theme="stormwind"] .card, [data-theme="stormwind"] .stat {
   background: linear-gradient(180deg, rgba(26, 50, 100, .72), rgba(11, 24, 52, .78));
   border-color: rgba(227, 180, 72, .28);
   box-shadow: inset 0 1px 0 rgba(255, 230, 160, .08), 0 10px 30px rgba(0, 0, 0, .3);
 }
-[data-theme="stormwind"] .char { border-top-color: var(--line); box-shadow: inset 0 1px 0 rgba(255, 230, 160, .08), 0 -6px 22px -12px var(--cls), 0 10px 30px rgba(0, 0, 0, .3); }
+[data-theme="stormwind"] .char, [data-theme="stormwind"] .rc { border-top-color: var(--line); box-shadow: inset 0 1px 0 rgba(255, 230, 160, .08), 0 -6px 22px -12px var(--cls), 0 10px 30px rgba(0, 0, 0, .3); }
 [data-theme="stormwind"] details.phase-d[open] { border-color: rgba(227, 180, 72, .5); }
-[data-theme="stormwind"] th { background: rgba(227, 180, 72, .08); color: #e9c766; letter-spacing: .06em; font-size: 11.5px; }
-[data-theme="stormwind"] tbody tr:nth-child(even) td { background: rgba(255, 255, 255, .025); }
-[data-theme="stormwind"] tr.pick td { background: rgba(227, 180, 72, .07) !important; }
 [data-theme="stormwind"] .btn.primary { background: linear-gradient(#f3d27a, #c99630); border-color: #c99630; color: #1a1205; font-weight: 600; }
 [data-theme="stormwind"] .num-in, [data-theme="stormwind"] .stepbtn { background: rgba(0, 0, 0, .28); border-color: rgba(227, 180, 72, .25); color: var(--text); }
 [data-theme="stormwind"] .meter { background: rgba(0, 0, 0, .3); border-color: rgba(227, 180, 72, .2); }
@@ -128,9 +120,3 @@
 [data-theme="stormwind"] .menu-panel { background: #0f2148; border-color: rgba(227, 180, 72, .4); }
 [data-theme="stormwind"] .totop { background: #0f2148; border-color: rgba(227, 180, 72, .4); color: #f5d77f; }
 [data-theme="stormwind"] .badge.zero { background: rgba(255, 255, 255, .06); }
-@media (max-width: 640px) {
-  [data-theme="stormwind"] .table-wrap { background: none; box-shadow: none; }
-  [data-theme="stormwind"] .table-wrap tr { background: linear-gradient(180deg, rgba(26, 50, 100, .72), rgba(11, 24, 52, .78)); border-color: rgba(227, 180, 72, .28); }
-  [data-theme="ironforge"] .table-wrap { background: none; box-shadow: none; }
-  [data-theme="ironforge"] .table-wrap tr { background: linear-gradient(180deg, #221d18, #17140f); border-color: rgba(200, 120, 60, .26); }
-}

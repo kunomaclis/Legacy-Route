@@ -1,7 +1,6 @@
 (function () {
   "use strict";
   var KEY = "alr-v2";
-  var LAUNCH = Date.UTC(2026, 10, 4, 23, 0, 0);
   var TIERS = [15, 25, 40, 55];
   var CHARS = [
     { id: "shaman", cls: "shaman", race: "dwarf", name: "Dwarf Shaman", slot: "Main", profs: ["Leatherworking"], gather: "Skinning", target: 35, core: true },
@@ -14,7 +13,7 @@
     { id: "druid", cls: "druid", name: "Druid", slot: "Alt 8", profs: [], target: 25 },
     { id: "mage", cls: "mage", name: "Mage", slot: "Alt 9", profs: [], target: 25 }
   ];
-  var SPRITE = "assets/icons.svg?v=5";
+  var SPRITE = "assets/icons.svg?v=6";
   var CLASS_NAMES = { shaman: "Shaman", priest: "Priest", warrior: "Warrior", druid: "Druid", paladin: "Paladin", hunter: "Hunter", rogue: "Rogue", warlock: "Warlock", mage: "Mage" };
   var RACE_NAMES = { dwarf: "Dwarf", nightelf: "Night Elf", skyborne: "Skyborne", human: "Human", gnome: "Gnome" };
   function svg(id, cls) { return '<svg class="ico ' + (cls || "") + '" aria-hidden="true"><use href="' + SPRITE + "#" + id + '"/></svg>'; }
@@ -88,7 +87,7 @@
 
   /* ---------- icons ---------- */
   function hydrateIcons(root) {
-    $$("i[data-cls]", root).forEach(function (i) { i.outerHTML = token(i.dataset.cls); });
+    $$("i[data-cls]", root).forEach(function (i) { i.outerHTML = token(i.dataset.cls, i.dataset.size); });
     $$("i[data-race]", root).forEach(function (i) { i.outerHTML = raceIcon(i.dataset.race); });
     $$("i[data-prof]", root).forEach(function (i) { i.outerHTML = profIcon(i.dataset.prof); });
   }
@@ -106,12 +105,6 @@
   $$(".phase li").forEach(function (li) {
     var m = /^(Shaman|Warlock|Warrior|Priest|Hunter)\b/.exec(li.textContent.trim());
     if (m) li.insertAdjacentHTML("afterbegin", token(m[1].toLowerCase(), "xs") + " ");
-  });
-
-  /* ---------- tables: labels for stacked mobile view ---------- */
-  $$(".table-wrap table").forEach(function (t) {
-    var heads = $$("thead th", t).map(function (th) { return th.textContent; });
-    $$("tbody tr", t).forEach(function (tr) { $$("td", tr).forEach(function (td, i) { td.setAttribute("data-label", heads[i] || ""); }); });
   });
 
   /* ---------- route steps ---------- */
@@ -132,7 +125,9 @@
         while (li.firstChild) span.appendChild(li.firstChild);
         var cb = document.createElement("input");
         cb.type = "checkbox"; cb.setAttribute("aria-label", "Mark step done");
-        li.appendChild(cb); li.appendChild(span);
+        li.appendChild(cb);
+        if (span.firstElementChild && span.firstElementChild.classList.contains("tok") && span.firstChild === span.firstElementChild) li.appendChild(span.firstElementChild);
+        li.appendChild(span);
         li.classList.add("step"); li.dataset.step = id;
         steps.push({ id: id, li: li, cb: cb, phase: pi, details: d, ctx: title.replace(/\s+/g, " ") + (h3 ? " › " + h3.textContent : ""), h3: h3 });
         if (state.steps[id]) { cb.checked = true; li.classList.add("checked"); }
@@ -393,7 +388,7 @@
     var ht = s.h3 ? tagsOf(s.h3.textContent) : [];
     filterUnits.push({ el: s.li, tags: ht.length ? ht : tagsOf(s.li.textContent) });
   });
-  $$("#basics tbody tr").forEach(function (tr) { filterUnits.push({ el: tr, tags: tagsOf(tr.cells[0].textContent + " " + tr.cells[1].textContent) }); });
+  $$("#basics .rc").forEach(function (rc) { filterUnits.push({ el: rc, tags: [rc.dataset.f] }); });
   function applyFilter() {
     var f = state.filter;
     document.documentElement.style.setProperty("--focus", CLASS_NAMES[f] ? "var(--c-" + f + ")" : "var(--accent)");
@@ -418,7 +413,7 @@
 
   /* ---------- search ---------- */
   var searchInput = $("#q"), openBefore = null;
-  var units = $$("#main li, #main tbody tr, #main .grid2 > .callout, #launch > .callout").filter(function (el) { return !el.closest("#dashboard, #army-section"); });
+  var units = $$("#main li, #basics .rc, #main .grid2 > .callout, #launch > .callout").filter(function (el) { return !el.closest("#dashboard, #army-section"); });
   function clearMarks() {
     $$("mark.hl").forEach(function (m) { var p = m.parentNode; p.replaceChild(document.createTextNode(m.textContent), m); p.normalize(); });
   }
@@ -464,7 +459,7 @@
     phases.forEach(function (d) { var any = d.querySelector("li:not(.s-miss)"); if (any) d.open = true; else d.classList.add("s-miss"); });
     $$("section.sec").forEach(function (sec) {
       if (sec.id === "dashboard" || sec.id === "army-section") { sec.classList.add("s-miss"); return; }
-      var any = sec.querySelector("li:not(.s-miss), tbody tr:not(.s-miss), .grid2 > .callout:not(.s-miss), #launch > .callout:not(.s-miss)");
+      var any = sec.querySelector("li:not(.s-miss), .rc:not(.s-miss), .grid2 > .callout:not(.s-miss), #launch > .callout:not(.s-miss)");
       var txtHit = !any && sec.textContent.toLowerCase().indexOf(q) >= 0;
       if (!any && !txtHit) sec.classList.add("s-miss");
       else if (txtHit) markIn(sec, q);
@@ -542,15 +537,6 @@
   window.addEventListener("beforeprint", function () { printing = true; openPrint = phases.map(function (d) { return d.open; }); phases.forEach(function (d) { d.open = true; }); });
   window.addEventListener("afterprint", function () { if (openPrint) phases.forEach(function (d, i) { d.open = openPrint[i]; }); printing = false; });
 
-  /* ---------- countdown ---------- */
-  function tick() {
-    var ms = LAUNCH - Date.now();
-    if (ms <= 0) { $("#cd").textContent = "live now"; return false; }
-    var m = Math.floor(ms / 60000);
-    $("#cd").textContent = "in " + Math.floor(m / 1440) + "d " + Math.floor(m % 1440 / 60) + "h " + (m % 60) + "m";
-    return true;
-  }
-  if (tick()) { var cdTimer = setInterval(function () { if (!tick()) clearInterval(cdTimer); }, 30000); }
   setInterval(updateArmy, 60000);
 
   /* ---------- header behavior, scrollspy, back to top ---------- */

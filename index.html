@@ -12,15 +12,15 @@
 <link rel="icon" href="assets/app-icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/app-icon-180.png">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="preload" href="assets/icons.svg?v=5" as="image" type="image/svg+xml">
-<link rel="stylesheet" href="assets/css/base.css?v=5">
-<link rel="stylesheet" href="assets/css/themes.css?v=5">
+<link rel="preload" href="assets/icons.svg?v=6" as="image" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/base.css?v=6">
+<link rel="stylesheet" href="assets/css/themes.css?v=6">
 <script>try{var t=JSON.parse(localStorage.getItem("alr-v2")||"{}").theme;if(t==="questlog")t="ironforge";if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
 <header class="top" id="top">
   <div class="bar">
-    <div class="brand"><svg class="brand-mark" aria-hidden="true"><use href="assets/icons.svg?v=5#ui-shield"/></svg><span>Legacy Route</span></div>
+    <div class="brand"><svg class="brand-mark" aria-hidden="true"><use href="assets/icons.svg?v=6#ui-shield"/></svg><span>Legacy Route</span></div>
     <div class="search">
       <input id="q" type="search" placeholder="Search…" autocomplete="off" aria-label="Search the guide">
       <kbd>/</kbd>
@@ -29,12 +29,12 @@
     <details class="menu" id="look-menu">
       <summary class="iconbtn" id="theme-btn" aria-label="Change look">Look</summary>
       <div class="menu-panel looks">
-        <button type="button" data-look="auto"><span class="sw sw-auto"></span>Standard <small>matches your device</small></button>
+        <button type="button" data-look="auto"><span class="sw sw-auto"></span>Standard</button>
         <button type="button" data-look="light"><span class="sw sw-light"></span>Standard light</button>
         <button type="button" data-look="dark"><span class="sw sw-dark"></span>Standard dark</button>
         <hr>
-        <button type="button" data-look="ironforge"><span class="sw sw-ironforge"></span>Ironforge <small>forge stone and embers</small></button>
-        <button type="button" data-look="stormwind"><span class="sw sw-stormwind"></span>Stormwind <small>Alliance blue and gold</small></button>
+        <button type="button" data-look="ironforge"><span class="sw sw-ironforge"></span>Ironforge</button>
+        <button type="button" data-look="stormwind"><span class="sw sw-stormwind"></span>Stormwind</button>
       </div>
     </details>
     <details class="menu" id="menu">
@@ -69,7 +69,6 @@
 
 <main id="main">
 <section class="sec" id="dashboard">
-  <p class="meta">Alliance version of Ceedsy's "Ultimate Alt Army Blueprint" · WoW Forever · launches Nov 4, 3 p.m. PT (<span id="cd"></span>)</p>
   <h1>Alliance Legacy Point Route</h1>
   <p class="lead">Level one character per class on rested XP, and have their professions feed each other, to collect Legacy Points fast.</p>
   <div class="dash">
@@ -110,30 +109,54 @@
 </section>
 
 <section class="sec" id="basics">
-  <div class="split">
-    <section>
-      <h2>Roster</h2>
-      <div class="table-wrap"><table>
-        <thead><tr><th>Slot</th><th>Class</th><th>Race</th><th>Professions</th><th>Feeds the army</th></tr></thead>
-        <tbody>
-          <tr class="pick"><td>Main</td><td><span class="who"><i data-cls="shaman"></i>Shaman</span></td><td><span class="who"><i data-race="dwarf"></i>Dwarf</span></td><td><span class="profs"><span class="pi"><i data-prof="skinning"></i>Skinning</span> <span class="pi"><i data-prof="leatherworking"></i>Leatherworking</span></span></td><td>Leather, Camp Tent</td></tr>
-          <tr class="pick"><td>Alt 2</td><td><span class="who"><i data-cls="warlock"></i>Warlock</span></td><td><span class="who"><i data-race="human"></i>Human</span></td><td><span class="profs"><span class="pi"><i data-prof="enchanting"></i>Enchanting</span> <span class="pi"><i data-prof="tailoring"></i>Tailoring</span></span></td><td>Bags, enchants</td></tr>
-          <tr class="pick"><td>Alt 3</td><td><span class="who"><i data-cls="warrior"></i>Warrior</span></td><td><span class="who"><i data-race="nightelf"></i>Night Elf</span></td><td><span class="profs"><span class="pi"><i data-prof="mining"></i>Mining</span> <span class="pi"><i data-prof="blacksmithing"></i>Blacksmithing</span></span></td><td>Ore, bars</td></tr>
-          <tr class="pick"><td>Alt 4</td><td><span class="who"><i data-cls="priest"></i>Priest</span></td><td><span class="who"><i data-race="nightelf"></i>Night Elf</span></td><td><span class="profs"><span class="pi"><i data-prof="herbalism"></i>Herbalism</span> <span class="pi"><i data-prof="alchemy"></i>Alchemy</span></span></td><td>Potions, elixirs</td></tr>
-          <tr><td>Alts 5–9</td><td><span class="who multi"><i data-cls="paladin"></i><i data-cls="hunter"></i><i data-cls="rogue"></i><i data-cls="druid"></i><i data-cls="mage"></i></span><span class="sr">Paladin, Hunter, Rogue, Druid, Mage</span></td><td><span class="who"><i data-race="dwarf"></i><i data-race="human"></i>Any</span></td><td><span class="profs"><span class="pi"><i data-prof="engineering"></i>Hunter: Engineering</span></span></td><td>Rested banks, to 25 only</td></tr>
-        </tbody>
-      </table></div>
-    </section>
-    <section>
-      <h2>Rules</h2>
-      <ul>
-        <li>Play until rested XP runs out, park in an inn, switch.</li>
-        <li>Dungeons only when fully rested (rested doubles kill XP).</li>
-        <li>Mail materials around so every profession keeps climbing.</li>
-        <li>One character per class: level points count once per class.</li>
-        <li>Only crafting professions earn points (150 / 225 / 300).</li>
-      </ul>
-    </section>
+  <h2>Roster</h2>
+  <div class="roster">
+    <article class="rc" data-f="shaman" style="--cls:var(--c-shaman)">
+      <header><i data-cls="shaman" data-size="lg"></i><div><b>Dwarf Shaman</b><small>Main · to 35</small></div></header>
+      <dl>
+        <dt>Start</dt><dd><span class="who"><i data-race="dwarf"></i>Coldridge Valley, Dun Morogh</span></dd>
+        <dt>Professions</dt><dd><span class="profs"><span class="pi"><i data-prof="skinning"></i>Skinning</span> <span class="pi"><i data-prof="leatherworking"></i>Leatherworking</span></span></dd>
+        <dt>Sends</dt><dd>Leather, Camp Tent (LW 20)</dd>
+        <dt>Gets</dt><dd>Bags, potions</dd>
+      </dl>
+    </article>
+    <article class="rc" data-f="warlock" style="--cls:var(--c-warlock)">
+      <header><i data-cls="warlock" data-size="lg"></i><div><b>Human Warlock</b><small>Alt 2 · to 35</small></div></header>
+      <dl>
+        <dt>Start</dt><dd><span class="who"><i data-race="human"></i>Northshire, Elwynn</span></dd>
+        <dt>Professions</dt><dd><span class="profs"><span class="pi"><i data-prof="enchanting"></i>Enchanting</span> <span class="pi"><i data-prof="tailoring"></i>Tailoring</span></span></dd>
+        <dt>Sends</dt><dd>Linen Bags to everyone, enchants</dd>
+        <dt>Gets</dt><dd>Linen, greens</dd>
+      </dl>
+    </article>
+    <article class="rc" data-f="warrior" style="--cls:var(--c-warrior)">
+      <header><i data-cls="warrior" data-size="lg"></i><div><b>Night Elf Warrior</b><small>Alt 3 · to 35</small></div></header>
+      <dl>
+        <dt>Start</dt><dd><span class="who"><i data-race="nightelf"></i>Shadowglen, Teldrassil</span></dd>
+        <dt>Professions</dt><dd><span class="profs"><span class="pi"><i data-prof="mining"></i>Mining</span> <span class="pi"><i data-prof="blacksmithing"></i>Blacksmithing</span></span></dd>
+        <dt>Sends</dt><dd>Ore, bars; Linen and greens to the Warlock</dd>
+        <dt>Gets</dt><dd>Bags, potions</dd>
+        <dt>Note</dt><dd>Blacksmithing in Auberdine at ~11</dd>
+      </dl>
+    </article>
+    <article class="rc" data-f="priest" style="--cls:var(--c-priest)">
+      <header><i data-cls="priest" data-size="lg"></i><div><b>Night Elf Priest</b><small>Alt 4 · to 35</small></div></header>
+      <dl>
+        <dt>Start</dt><dd><span class="who"><i data-race="nightelf"></i>Shadowglen, Teldrassil</span></dd>
+        <dt>Professions</dt><dd><span class="profs"><span class="pi"><i data-prof="herbalism"></i>Herbalism</span> <span class="pi"><i data-prof="alchemy"></i>Alchemy</span></span></dd>
+        <dt>Sends</dt><dd>Potions, elixirs; Linen to the Warlock</dd>
+        <dt>Gets</dt><dd>Bags</dd>
+      </dl>
+    </article>
+    <article class="rc support" data-f="support">
+      <header><span class="who multi"><i data-cls="paladin"></i><i data-cls="hunter"></i><i data-cls="rogue"></i><i data-cls="druid"></i><i data-cls="mage"></i></span><div><b>Support alts</b><small>Alts 5–9 · to 25 only</small></div></header>
+      <div class="members"><span class="who"><i data-cls="paladin"></i>Paladin</span><span class="who"><i data-cls="hunter"></i>Hunter</span><span class="who"><i data-cls="rogue"></i>Rogue</span><span class="who"><i data-cls="druid"></i>Druid</span><span class="who"><i data-cls="mage"></i>Mage</span></div>
+      <dl>
+        <dt>Race</dt><dd>Any</dd>
+        <dt>Professions</dt><dd><span class="profs"><span class="pi"><i data-prof="engineering"></i>Hunter: Engineering</span></span></dd>
+        <dt>Job</dt><dd>Rested banks: log in, spend rested XP, park. Each class to 25 is a Legacy Point.</dd>
+      </dl>
+    </article>
   </div>
 </section>
 
@@ -272,9 +295,9 @@
         <li><b>Early: Working Overtime.</b> Faster profession leveling, so profession points arrive sooner.</li>
         <li><b>After the profession push: Well Rested</b> with every point not in Working Overtime.</li>
       </ol>
-      <div class="card"><b><span class="who multi"><i data-cls="shaman"></i><i data-cls="warlock"></i><i data-cls="warrior"></i><i data-cls="priest"></i></span> Core four</b><span class="pill">16 points</span>
+      <div class="card"><div class="card-h"><span class="who multi"><i data-cls="shaman"></i><i data-cls="warlock"></i><i data-cls="warrior"></i><i data-cls="priest"></i></span><b>Core four</b><span class="pill">16 points</span></div>
         <p>Working Overtime 5, Well Rested 5, Talented 5, last 1 anywhere.</p></div>
-      <div class="card"><b><span class="who multi"><i data-cls="paladin"></i><i data-cls="hunter"></i><i data-cls="rogue"></i><i data-cls="druid"></i><i data-cls="mage"></i></span> Alts 5–9</b><span class="pill">16 points</span>
+      <div class="card"><div class="card-h"><span class="who multi"><i data-cls="paladin"></i><i data-cls="hunter"></i><i data-cls="rogue"></i><i data-cls="druid"></i><i data-cls="mage"></i></span><b>Alts 5–9</b><span class="pill">16 points</span></div>
         <p>Well Rested 5, Talented 5, then Bountiful Harvest 5 (gatherers) or Thrill of Adventure 5 (zuggers), last 1 anywhere.</p></div>
     </section>
     <section>
@@ -313,6 +336,6 @@
 <button class="totop" id="totop" type="button" aria-label="Back to top">&#8593;</button>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="assets/js/app.js?v=5"></script>
+<script src="assets/js/app.js?v=6"></script>
 </body>
 </html>
