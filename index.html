@@ -57,9 +57,9 @@
     <span class="lab">Focus:</span>
     <button class="chip" data-f="all" aria-pressed="true">Everyone</button>
     <button class="chip" data-f="shaman" aria-pressed="false" style="--cls:var(--c-shaman)"><i data-cls="shaman"></i>Shaman</button>
-    <button class="chip" data-f="priest" aria-pressed="false" style="--cls:var(--c-priest)"><i data-cls="priest"></i>Priest</button>
+    <button class="chip" data-f="warlock" aria-pressed="false" style="--cls:var(--c-warlock)"><i data-cls="warlock"></i>Warlock</button>
     <button class="chip" data-f="warrior" aria-pressed="false" style="--cls:var(--c-warrior)"><i data-cls="warrior"></i>Warrior</button>
-    <button class="chip" data-f="druid" aria-pressed="false" style="--cls:var(--c-druid)"><i data-cls="druid"></i>Druid</button>
+    <button class="chip" data-f="priest" aria-pressed="false" style="--cls:var(--c-priest)"><i data-cls="priest"></i>Priest</button>
     <button class="chip" data-f="support" aria-pressed="false">Support alts</button>
   </div>
   <nav class="sections" aria-label="Sections">
@@ -117,10 +117,10 @@
         <thead><tr><th>Slot</th><th>Class</th><th>Race</th><th>Professions</th><th>Feeds the army</th></tr></thead>
         <tbody>
           <tr class="pick"><td>Main</td><td><span class="who"><i data-cls="shaman"></i>Shaman</span></td><td><span class="who"><i data-race="dwarf"></i>Dwarf</span></td><td><span class="profs"><span class="pi"><i data-prof="skinning"></i>Skinning</span> <span class="pi"><i data-prof="leatherworking"></i>Leatherworking</span></span></td><td>Leather, Camp Tent</td></tr>
-          <tr class="pick"><td>Alt 2</td><td><span class="who"><i data-cls="priest"></i>Priest</span></td><td><span class="who"><i data-race="nightelf"></i>Night Elf</span></td><td><span class="profs"><span class="pi"><i data-prof="tailoring"></i>Tailoring</span> <span class="pi"><i data-prof="enchanting"></i>Enchanting</span></span></td><td>Bags, disenchanting</td></tr>
+          <tr class="pick"><td>Alt 2</td><td><span class="who"><i data-cls="warlock"></i>Warlock</span></td><td><span class="who"><i data-race="human"></i>Human</span></td><td><span class="profs"><span class="pi"><i data-prof="tailoring"></i>Tailoring</span> <span class="pi"><i data-prof="enchanting"></i>Enchanting</span></span></td><td>Bags, disenchanting</td></tr>
           <tr class="pick"><td>Alt 3</td><td><span class="who"><i data-cls="warrior"></i>Warrior</span></td><td><span class="who"><i data-race="nightelf"></i>Night Elf</span></td><td><span class="profs"><span class="pi"><i data-prof="mining"></i>Mining</span> <span class="pi"><i data-prof="blacksmithing"></i>Blacksmithing</span></span></td><td>Ore, bars</td></tr>
-          <tr class="pick"><td>Alt 4</td><td><span class="who"><i data-cls="druid"></i>Druid</span></td><td><span class="who"><i data-race="skyborne"></i>Skyborne</span></td><td><span class="profs"><span class="pi"><i data-prof="herbalism"></i>Herbalism</span> <span class="pi"><i data-prof="alchemy"></i>Alchemy</span></span></td><td>Potions, elixirs</td></tr>
-          <tr><td>Alts 5–9</td><td><span class="who multi"><i data-cls="paladin"></i><i data-cls="hunter"></i><i data-cls="rogue"></i><i data-cls="warlock"></i><i data-cls="mage"></i></span><span class="sr">Paladin, Hunter, Rogue, Warlock, Mage</span></td><td><span class="who"><i data-race="human"></i><i data-race="gnome"></i>Any</span></td><td><span class="profs"><span class="pi"><i data-prof="engineering"></i>Hunter: Engineering</span></span></td><td>Rested banks, to 25 only</td></tr>
+          <tr class="pick"><td>Alt 4</td><td><span class="who"><i data-cls="priest"></i>Priest</span></td><td><span class="who"><i data-race="nightelf"></i>Night Elf</span></td><td><span class="profs"><span class="pi"><i data-prof="herbalism"></i>Herbalism</span> <span class="pi"><i data-prof="alchemy"></i>Alchemy</span></span></td><td>Potions, elixirs</td></tr>
+          <tr><td>Alts 5–9</td><td><span class="who multi"><i data-cls="paladin"></i><i data-cls="hunter"></i><i data-cls="rogue"></i><i data-cls="druid"></i><i data-cls="mage"></i></span><span class="sr">Paladin, Hunter, Rogue, Druid, Mage</span></td><td><span class="who"><i data-race="dwarf"></i><i data-race="human"></i>Any</span></td><td><span class="profs"><span class="pi"><i data-prof="engineering"></i>Hunter: Engineering</span></span></td><td>Rested banks, to 25 only</td></tr>
         </tbody>
       </table></div>
     </section>
@@ -142,38 +142,39 @@
 <div class="route-tools"><span class="faint">Tap a step to tick it. Tap a gold waypoint to copy it.</span><button class="btn sm" type="button" data-route="expand">Expand all</button><button class="btn sm" type="button" data-route="collapse">Collapse all</button></div>
 
 <details class="phase-d">
-  <summary>Phase 1: Supply chain <span class="lv">Priest 1–5 → Druid 1–15 → Shaman 1–10 → Warrior 1–10 → Priest 5–10</span></summary>
+  <summary>Phase 1: Supply chain <span class="lv">Warlock 1–5 → Priest 1–10 → Shaman 1–10 → Warrior 1–10 → Warlock 5–10</span></summary>
   <div class="phase">
-    <p class="done"><b>Done when:</b> Druid has Alchemy in Stormwind, everyone else is 10 with bags.</p>
-    <h3>1. Priest 1–5</h3>
+    <p class="done"><b>Done when:</b> Priest has Alchemy going, everyone is 10 with bags.</p>
+    <h3>1. Warlock 1–5 (Northshire)</h3>
     <ul>
-      <li>Train Tailoring + Enchanting in Darnassus. Park.</li>
+      <li>Class quest: The Stolen Tome (Imp).</li>
+      <li>Train Tailoring + Enchanting in Stormwind. Park at the Lion's Pride Inn, Goldshire.</li>
     </ul>
-    <h3>2. Druid 1–15</h3>
+    <h3>2. Priest 1–10 (Teldrassil)</h3>
     <ul>
-      <li>Herbalism at 5: Halassa Fernbreeze, Shen'dar Village /way 43.0 43.6. Bank every herb.</li>
-      <li>Bear Form quests from Lotheluum Starbreeze.</li>
-      <li>Park at the Calmbreeze Inn between sessions.</li>
-      <li>At ~15: skycutter south of Valanaar → Dalaran landing (grab Child of Nature) → portal to Stormwind.</li>
-      <li>Stormwind: train Alchemy, turn in Child of Nature (Teleport: Moonglade). Mail potions out. Park.</li>
+      <li>Herbalism at 5: Eleyna Duskbreeze, Shadowglen /way 59.8 41.4. Bank every herb.</li>
+      <li>Alchemy at Darnassus (Craftsmen's Terrace). Minor Healing Potions; mail potions out.</li>
+      <li>Class quest: Stars of Elune at 10 (Dolanaar).</li>
+      <li>Mail Linen to the Warlock. Park in Dolanaar.</li>
     </ul>
     <h3>3. Shaman 1–10</h3>
     <ul>
       <li>Skinning (~3), The Great Outdoors for Camping (~5), Leatherworking in Ironforge.</li>
       <li>Leatherworking 20: Camping 101 → Camp Tent.</li>
       <li>Class quests: Call of Earth, Call of Fire at 10.</li>
-      <li>Mail Linen to the Priest. Grab A Visitor to Dun Morogh (Beldin Steelgrill). Park.</li>
+      <li>Mail Linen to the Warlock. Grab A Visitor to Dun Morogh (Beldin Steelgrill). Park.</li>
     </ul>
     <h3>4. Warrior 1–10</h3>
     <ul>
       <li>Mining: Fanorran Stilloak, Shadowglen /way 58.2 41.6.</li>
       <li>Class quest: Defensive Stance at 10 (Darnassus).</li>
-      <li>Mail Linen and greens to the Priest. Park.</li>
+      <li>Mail Linen and greens to the Warlock. Park.</li>
     </ul>
-    <h3>5. Priest 5–10</h3>
+    <h3>5. Warlock 5–10</h3>
     <ul>
-      <li>Make 16 Linen Bags: 4 each for Druid, Shaman, Warrior and yourself.</li>
-      <li>Disenchant the greens. Class quest: Stars of Elune at 10 (Dolanaar). Park.</li>
+      <li>Make 16 Linen Bags: 4 each for Priest, Shaman, Warrior and yourself.</li>
+      <li>Disenchant the greens.</li>
+      <li>Class quest at 10: Voidwalker (Gakin's Summons → Surena Caledon → The Binding). Park.</li>
       <li>Optional: create the support alts and park them.</li>
     </ul>
   </div>
@@ -191,7 +192,7 @@
     </ul>
     <h3>Pick up before running</h3>
     <ul>
-      <li>Hall of Thanes: A Visitor to Dun Morogh, Old Ironforge Incursion chain (Farsen /way 64.8 58.5).</li>
+      <li>Hall of Thanes: A Visitor to Dun Morogh (Night Elves and Warlock), Old Ironforge Incursion chain (Farsen /way 64.8 58.5).</li>
       <li>Deadmines: Westfall chains at Sentinel Hill, Stormwind quests. Bring 10 Rough Dynamite.</li>
       <li>Wailing Caverns: Ratchet and entrance quests.</li>
       <li>Level 14: Cozy Sleeping Bag chain, Westfall /way 37 50. Lets you park anywhere.</li>
@@ -219,7 +220,7 @@
       <li>Shaman: Call of Water.</li>
       <li>Priest: Elune's Grace (Stormwind Cathedral).</li>
       <li>Warrior: Fire Hardened Armor (Lakeshire → Stormwind).</li>
-      <li>Druid: Cure Poison and Cat Form (Moonglade, Darkshore).</li>
+      <li>Warlock: Succubus (Gakin, Stormwind → Takar the Seer, Barrens). Pair it with a Wailing Caverns trip.</li>
     </ul>
   </div>
 </details>
@@ -268,9 +269,9 @@
         <li><b>Early: Working Overtime.</b> Faster profession leveling, so profession points arrive sooner.</li>
         <li><b>After the profession push: Well Rested</b> with every point not in Working Overtime.</li>
       </ol>
-      <div class="card"><b><span class="who multi"><i data-cls="shaman"></i><i data-cls="priest"></i><i data-cls="warrior"></i><i data-cls="druid"></i></span> Core four</b><span class="pill">16 points</span>
+      <div class="card"><b><span class="who multi"><i data-cls="shaman"></i><i data-cls="warlock"></i><i data-cls="warrior"></i><i data-cls="priest"></i></span> Core four</b><span class="pill">16 points</span>
         <p>Working Overtime 5, Well Rested 5, Talented 5, last 1 anywhere.</p></div>
-      <div class="card"><b><span class="who multi"><i data-cls="paladin"></i><i data-cls="hunter"></i><i data-cls="rogue"></i><i data-cls="warlock"></i><i data-cls="mage"></i></span> Alts 5–9</b><span class="pill">16 points</span>
+      <div class="card"><b><span class="who multi"><i data-cls="paladin"></i><i data-cls="hunter"></i><i data-cls="rogue"></i><i data-cls="druid"></i><i data-cls="mage"></i></span> Alts 5–9</b><span class="pill">16 points</span>
         <p>Well Rested 5, Talented 5, then Bountiful Harvest 5 (gatherers) or Thrill of Adventure 5 (zuggers), last 1 anywhere.</p></div>
     </section>
     <section>
@@ -289,7 +290,7 @@
   <h2>Check at launch</h2>
   <ul class="small">
     <li>Perk costs aren't published; builds assume 1 point per rank.</li>
-    <li>Zephras Isle Alchemy trainer and crafting trainer level (assumed 5) unconfirmed.</li>
+    <li>Crafting trainer level (assumed 5) unconfirmed.</li>
     <li>Novice Spelunker dungeon list unpublished; may need Ragefire Chasm.</li>
   </ul>
   <p class="faint" style="margin-top:24px">Based on beta 1.60.1. Sources: Blizzard posts, beta client data, Nutrichi/wowforever, fitzforge/polestar.</p>
