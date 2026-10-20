@@ -13,7 +13,7 @@
     { id: "druid", cls: "druid", name: "Druid", slot: "Alt 8", profs: [], target: 25 },
     { id: "mage", cls: "mage", name: "Mage", slot: "Alt 9", profs: [], target: 25 }
   ];
-  var SPRITE = "assets/icons.svg?v=7";
+  var SPRITE = "assets/icons.svg?v=8";
   var CLASS_NAMES = { shaman: "Shaman", priest: "Priest", warrior: "Warrior", druid: "Druid", paladin: "Paladin", hunter: "Hunter", rogue: "Rogue", warlock: "Warlock", mage: "Mage" };
   var RACE_NAMES = { dwarf: "Dwarf", nightelf: "Night Elf", skyborne: "Skyborne", human: "Human", gnome: "Gnome" };
   function svg(id, cls) { return '<svg class="ico ' + (cls || "") + '" aria-hidden="true"><use href="' + SPRITE + "#" + id + '"/></svg>'; }
@@ -113,13 +113,15 @@
     var sum = $("summary", d);
     sum.insertAdjacentHTML("beforeend", '<span class="pp"><span class="meter ok"><i></i></span><span class="ppn"></span></span>');
     var title = sum.firstChild.textContent.trim();
-    var h3 = null, hi = -1;
+    var h3 = null, h4 = null, hi = -1, ui = 0;
     $$(".phase > *", d).forEach(function (el) {
-      if (el.tagName === "H3") { h3 = el; hi++; return; }
+      if (el.tagName === "H3") { h3 = el; h4 = null; hi++; ui = 0; return; }
+      if (el.tagName === "H4") { h4 = el; return; }
       if (el.tagName !== "UL") return;
       el.classList.add("steps");
+      var u = ui++, sub = h4;
       $$(":scope > li", el).forEach(function (li, i) {
-        var id = "s" + pi + "-" + hi + "-" + i;
+        var id = "s" + pi + "-" + hi + "-" + (u ? u + "-" : "") + i;
         var span = document.createElement("span");
         while (li.firstChild) span.appendChild(li.firstChild);
         var cb = document.createElement("input");
@@ -128,7 +130,7 @@
         if (span.firstElementChild && span.firstElementChild.classList.contains("tok") && span.firstChild === span.firstElementChild) li.appendChild(span.firstElementChild);
         li.appendChild(span);
         li.classList.add("step"); li.dataset.step = id;
-        steps.push({ id: id, li: li, cb: cb, phase: pi, details: d, ctx: title.replace(/\s+/g, " ") + (h3 ? " › " + h3.textContent : ""), h3: h3 });
+        steps.push({ id: id, li: li, cb: cb, phase: pi, details: d, ctx: title.replace(/\s+/g, " ") + (h3 ? " › " + h3.textContent : "") + (sub ? " › " + sub.textContent : ""), h3: h3 });
         if (state.steps[id]) { cb.checked = true; li.classList.add("checked"); }
       });
     });

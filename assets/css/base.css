@@ -192,6 +192,11 @@ summary .lv { color: var(--muted); font-weight: 400; font-size: 13px; grid-colum
 @media (max-width: 700px) { .goal { grid-template-columns: 1fr; gap: 8px; } }
 .goal span { display: block; color: var(--faint); font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
 ul.steps { list-style: none; padding: 0; }
+.phase h4 { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--gold); margin: 14px 0 2px; }
+.phase h3 + h4 { margin-top: 6px; }
+.crumb { display: block; font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+.crumb b { color: var(--warn); font-weight: 600; }
+p.inside { font-size: 12.5px; color: var(--faint); margin: 2px 0 0 calc(var(--check-size) + 10px); }
 li.step { display: flex; gap: 10px; align-items: flex-start; padding: 6px 8px; margin: 2px -8px; border-radius: 8px; cursor: pointer; transition: background .15s, opacity .15s; }
 li.step:hover { background: var(--stripe); }
 li.step input { width: var(--check-size); height: var(--check-size); flex-shrink: 0; accent-color: var(--ok); cursor: pointer; }
