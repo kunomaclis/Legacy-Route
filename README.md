@@ -21,7 +21,6 @@ Live site: https://kunomaclis.github.io/Legacy-Route/
 - Route steps are plain `<li>` items inside each `<details class="phase-d">` in `index.html`. Every step gets a checkbox automatically.
 - A step heading (`<h3>`) that names a class (`2. Druid 1–15`) gets that class's icon and color automatically.
 - Icons in content: `<i data-cls="shaman"></i>`, `<i data-race="dwarf"></i>`, `<i data-prof="mining"></i>`.
-- Waypoints written as `/way 43.0 43.6` become tap-to-copy buttons.
 - After changing CSS, JS or the icon sprite, bump the `?v=` number everywhere it appears (`index.html`, `SPRITE` in `assets/js/app.js`, and `sw.js` along with `CACHE`). Otherwise browsers can pair a new page with an old script for up to 10 minutes.
 
 Progress (levels, skills, ticked steps, parked times, look) is stored in each browser's localStorage under `alr-v2`.

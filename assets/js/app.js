@@ -5,15 +5,15 @@
   var CHARS = [
     { id: "shaman", cls: "shaman", race: "dwarf", name: "Dwarf Shaman", slot: "Main", profs: ["Leatherworking"], gather: "Skinning", target: 35, core: true },
     { id: "warlock", cls: "warlock", race: "human", name: "Human Warlock", slot: "Alt 2", profs: ["Enchanting", "Tailoring"], target: 35, core: true },
-    { id: "warrior", cls: "warrior", race: "nightelf", name: "Night Elf Warrior", slot: "Alt 3", profs: ["Blacksmithing"], gather: "Mining", target: 35, core: true },
+    { id: "warrior", cls: "warrior", race: "nightelf", name: "Night Elf Warrior", slot: "Alt 3", profs: ["Blacksmithing", "Engineering"], gather: "Mining", target: 35, core: true },
     { id: "priest", cls: "priest", race: "nightelf", name: "Night Elf Priest", slot: "Alt 4", profs: ["Alchemy"], gather: "Herbalism", target: 35, core: true },
     { id: "paladin", cls: "paladin", name: "Paladin", slot: "Alt 5", profs: [], target: 25 },
-    { id: "hunter", cls: "hunter", name: "Hunter", slot: "Alt 6", profs: ["Engineering"], target: 25 },
+    { id: "hunter", cls: "hunter", name: "Hunter", slot: "Alt 6", profs: [], target: 25 },
     { id: "rogue", cls: "rogue", name: "Rogue", slot: "Alt 7", profs: [], target: 25 },
     { id: "druid", cls: "druid", name: "Druid", slot: "Alt 8", profs: [], target: 25 },
     { id: "mage", cls: "mage", name: "Mage", slot: "Alt 9", profs: [], target: 25 }
   ];
-  var SPRITE = "assets/icons.svg?v=6";
+  var SPRITE = "assets/icons.svg?v=7";
   var CLASS_NAMES = { shaman: "Shaman", priest: "Priest", warrior: "Warrior", druid: "Druid", paladin: "Paladin", hunter: "Hunter", rogue: "Rogue", warlock: "Warlock", mage: "Mage" };
   var RACE_NAMES = { dwarf: "Dwarf", nightelf: "Night Elf", skyborne: "Skyborne", human: "Human", gnome: "Gnome" };
   function svg(id, cls) { return '<svg class="ico ' + (cls || "") + '" aria-hidden="true"><use href="' + SPRITE + "#" + id + '"/></svg>'; }
@@ -27,9 +27,8 @@
   var TOPIC_RE = {
     shaman: /\b(dwarf|leatherworking|skinning|skin|main only)\b/i,
     warlock: /\b(human|northshire|goldshire|tailoring|enchanting|disenchant\w*|linen bags?)\b/i,
-    warrior: /\b(blacksmithing|mining|night elf|night elves)\b/i,
-    priest: /\b(herbalism|herbing|alchemy|potions?|night elf|night elves)\b/i,
-    support: /\b(engineering)\b/i
+    warrior: /\b(blacksmithing|mining|engineering|night elf|night elves)\b/i,
+    priest: /\b(herbalism|herbing|alchemy|potions?|night elf|night elves)\b/i
   };
 
 
@@ -195,41 +194,6 @@
   $("#ns-go").addEventListener("click", function () { var n = nextStep(); if (n) reveal(n.li); });
   $("#ns-done").addEventListener("click", function () { var n = nextStep(); if (n) { setStep(n, true); toast("Step done"); } });
 
-  /* ---------- waypoints: click to copy ---------- */
-  function wrapWaypoints(root) {
-    var re = /\/way\s+\d+(?:\.\d+)?\s+\d+(?:\.\d+)?/g;
-    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
-      acceptNode: function (n) { return re.test(n.nodeValue) && !n.parentNode.closest("script, button, .way") ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT; }
-    });
-    var nodes = []; while (walker.nextNode()) nodes.push(walker.currentNode);
-    nodes.forEach(function (n) {
-      var frag = document.createDocumentFragment(), txt = n.nodeValue, last = 0, m;
-      re.lastIndex = 0;
-      while ((m = re.exec(txt))) {
-        frag.appendChild(document.createTextNode(txt.slice(last, m.index)));
-        var b = document.createElement("button");
-        b.type = "button"; b.className = "way"; b.textContent = m[0]; b.title = "Copy waypoint";
-        frag.appendChild(b); last = m.index + m[0].length;
-      }
-      frag.appendChild(document.createTextNode(txt.slice(last)));
-      n.parentNode.replaceChild(frag, n);
-    });
-  }
-  wrapWaypoints($("#main"));
-  function copyText(t) {
-    function fallback() {
-      var ta = document.createElement("textarea"); ta.value = t; ta.style.position = "fixed"; ta.style.opacity = "0";
-      document.body.appendChild(ta); ta.select();
-      try { document.execCommand("copy"); } catch (e) {}
-      ta.remove();
-    }
-    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(t).catch(fallback); else fallback();
-    toast("Copied " + t + " — paste it in game chat");
-  }
-  document.addEventListener("click", function (e) {
-    var w = e.target.closest(".way"); if (w) { e.preventDefault(); copyText(w.textContent); }
-  });
-
   /* ---------- army tracker ---------- */
   function rested(s) {
     if (!s.parkedAt) return null;
@@ -252,27 +216,26 @@
   function tickHTML(marks, max) {
     return marks.map(function (m) { return '<span class="tick" data-v="' + m + '" style="left:calc(' + (m / max * 100) + '% - 1px)"></span>'; }).join("");
   }
+  function stepper(btnAttrs, inputAttrs, label, value, min, max, step) {
+    return '<button class="stepbtn" type="button" ' + btnAttrs + ' data-d="-' + step + '" aria-label="' + label + ' down">&minus;</button>' +
+      '<input class="num-in" type="number" inputmode="numeric" min="' + min + '" max="' + max + '" ' + inputAttrs + ' value="' + value + '" aria-label="' + label + '">' +
+      '<button class="stepbtn" type="button" ' + btnAttrs + ' data-d="' + step + '" aria-label="' + label + ' up">+</button>';
+  }
   function cardHTML(c) {
     var s = state.chars[c.id];
-    var profs = c.profs.map(function (p) {
-      return '<div class="prof-wrap"><div class="prof"><span class="lab">' + profIcon(p) + p + '</span>' +
-        '<button class="stepbtn" type="button" data-act="prof" data-p="' + p + '" data-d="-5" aria-label="' + p + ' minus 5">&minus;</button>' +
-        '<input class="num-in" type="number" inputmode="numeric" min="0" max="300" data-prof="' + p + '" value="' + (s.prof[p] || 0) + '" aria-label="' + p + ' skill">' +
-        '<button class="stepbtn" type="button" data-act="prof" data-p="' + p + '" data-d="5" aria-label="' + p + ' plus 5">+</button>' +
-        '</div><span class="meter" data-pbar="' + p + '"><i></i>' + tickHTML([150, 225], 300) + '</span></div>';
+    var rows = '<div class="trow"><div class="tline"><span class="lab">Level</span>' + stepper('data-act="lvl"', 'data-k="level"', "Level", s.level, 1, 60, 1) + '</div>' +
+      '<span class="meter cls" data-k="lvlbar"><i></i>' + tickHTML([25, 45], 60) + '<span class="tick tgt" style="left:calc(' + (c.target / 60 * 100) + '% - 1px)"></span></span></div>';
+    rows += c.profs.map(function (p) {
+      return '<div class="trow"><div class="tline"><span class="lab">' + profIcon(p) + p + '</span>' + stepper('data-act="prof" data-p="' + p + '"', 'data-prof="' + p + '"', p, s.prof[p] || 0, 0, 300, 5) + '</div>' +
+        '<span class="meter" data-pbar="' + p + '"><i></i>' + tickHTML([150, 225], 300) + '</span></div>';
     }).join("");
+    if (c.gather) rows += '<div class="tline gath"><span class="lab">' + profIcon(c.gather) + c.gather + '</span><span class="tag">Gathering</span></div>';
     var sub = (c.race ? raceIcon(c.race) + RACE_NAMES[c.race] : "Any race") + " · " + c.slot + " · to " + c.target;
-    var gather = c.gather ? '<span class="gather">' + profIcon(c.gatherIcon || c.gather) + c.gather + "</span>" : "";
     return '<article class="char' + (c.core ? " core" : "") + '" data-id="' + c.id + '" style="--cls:var(--c-' + c.cls + ')">' +
       '<header>' + token(c.cls, "lg") + '<div class="char-name"><b>' + (c.race ? c.name : CLASS_NAMES[c.cls]) + '</b><small>' + sub + '</small></div><span class="badge" data-k="pts"></span></header>' +
-      '<div class="lvl"><span class="lab">Level</span>' +
-        '<button class="stepbtn" type="button" data-act="lvl" data-d="-1" aria-label="Level down">&minus;</button>' +
-        '<input class="num-in" type="number" inputmode="numeric" min="1" max="60" data-k="level" value="' + s.level + '" aria-label="Level">' +
-        '<button class="stepbtn" type="button" data-act="lvl" data-d="1" aria-label="Level up">+</button></div>' +
-      '<span class="meter cls" data-k="lvlbar"><i></i>' + tickHTML([25, 45], 60) + '<span class="tick tgt" style="left:calc(' + (c.target / 60 * 100) + '% - 1px)"></span></span>' +
-      profs + gather +
-      '<div class="rest"><span class="meter rested" data-k="restbar"><i></i></span>' +
-        '<div class="rest-row"><span data-k="resttext"></span><button class="btn sm" type="button" data-act="park"></button></div></div>' +
+      '<div class="trows">' + rows + '</div>' +
+      '<div class="rest"><div class="rest-row"><span data-k="resttext"></span><button class="btn sm" type="button" data-act="park"></button></div>' +
+        '<span class="meter rested" data-k="restbar"><i></i></span></div>' +
       '</article>';
   }
   var army = $("#army");
@@ -422,7 +385,7 @@
     while (walker.nextNode()) nodes.push(walker.currentNode);
     nodes.forEach(function (n) {
       var low = n.nodeValue.toLowerCase(), idx = low.indexOf(q);
-      if (idx < 0 || n.parentNode.closest("button.way")) return;
+      if (idx < 0) return;
       var frag = document.createDocumentFragment(), last = 0;
       while (idx >= 0) {
         frag.appendChild(document.createTextNode(n.nodeValue.slice(last, idx)));

@@ -108,9 +108,6 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0 0; }
 :root[data-theme="dark"] .btn.primary { color: #0d1117; }
 @media (prefers-color-scheme: dark) { :root[data-theme="auto"] .btn.primary { color: #0d1117; } }
 .btn.sm { padding: 4px 10px; font-size: 12.5px; }
-.way { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--gold-soft); color: var(--gold); border: 1px dashed color-mix(in srgb, var(--gold) 50%, transparent);
-  border-radius: 6px; padding: 0 6px; cursor: copy; white-space: nowrap; }
-.way:hover { border-style: solid; }
 mark.hl { background: #ffe066; color: #1f2328; border-radius: 3px; padding: 0 1px; }
 
 /* ---------- dashboard ---------- */
@@ -144,7 +141,7 @@ mark.hl { background: #ffe066; color: #1f2328; border-radius: 3px; padding: 0 1p
 .army-tools label { display: inline-flex; gap: 8px; align-items: center; cursor: pointer; }
 .army-tools input[type=number] { width: 64px; }
 .army { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 12px; }
-.char { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; display: flex; flex-direction: column; gap: 10px; box-shadow: var(--shadow); }
+.char { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; display: flex; flex-direction: column; gap: 14px; box-shadow: var(--shadow); }
 .char { border-top: 3px solid var(--line); }
 .char.done .badge { background: var(--ok); color: #fff; }
 .char.next { outline: 2px solid #7b5cd6; outline-offset: -1px; }
@@ -155,14 +152,17 @@ mark.hl { background: #ffe066; color: #1f2328; border-radius: 3px; padding: 0 1p
 .char header small { display: block; color: var(--faint); font-size: 12px; }
 .badge { font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: var(--ok-soft); color: var(--ok); white-space: nowrap; }
 .badge.zero { background: var(--stripe); color: var(--faint); }
-.lvl, .prof { display: flex; align-items: center; gap: 6px; font-size: 13px; }
-.lvl .lab, .prof .lab { color: var(--muted); min-width: 0; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.trows { display: flex; flex-direction: column; gap: 12px; }
+.trow { display: flex; flex-direction: column; gap: 6px; }
+.tline { display: flex; align-items: center; gap: 6px; font-size: 13px; min-height: 34px; }
+.tline .lab { color: var(--muted); min-width: 0; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tline .tag { font-size: 11px; color: var(--faint); text-transform: uppercase; letter-spacing: .06em; }
+.tline.gath { min-height: 0; }
 .num-in { width: 58px; height: 34px; text-align: center; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); font-size: 16px; font-variant-numeric: tabular-nums; -moz-appearance: textfield; }
 .num-in::-webkit-inner-spin-button, .num-in::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
 .stepbtn { width: 34px; height: 34px; border-radius: 8px; border: 1px solid var(--border); background: var(--stripe); cursor: pointer; font-size: 18px; line-height: 1; touch-action: manipulation; }
 .stepbtn:active { transform: scale(.94); }
-.prof-wrap { display: flex; flex-direction: column; gap: 6px; }
-.rest { display: flex; flex-direction: column; gap: 6px; padding-top: 8px; border-top: 1px dashed var(--border); }
+.rest { display: flex; flex-direction: column; gap: 8px; margin-top: auto; padding-top: 10px; border-top: 1px dashed var(--border); }
 .rest-row { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 12.5px; color: var(--muted); }
 .parked-tag { color: #7b5cd6; font-weight: 600; }
 
@@ -266,11 +266,10 @@ body.searching .search-empty.show { display: block; }
 .tok.lg { --s: var(--tok-lg); }
 .race-ico, .prof-ico { display: inline-flex; color: var(--muted); vertical-align: middle; }
 .race-ico .ico, .prof-ico .ico { width: var(--ico-size); height: var(--ico-size); }
-.who, .pi, .gather, .prof .lab, .chip, .card-h { display: inline-flex; align-items: center; gap: var(--ico-gap); }
+.who, .pi, .tline .lab, .chip, .card-h { display: inline-flex; align-items: center; gap: var(--ico-gap); }
 .who.multi { gap: 3px; }
 .profs { display: inline-flex; align-items: center; gap: 4px 12px; flex-wrap: wrap; }
 .pi { white-space: nowrap; }
-.gather { font-size: 12.5px; color: var(--muted); }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 .phase h3:has(.h-icons) { display: flex; align-items: flex-start; gap: 8px; }
 .h-icons { display: inline-flex; align-items: center; gap: 3px; flex-shrink: 0; height: var(--tok-sm); margin-top: calc((1lh - var(--tok-sm)) / 2); }

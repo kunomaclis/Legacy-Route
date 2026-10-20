@@ -12,15 +12,15 @@
 <link rel="icon" href="assets/app-icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/app-icon-180.png">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="preload" href="assets/icons.svg?v=6" as="image" type="image/svg+xml">
-<link rel="stylesheet" href="assets/css/base.css?v=6">
-<link rel="stylesheet" href="assets/css/themes.css?v=6">
+<link rel="preload" href="assets/icons.svg?v=7" as="image" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/base.css?v=7">
+<link rel="stylesheet" href="assets/css/themes.css?v=7">
 <script>try{var t=JSON.parse(localStorage.getItem("alr-v2")||"{}").theme;if(t==="questlog")t="ironforge";if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
 <header class="top" id="top">
   <div class="bar">
-    <div class="brand"><svg class="brand-mark" aria-hidden="true"><use href="assets/icons.svg?v=6#ui-shield"/></svg><span>Legacy Route</span></div>
+    <div class="brand"><svg class="brand-mark" aria-hidden="true"><use href="assets/icons.svg?v=7#ui-shield"/></svg><span>Legacy Route</span></div>
     <div class="search">
       <input id="q" type="search" placeholder="Search…" autocomplete="off" aria-label="Search the guide">
       <kbd>/</kbd>
@@ -116,7 +116,7 @@
       <dl>
         <dt>Start</dt><dd><span class="who"><i data-race="dwarf"></i>Coldridge Valley, Dun Morogh</span></dd>
         <dt>Professions</dt><dd><span class="profs"><span class="pi"><i data-prof="skinning"></i>Skinning</span> <span class="pi"><i data-prof="leatherworking"></i>Leatherworking</span></span></dd>
-        <dt>Sends</dt><dd>Leather, Camp Tent (LW 20)</dd>
+        <dt>Sends</dt><dd>Leather; greens for disenchanting</dd>
         <dt>Gets</dt><dd>Bags, potions</dd>
       </dl>
     </article>
@@ -125,18 +125,17 @@
       <dl>
         <dt>Start</dt><dd><span class="who"><i data-race="human"></i>Northshire, Elwynn</span></dd>
         <dt>Professions</dt><dd><span class="profs"><span class="pi"><i data-prof="enchanting"></i>Enchanting</span> <span class="pi"><i data-prof="tailoring"></i>Tailoring</span></span></dd>
-        <dt>Sends</dt><dd>Linen Bags to everyone, enchants</dd>
-        <dt>Gets</dt><dd>Linen, greens</dd>
+        <dt>Sends</dt><dd>Bags, enchants</dd>
+        <dt>Gets</dt><dd>Linen for tailoring, greens for disenchanting</dd>
       </dl>
     </article>
     <article class="rc" data-f="warrior" style="--cls:var(--c-warrior)">
       <header><i data-cls="warrior" data-size="lg"></i><div><b>Night Elf Warrior</b><small>Alt 3 · to 35</small></div></header>
       <dl>
         <dt>Start</dt><dd><span class="who"><i data-race="nightelf"></i>Shadowglen, Teldrassil</span></dd>
-        <dt>Professions</dt><dd><span class="profs"><span class="pi"><i data-prof="mining"></i>Mining</span> <span class="pi"><i data-prof="blacksmithing"></i>Blacksmithing</span></span></dd>
-        <dt>Sends</dt><dd>Ore, bars; Linen and greens to the Warlock</dd>
+        <dt>Professions</dt><dd><span class="profs"><span class="pi"><i data-prof="mining"></i>Mining → <i data-prof="engineering"></i>Engineering</span> <span class="pi"><i data-prof="blacksmithing"></i>Blacksmithing</span></span></dd>
+        <dt>Sends</dt><dd>Ore, bars; Linen for tailoring, greens for disenchanting</dd>
         <dt>Gets</dt><dd>Bags, potions</dd>
-        <dt>Note</dt><dd>Blacksmithing in Auberdine at ~11</dd>
       </dl>
     </article>
     <article class="rc" data-f="priest" style="--cls:var(--c-priest)">
@@ -144,17 +143,17 @@
       <dl>
         <dt>Start</dt><dd><span class="who"><i data-race="nightelf"></i>Shadowglen, Teldrassil</span></dd>
         <dt>Professions</dt><dd><span class="profs"><span class="pi"><i data-prof="herbalism"></i>Herbalism</span> <span class="pi"><i data-prof="alchemy"></i>Alchemy</span></span></dd>
-        <dt>Sends</dt><dd>Potions, elixirs; Linen to the Warlock</dd>
+        <dt>Sends</dt><dd>Potions; Linen for tailoring</dd>
         <dt>Gets</dt><dd>Bags</dd>
       </dl>
     </article>
     <article class="rc support" data-f="support">
-      <header><span class="who multi"><i data-cls="paladin"></i><i data-cls="hunter"></i><i data-cls="rogue"></i><i data-cls="druid"></i><i data-cls="mage"></i></span><div><b>Support alts</b><small>Alts 5–9 · to 25 only</small></div></header>
+      <header><div><b>Support alts</b><small>Alts 5–9 · to 25</small></div></header>
       <div class="members"><span class="who"><i data-cls="paladin"></i>Paladin</span><span class="who"><i data-cls="hunter"></i>Hunter</span><span class="who"><i data-cls="rogue"></i>Rogue</span><span class="who"><i data-cls="druid"></i>Druid</span><span class="who"><i data-cls="mage"></i>Mage</span></div>
       <dl>
         <dt>Race</dt><dd>Any</dd>
-        <dt>Professions</dt><dd><span class="profs"><span class="pi"><i data-prof="engineering"></i>Hunter: Engineering</span></span></dd>
-        <dt>Job</dt><dd>Rested banks: log in, spend rested XP, park. Each class to 25 is a Legacy Point.</dd>
+        <dt>Professions</dt><dd>Any</dd>
+        <dt>Job</dt><dd>Rested banks. Each class at 25 is a Legacy Point.</dd>
       </dl>
     </article>
   </div>
@@ -162,46 +161,41 @@
 
 <section class="sec" id="route">
 <h2>Route</h2>
-<div class="route-tools"><span class="faint">Tap a step to tick it. Tap a gold waypoint to copy it.</span><button class="btn sm" type="button" data-route="expand">Expand all</button><button class="btn sm" type="button" data-route="collapse">Collapse all</button></div>
+<div class="route-tools"><span class="faint">Tap a step to tick it.</span><button class="btn sm" type="button" data-route="expand">Expand all</button><button class="btn sm" type="button" data-route="collapse">Collapse all</button></div>
 
 <details class="phase-d">
-  <summary>Phase 1: Bags first <span class="lv">Warlock 1–10 → Priest 1–10 → Warrior 1–10 → Shaman 1–10</span></summary>
+  <summary>Phase 1: Bags first <span class="lv">Warlock → Priest → Warrior → Shaman, each 1–10</span></summary>
   <div class="phase">
-    <p class="done"><b>Done when:</b> everyone is 10 with 4 Linen Bags, and the Priest's potions are in the mail.</p>
-    <h3>1. Warlock 1–10 (Northshire, Elwynn)</h3>
+    <p class="done"><b>Done when:</b> everyone is 10 with 4 bags, parked.</p>
+    <h3>1. Warlock (Northshire)</h3>
     <ul>
-      <li>Enchanting + Tailoring (Stormwind).</li>
-      <li>Craft 8 Linen Bags: 4 for yourself, 4 mailed to the Priest.</li>
-      <li>Class quests: The Stolen Tome (Imp); Voidwalker at 10 (Gakin's Summons → The Binding).</li>
-      <li>Disenchant every green. Park at the Lion's Pride Inn, Goldshire.</li>
+      <li>Enchanting + Tailoring.</li>
+      <li>8 Linen Bags: keep 4, mail 4 to the Priest.</li>
+      <li>Disenchant every green. Class quests: Imp, Voidwalker.</li>
     </ul>
-    <h3>2. Priest 1–10 (Teldrassil)</h3>
+    <h3>2. Priest (Teldrassil)</h3>
     <ul>
-      <li>Collect bags from the mailbox.</li>
-      <li>Herbalism early: Eleyna Duskbreeze, Shadowglen /way 59.8 41.4.</li>
-      <li>Alchemy in Darnassus (Craftsmen's Terrace). Craft every early elixir and potion you can; mail them to the alts.</li>
-      <li>Mail Linen to the Warlock for the Warrior's bags. Class quest: Stars of Elune at 10. Park in Dolanaar.</li>
+      <li>Herbalism + Alchemy. Mail potions to every alt.</li>
+      <li>Mail Linen for tailoring to the Warlock.</li>
     </ul>
-    <h3>Warlock: quick log-in</h3>
+    <h3>Warlock: log in</h3>
     <ul>
-      <li>Turn the Priest's Linen into 4 bags and mail them to the Warrior.</li>
+      <li>4 bags to the Warrior.</li>
     </ul>
-    <h3>3. Warrior 1–10 (Teldrassil)</h3>
+    <h3>3. Warrior (Teldrassil)</h3>
     <ul>
-      <li>Collect bags and potions. Mining: Fanorran Stilloak, Shadowglen /way 58.2 41.6.</li>
-      <li>Class quest: Defensive Stance at 10 (Darnassus). Blacksmithing waits for Auberdine at ~11.</li>
-      <li>Mail greens and Linen to the Warlock. Park.</li>
+      <li>Mining + Blacksmithing.</li>
+      <li>Mail Linen for tailoring and greens for disenchanting to the Warlock.</li>
     </ul>
-    <h3>Warlock: quick log-in</h3>
+    <h3>Warlock: log in</h3>
     <ul>
-      <li>4 more bags from the Warrior's Linen, mailed to the Shaman.</li>
+      <li>4 bags to the Shaman.</li>
     </ul>
-    <h3>4. Shaman 1–10 (Dun Morogh)</h3>
+    <h3>4. Shaman (Dun Morogh)</h3>
     <ul>
-      <li>Collect bags and potions. Skinning + Leatherworking (Ironforge); The Great Outdoors for Camping.</li>
-      <li>Leatherworking 20: Camping 101 → Camp Tent.</li>
-      <li>Class quests: Call of Earth, Call of Fire at 10. Grab A Visitor to Dun Morogh. Park.</li>
-      <li>Optional: create the support alts and park them in inns.</li>
+      <li>Skinning + Leatherworking. Camp Tent at Leatherworking 20.</li>
+      <li>Mail greens for disenchanting to the Warlock.</li>
+      <li>Optional: create the support alts and park them.</li>
     </ul>
   </div>
 </details>
@@ -209,24 +203,16 @@
 <details class="phase-d">
   <summary>Phase 2: First gauntlet <span class="lv">Levels 13–21</span></summary>
   <div class="phase">
-    <p class="done"><b>Done when:</b> core four are 20–21 and one craft is at 150 (unlocks Legacy).</p>
+    <p class="done"><b>Done when:</b> core four are 20–21 and one craft is at 150.</p>
     <h3>Night Elves (Priest + Warrior) at ~11</h3>
     <ul>
-      <li>Rut'theran → fly to Auberdine. Warrior: Blacksmithing + Journeyman Mining.</li>
-      <li>Darkshore to 13. Grab Researching the Corruption (for BFD).</li>
-      <li>Boat to Stormwind, set hearth, tram to Ironforge.</li>
-    </ul>
-    <h3>Pick up before running</h3>
-    <ul>
-      <li>Hall of Thanes: A Visitor to Dun Morogh (Night Elves and Warlock), Old Ironforge Incursion chain (Farsen /way 64.8 58.5).</li>
-      <li>Deadmines: Westfall chains at Sentinel Hill, Stormwind quests. Bring 10 Rough Dynamite.</li>
-      <li>Wailing Caverns: Ratchet and entrance quests.</li>
-      <li>Level 14: Cozy Sleeping Bag chain, Westfall /way 37 50. Lets you park anywhere.</li>
+      <li>Darkshore to 13, then boat to Stormwind and tram to Ironforge.</li>
     </ul>
     <h3>Run rested</h3>
     <ul>
-      <li>Hall of Thanes → Deadmines → Wailing Caverns.</li>
-      <li>Push Tailoring or Leatherworking to 150 first: it unlocks Legacy early. First points into Working Overtime.</li>
+      <li>Grab the quests, then Hall of Thanes → Deadmines → Wailing Caverns.</li>
+      <li>Cozy Sleeping Bag at 14: park anywhere.</li>
+      <li>Tailoring or Leatherworking to 150 first: it unlocks Legacy Points.</li>
     </ul>
   </div>
 </details>
@@ -237,16 +223,15 @@
     <p class="done"><b>Done when:</b> core four are 25 (about 9 points).</p>
     <h3>Route</h3>
     <ul>
-      <li>Quest Darkshore → Redridge → Duskwood → Ashenvale.</li>
-      <li>Run the Stockade, then Blackfathom Deeps.</li>
-      <li>Grab the Gnomeregan quests at 20.</li>
+      <li>Darkshore → Redridge → Duskwood → Ashenvale.</li>
+      <li>Stockade, then Blackfathom Deeps. Grab the Gnomeregan quests.</li>
     </ul>
     <h3>Class quests at 20</h3>
     <ul>
       <li>Shaman: Call of Water.</li>
-      <li>Priest: Elune's Grace (Stormwind Cathedral).</li>
-      <li>Warrior: Fire Hardened Armor (Lakeshire → Stormwind).</li>
-      <li>Warlock: Succubus (Gakin, Stormwind → Takar the Seer, Barrens). Pair it with a Wailing Caverns trip.</li>
+      <li>Priest: Elune's Grace.</li>
+      <li>Warrior: Fire Hardened Armor.</li>
+      <li>Warlock: Succubus, paired with Wailing Caverns.</li>
     </ul>
   </div>
 </details>
@@ -254,17 +239,15 @@
 <details class="phase-d">
   <summary>Phase 4: Support alts + Excavation Site <span class="lv">Core 25–29 · Support 1–14</span></summary>
   <div class="phase">
-    <p class="done"><b>Done when:</b> support alts are 14 with Phase 2 quests; core four have the Excavation Site quests.</p>
+    <p class="done"><b>Done when:</b> support alts are 14; core four have the Excavation Site quests.</p>
     <h3>Support alts</h3>
     <ul>
-      <li>Level to 14 with starting-zone class quests. Pick up the Phase 2 dungeon quests.</li>
+      <li>Level to 14 and grab the Phase 2 dungeon quests.</li>
     </ul>
     <h3>Core four</h3>
     <ul>
-      <li>Ashenvale → Thousand Needles. Grab Seeking Caitlin in Astranaar.</li>
-      <li>Excavation Site (Wetlands): quests from Lakeshire, Menethil and Ironforge.</li>
-      <li>Warrior: Fire Hardened Armor spider fangs, Wetlands /way 46 61.</li>
-      <li>Shaman at 30: Call of Air (Arathi Highlands).</li>
+      <li>Ashenvale → Thousand Needles → Excavation Site (Wetlands).</li>
+      <li>Shaman at 30: Call of Air.</li>
     </ul>
   </div>
 </details>
@@ -276,12 +259,12 @@
     <h3>Core four</h3>
     <ul>
       <li>City of Dalaran → Gnomeregan → Razorfen Kraul → Scarlet Monastery.</li>
-      <li>Professions to 225 (+1 point each).</li>
+      <li>Professions to 225.</li>
+      <li>Warrior: once the ore is banked, swap Mining for Engineering.</li>
     </ul>
     <h3>Support alts</h3>
     <ul>
-      <li>Hall of Thanes → Deadmines → Wailing Caverns, then Stockade + BFD to 25.</li>
-      <li>Hunter: Engineering to 150 with the Warrior's bars.</li>
+      <li>Phase 2 and 3 dungeons, rested, to 25.</li>
     </ul>
   </div>
 </details>
@@ -292,8 +275,8 @@
     <section>
       <h2>Legacy Point priority</h2>
       <ol>
-        <li><b>Early: Working Overtime.</b> Faster profession leveling, so profession points arrive sooner.</li>
-        <li><b>After the profession push: Well Rested</b> with every point not in Working Overtime.</li>
+        <li><b>Early: Working Overtime.</b> Faster profession leveling.</li>
+        <li><b>After the profession push: Well Rested.</b></li>
       </ol>
       <div class="card"><div class="card-h"><span class="who multi"><i data-cls="shaman"></i><i data-cls="warlock"></i><i data-cls="warrior"></i><i data-cls="priest"></i></span><b>Core four</b><span class="pill">16 points</span></div>
         <p>Working Overtime 5, Well Rested 5, Talented 5, last 1 anywhere.</p></div>
@@ -303,10 +286,10 @@
     <section>
       <h2>How many points</h2>
       <ul>
-        <li><b>18–19</b> once the core four and alts 5–9 are 25. More with extra profession leveling.</li>
-        <li><b>16 spendable</b> at launch (Blizzard). No date for raising the cap.</li>
-        <li><b>45+</b> long term from leveling to 60 and professions.</li>
-        <li><b>55</b> for the free epic mount on all characters: about 10 more beyond that.</li>
+        <li><b>18–19</b> once the core four and alts 5–9 are 25.</li>
+        <li><b>16 spendable</b> at launch.</li>
+        <li><b>45+</b> long term, from 60s and professions.</li>
+        <li><b>55</b> for the epic mount: about 10 more.</li>
       </ul>
     </section>
   </div>
@@ -336,6 +319,6 @@
 <button class="totop" id="totop" type="button" aria-label="Back to top">&#8593;</button>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="assets/js/app.js?v=6"></script>
+<script src="assets/js/app.js?v=7"></script>
 </body>
 </html>
