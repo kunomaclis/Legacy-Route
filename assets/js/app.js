@@ -4,16 +4,16 @@
   var TIERS = [15, 25, 40, 55];
   var CHARS = [
     { id: "shaman", cls: "shaman", race: "dwarf", name: "Dwarf Shaman", slot: "Main", profs: ["Leatherworking"], gather: "Skinning", target: 35, core: true },
-    { id: "warlock", cls: "warlock", race: "human", name: "Human Warlock", slot: "Alt 2", profs: ["Enchanting", "Tailoring"], target: 35, core: true },
+    { id: "priest", cls: "priest", race: "nightelf", name: "Night Elf Priest", slot: "Alt 2", profs: ["Enchanting", "Tailoring"], target: 35, core: true },
     { id: "warrior", cls: "warrior", race: "nightelf", name: "Night Elf Warrior", slot: "Alt 3", profs: ["Blacksmithing", "Engineering"], gather: "Mining", target: 35, core: true },
-    { id: "priest", cls: "priest", race: "nightelf", name: "Night Elf Priest", slot: "Alt 4", profs: ["Alchemy"], gather: "Herbalism", target: 35, core: true },
+    { id: "warlock", cls: "warlock", race: "human", name: "Human Warlock", slot: "Alt 4", profs: ["Alchemy"], gather: "Herbalism", target: 35, core: true },
     { id: "paladin", cls: "paladin", name: "Paladin", slot: "Alt 5", profs: [], target: 25 },
     { id: "hunter", cls: "hunter", name: "Hunter", slot: "Alt 6", profs: [], target: 25 },
     { id: "rogue", cls: "rogue", name: "Rogue", slot: "Alt 7", profs: [], target: 25 },
     { id: "druid", cls: "druid", name: "Druid", slot: "Alt 8", profs: [], target: 25 },
     { id: "mage", cls: "mage", name: "Mage", slot: "Alt 9", profs: [], target: 25 }
   ];
-  var SPRITE = "assets/icons.svg?v=8";
+  var SPRITE = "assets/icons.svg?v=9";
   var CLASS_NAMES = { shaman: "Shaman", priest: "Priest", warrior: "Warrior", druid: "Druid", paladin: "Paladin", hunter: "Hunter", rogue: "Rogue", warlock: "Warlock", mage: "Mage" };
   var RACE_NAMES = { dwarf: "Dwarf", nightelf: "Night Elf", skyborne: "Skyborne", human: "Human", gnome: "Gnome" };
   function svg(id, cls) { return '<svg class="ico ' + (cls || "") + '" aria-hidden="true"><use href="' + SPRITE + "#" + id + '"/></svg>'; }
@@ -21,14 +21,14 @@
   function raceIcon(r) { return '<span class="race-ico" title="' + RACE_NAMES[r] + '">' + svg("race-" + r) + "</span>"; }
   function profIcon(p) { return '<span class="prof-ico" title="' + p + '">' + svg("prof-" + p.toLowerCase()) + "</span>"; }
   var CLASS_RE = {
-    shaman: /\bshaman\b/i, warlock: /\bwarlock\b/i, warrior: /\bwarrior\b/i, priest: /\bpriest\b/i,
+    shaman: /\bshaman\b/i, priest: /\bpriest\b/i, warrior: /\bwarrior\b/i, warlock: /\bwarlock\b/i,
     support: /\b(support alts?|hunter|paladin|rogue|druid|mage)\b/i
   };
   var TOPIC_RE = {
     shaman: /\b(dwarf|leatherworking|skinning|skin|main only)\b/i,
-    warlock: /\b(human|northshire|goldshire|tailoring|enchanting|disenchant\w*|linen bags?)\b/i,
+    priest: /\b(tailoring|enchanting|disenchant\w*|linen bags?|night elf|night elves)\b/i,
     warrior: /\b(blacksmithing|mining|engineering|night elf|night elves)\b/i,
-    priest: /\b(herbalism|herbing|alchemy|potions?|night elf|night elves)\b/i
+    warlock: /\b(human|northshire|goldshire|herbalism|herbing|alchemy|potions?)\b/i
   };
 
 
@@ -91,7 +91,7 @@
     $$("i[data-prof]", root).forEach(function (i) { i.outerHTML = profIcon(i.dataset.prof); });
   }
   hydrateIcons(document);
-  var CORE = ["shaman", "warlock", "warrior", "priest"], SUPPORT = ["paladin", "hunter", "rogue", "druid", "mage"];
+  var CORE = ["shaman", "priest", "warrior", "warlock"], SUPPORT = ["paladin", "hunter", "rogue", "druid", "mage"];
   $$(".phase h3").forEach(function (h) {
     var t = h.textContent, list = [];
     if (/core four/i.test(t)) list = CORE;

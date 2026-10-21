@@ -12,15 +12,15 @@
 <link rel="icon" href="assets/app-icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/app-icon-180.png">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="preload" href="assets/icons.svg?v=8" as="image" type="image/svg+xml">
-<link rel="stylesheet" href="assets/css/base.css?v=8">
-<link rel="stylesheet" href="assets/css/themes.css?v=8">
+<link rel="preload" href="assets/icons.svg?v=9" as="image" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/base.css?v=9">
+<link rel="stylesheet" href="assets/css/themes.css?v=9">
 <script>try{var t=JSON.parse(localStorage.getItem("alr-v2")||"{}").theme;if(t==="questlog")t="ironforge";if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
 <header class="top" id="top">
   <div class="bar">
-    <div class="brand"><svg class="brand-mark" aria-hidden="true"><use href="assets/icons.svg?v=8#ui-shield"/></svg><span>Legacy Route</span></div>
+    <div class="brand"><svg class="brand-mark" aria-hidden="true"><use href="assets/icons.svg?v=9#ui-shield"/></svg><span>Legacy Route</span></div>
     <div class="search">
       <input id="q" type="search" placeholder="Search…" autocomplete="off" aria-label="Search the guide">
       <kbd>/</kbd>
@@ -57,9 +57,9 @@
     <span class="lab">Focus:</span>
     <button class="chip" data-f="all" aria-pressed="true">Everyone</button>
     <button class="chip" data-f="shaman" aria-pressed="false" style="--cls:var(--c-shaman)"><i data-cls="shaman"></i>Shaman</button>
-    <button class="chip" data-f="warlock" aria-pressed="false" style="--cls:var(--c-warlock)"><i data-cls="warlock"></i>Warlock</button>
-    <button class="chip" data-f="warrior" aria-pressed="false" style="--cls:var(--c-warrior)"><i data-cls="warrior"></i>Warrior</button>
     <button class="chip" data-f="priest" aria-pressed="false" style="--cls:var(--c-priest)"><i data-cls="priest"></i>Priest</button>
+    <button class="chip" data-f="warrior" aria-pressed="false" style="--cls:var(--c-warrior)"><i data-cls="warrior"></i>Warrior</button>
+    <button class="chip" data-f="warlock" aria-pressed="false" style="--cls:var(--c-warlock)"><i data-cls="warlock"></i>Warlock</button>
     <button class="chip" data-f="support" aria-pressed="false">Support alts</button>
   </div>
   <nav class="sections" aria-label="Sections">
@@ -120,10 +120,10 @@
         <dt>Gets</dt><dd>Bags, potions</dd>
       </dl>
     </article>
-    <article class="rc" data-f="warlock" style="--cls:var(--c-warlock)">
-      <header><i data-cls="warlock" data-size="lg"></i><div><b>Human Warlock</b><small>Alt 2 · to 35</small></div></header>
+    <article class="rc" data-f="priest" style="--cls:var(--c-priest)">
+      <header><i data-cls="priest" data-size="lg"></i><div><b>Night Elf Priest</b><small>Alt 2 · to 35</small></div></header>
       <dl>
-        <dt>Start</dt><dd><span class="who"><i data-race="human"></i>Northshire, Elwynn</span></dd>
+        <dt>Start</dt><dd><span class="who"><i data-race="nightelf"></i>Shadowglen, Teldrassil</span></dd>
         <dt>Professions</dt><dd><span class="profs"><span class="pi"><i data-prof="enchanting"></i>Enchanting</span> <span class="pi"><i data-prof="tailoring"></i>Tailoring</span></span></dd>
         <dt>Sends</dt><dd>Bags, enchants</dd>
         <dt>Gets</dt><dd>Linen for tailoring, greens for disenchanting</dd>
@@ -138,10 +138,10 @@
         <dt>Gets</dt><dd>Bags, potions</dd>
       </dl>
     </article>
-    <article class="rc" data-f="priest" style="--cls:var(--c-priest)">
-      <header><i data-cls="priest" data-size="lg"></i><div><b>Night Elf Priest</b><small>Alt 4 · to 35</small></div></header>
+    <article class="rc" data-f="warlock" style="--cls:var(--c-warlock)">
+      <header><i data-cls="warlock" data-size="lg"></i><div><b>Human Warlock</b><small>Alt 4 · to 35</small></div></header>
       <dl>
-        <dt>Start</dt><dd><span class="who"><i data-race="nightelf"></i>Shadowglen, Teldrassil</span></dd>
+        <dt>Start</dt><dd><span class="who"><i data-race="human"></i>Northshire, Elwynn</span></dd>
         <dt>Professions</dt><dd><span class="profs"><span class="pi"><i data-prof="herbalism"></i>Herbalism</span> <span class="pi"><i data-prof="alchemy"></i>Alchemy</span></span></dd>
         <dt>Sends</dt><dd>Potions; Linen for tailoring</dd>
         <dt>Gets</dt><dd>Bags</dd>
@@ -164,29 +164,30 @@
 <div class="route-tools"><span class="faint">Tap a step to tick it.</span><button class="btn sm" type="button" data-route="expand">Expand all</button><button class="btn sm" type="button" data-route="collapse">Collapse all</button></div>
 
 <details class="phase-d">
-  <summary>Phase 1: Supplies and bags <span class="lv">Shaman → Warlock → Warrior → Priest, each 1–10</span></summary>
+  <summary>Phase 1: Supplies and bags <span class="lv">Shaman → Priest → Warrior → Warlock, each 1–10</span></summary>
   <div class="phase">
     <p class="done"><b>Done when:</b> core four are 10 with bags, parked.</p>
     <h3>1. Shaman (Dun Morogh)</h3>
     <ul>
       <li>Skinning + Mining. Mail copper to the Warrior.</li>
       <li>Leaving Coldridge: drop Mining for Leatherworking. Camp Tent at Leatherworking 20.</li>
-      <li>Mail Linen for tailoring, greens for disenchanting and 5 silver to the Warlock.</li>
+      <li>Mail Linen for tailoring, greens for disenchanting and 5 silver to the Priest.</li>
     </ul>
-    <h3>2. Warlock (Northshire)</h3>
+    <h3>2. Priest (Teldrassil)</h3>
     <ul>
       <li>Enchanting + Tailoring.</li>
-      <li>Linen Bags: keep 4, mail the rest to the Shaman, Warrior and Priest.</li>
-      <li>Disenchant every green. Class quests: Imp, Voidwalker.</li>
+      <li>Linen Bags: keep 4, mail the rest to the Shaman, Warrior and Warlock.</li>
+      <li>Disenchant every green.</li>
     </ul>
     <h3>3. Warrior (Teldrassil)</h3>
     <ul>
       <li>Mining + Blacksmithing.</li>
-      <li>Mail Linen for tailoring and greens for disenchanting to the Warlock.</li>
+      <li>Mail Linen for tailoring and greens for disenchanting to the Priest.</li>
     </ul>
-    <h3>4. Priest (Teldrassil)</h3>
+    <h3>4. Warlock (Northshire)</h3>
     <ul>
-      <li>Herbalism + Alchemy. Mail potions to every alt and Linen for tailoring to the Warlock.</li>
+      <li>Herbalism + Alchemy. Mail potions to every alt and Linen for tailoring to the Priest.</li>
+      <li>Class quests: Imp, Voidwalker.</li>
       <li>Optional: create the support alts and park them.</li>
     </ul>
   </div>
@@ -387,7 +388,7 @@
         <li><b>Early: Working Overtime.</b> Faster profession leveling.</li>
         <li><b>After the profession push: Well Rested.</b></li>
       </ol>
-      <div class="card"><div class="card-h"><span class="who multi"><i data-cls="shaman"></i><i data-cls="warlock"></i><i data-cls="warrior"></i><i data-cls="priest"></i></span><b>Core four</b><span class="pill">16 points</span></div>
+      <div class="card"><div class="card-h"><span class="who multi"><i data-cls="shaman"></i><i data-cls="priest"></i><i data-cls="warrior"></i><i data-cls="warlock"></i></span><b>Core four</b><span class="pill">16 points</span></div>
         <p>Working Overtime 5, Well Rested 5, Talented 5, last 1 anywhere.</p></div>
       <div class="card"><div class="card-h"><span class="who multi"><i data-cls="paladin"></i><i data-cls="hunter"></i><i data-cls="rogue"></i><i data-cls="druid"></i><i data-cls="mage"></i></span><b>Alts 5–9</b><span class="pill">16 points</span></div>
         <p>Well Rested 5, Talented 5, then Bountiful Harvest 5 (gatherers) or Thrill of Adventure 5 (zuggers), last 1 anywhere.</p></div>
@@ -429,6 +430,6 @@
 <button class="totop" id="totop" type="button" aria-label="Back to top">&#8593;</button>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="assets/js/app.js?v=8"></script>
+<script src="assets/js/app.js?v=9"></script>
 </body>
 </html>

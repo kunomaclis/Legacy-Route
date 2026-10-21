@@ -1,7 +1,7 @@
-const CACHE = "legacy-route-v8";
+const CACHE = "legacy-route-v9";
 const ASSETS = [
   "./", "index.html", "manifest.webmanifest",
-  "assets/css/base.css?v=8", "assets/css/themes.css?v=8", "assets/js/app.js?v=8", "assets/icons.svg?v=8", "assets/app-icon.svg",
+  "assets/css/base.css?v=9", "assets/css/themes.css?v=9", "assets/js/app.js?v=9", "assets/icons.svg?v=9", "assets/app-icon.svg",
   "assets/fonts/cinzel-latin-600-normal.woff2", "assets/fonts/cinzel-latin-700-normal.woff2",
   "assets/fonts/crimson-pro-latin-400-normal.woff2", "assets/fonts/crimson-pro-latin-400-italic.woff2", "assets/fonts/crimson-pro-latin-600-normal.woff2"
 ];
