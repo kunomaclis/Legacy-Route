@@ -7,13 +7,22 @@
     { id: "priest", cls: "priest", race: "nightelf", name: "Night Elf Priest", slot: "Alt 2", profs: ["Enchanting", "Tailoring"], target: 35, core: true },
     { id: "warrior", cls: "warrior", race: "nightelf", name: "Night Elf Warrior", slot: "Alt 3", profs: ["Blacksmithing", "Engineering"], gather: "Mining", target: 35, core: true },
     { id: "warlock", cls: "warlock", race: "human", name: "Human Warlock", slot: "Alt 4", profs: ["Alchemy"], gather: "Herbalism", target: 35, core: true },
-    { id: "paladin", cls: "paladin", name: "Paladin", slot: "Alt 5", profs: [], target: 25 },
-    { id: "hunter", cls: "hunter", name: "Hunter", slot: "Alt 6", profs: [], target: 25 },
-    { id: "rogue", cls: "rogue", name: "Rogue", slot: "Alt 7", profs: [], target: 25 },
-    { id: "druid", cls: "druid", name: "Druid", slot: "Alt 8", profs: [], target: 25 },
-    { id: "mage", cls: "mage", name: "Mage", slot: "Alt 9", profs: [], target: 25 }
+    { id: "paladin", cls: "paladin", race: "human", name: "Human Paladin", slot: "Alt 5", profs: [], target: 25 },
+    { id: "hunter", cls: "hunter", race: "skyborne", name: "Skyborne Hunter", slot: "Alt 6", profs: [], target: 25 },
+    { id: "rogue", cls: "rogue", race: "dwarf", name: "Dwarf Rogue", slot: "Alt 7", profs: [], target: 25 },
+    { id: "druid", cls: "druid", race: "skyborne", name: "Skyborne Druid", slot: "Alt 8", profs: [], target: 25 },
+    { id: "mage", cls: "mage", race: "gnome", name: "Gnome Mage", slot: "Alt 9", profs: [], target: 25 }
   ];
-  var SPRITE = "assets/icons.svg?v=9";
+  var SPELUNKER = [
+    { id: "novice", name: "Novice Spelunker", band: "15–25", dungeons: [
+      ["thanes", "Hall of Thanes"], ["dm", "Deadmines"], ["wc", "Wailing Caverns"],
+      ["rol", "Ruins of Lordaeron"], ["sfk", "Shadowfang Keep"], ["exc", "Excavation Site"]] },
+    { id: "exp", name: "Experienced Spelunker", band: "26–45", dungeons: [
+      ["dal", "City of Dalaran"], ["bfd", "Blackfathom Deeps"], ["gnomer", "Gnomeregan"], ["rfk", "Razorfen Kraul"],
+      ["smgy", "SM Graveyard"], ["smlib", "SM Library"], ["smarm", "SM Armory"], ["smcath", "SM Cathedral"],
+      ["drowned", "Drowned City"], ["krol", "Krol'dok"]] }
+  ];
+  var SPRITE = "assets/icons.svg?v=10";
   var CLASS_NAMES = { shaman: "Shaman", priest: "Priest", warrior: "Warrior", druid: "Druid", paladin: "Paladin", hunter: "Hunter", rogue: "Rogue", warlock: "Warlock", mage: "Mage" };
   var RACE_NAMES = { dwarf: "Dwarf", nightelf: "Night Elf", skyborne: "Skyborne", human: "Human", gnome: "Gnome" };
   function svg(id, cls) { return '<svg class="ico ' + (cls || "") + '" aria-hidden="true"><use href="' + SPRITE + "#" + id + '"/></svg>'; }
@@ -22,7 +31,7 @@
   function profIcon(p) { return '<span class="prof-ico" title="' + p + '">' + svg("prof-" + p.toLowerCase()) + "</span>"; }
   var CLASS_RE = {
     shaman: /\bshaman\b/i, priest: /\bpriest\b/i, warrior: /\bwarrior\b/i, warlock: /\bwarlock\b/i,
-    support: /\b(support alts?|hunter|paladin|rogue|druid|mage)\b/i
+    support: /\b(support alts?|hunter|paladin|rogue|druid|mage|skyborne)\b/i
   };
   var TOPIC_RE = {
     shaman: /\b(dwarf|leatherworking|skinning|skin|main only)\b/i,
@@ -40,7 +49,7 @@
   function defaults() {
     var chars = {};
     CHARS.forEach(function (c) { chars[c.id] = { level: 1, prof: {}, parkedAt: null }; });
-    return { v: 2, chars: chars, steps: {}, open: { "0": true }, wellRested: false, extra: 0, theme: "auto", filter: "all" };
+    return { v: 2, chars: chars, steps: {}, open: { "0": true }, wellRested: false, extra: 0, dungeons: {}, theme: "auto", filter: "all" };
   }
   function load() {
     var d = defaults(), s = null;
@@ -242,6 +251,30 @@
   }
   var army = $("#army");
   army.innerHTML = CHARS.map(cardHTML).join("");
+
+  var spel = $("#spel");
+  function spelDone(set) { return set.dungeons.filter(function (d) { return state.dungeons[d[0]]; }).length; }
+  function spelComplete(set) { return spelDone(set) === set.dungeons.length; }
+  function spelPoints() { return SPELUNKER.filter(spelComplete).length; }
+  spel.innerHTML = SPELUNKER.map(function (set) {
+    return '<article class="spel-set" data-set="' + set.id + '"><header><div><b>' + set.name + '</b><small>Final bosses · levels ' + set.band + '</small></div><span class="badge" data-k="spel"></span></header>' +
+      '<div class="duns">' + set.dungeons.map(function (d) { return '<button type="button" class="dun" data-dun="' + d[0] + '">' + d[1] + '</button>'; }).join("") + '</div></article>';
+  }).join("");
+  function updateSpel() {
+    SPELUNKER.forEach(function (set) {
+      var el = spel.querySelector('[data-set="' + set.id + '"]'), b = el.querySelector('[data-k="spel"]'), all = spelComplete(set);
+      b.textContent = all ? "1 pt" : spelDone(set) + "/" + set.dungeons.length;
+      b.classList.toggle("zero", !all); el.classList.toggle("done", all);
+      $$(".dun", el).forEach(function (btn) { btn.setAttribute("aria-pressed", String(!!state.dungeons[btn.dataset.dun])); });
+    });
+  }
+  spel.addEventListener("click", function (e) {
+    var b = e.target.closest(".dun"); if (!b) return;
+    var id = b.dataset.dun, set = SPELUNKER.filter(function (s) { return s.dungeons.some(function (d) { return d[0] === id; }); })[0];
+    if (state.dungeons[id]) delete state.dungeons[id]; else state.dungeons[id] = true;
+    if (state.dungeons[id] && spelComplete(set)) toast(set.name + " earned a Legacy Point");
+    save(); updateArmy();
+  });
   function updateCard(c) {
     var card = army.querySelector('[data-id="' + c.id + '"]'), s = state.chars[c.id];
     var pts = charPoints(c), b = card.querySelector('[data-k="pts"]');
@@ -268,7 +301,8 @@
   }
   function updateArmy() {
     CHARS.forEach(updateCard);
-    var total = CHARS.reduce(function (a, c) { return a + charPoints(c); }, 0) + (+state.extra || 0);
+    updateSpel();
+    var total = CHARS.reduce(function (a, c) { return a + charPoints(c); }, 0) + spelPoints() + (+state.extra || 0);
     $("#lp-total").textContent = total;
     $("#lp-spend").textContent = Math.min(16, total);
     $("#lp-meter > i").style.width = Math.min(100, total / 55 * 100) + "%";

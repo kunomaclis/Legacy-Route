@@ -12,15 +12,15 @@
 <link rel="icon" href="assets/app-icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/app-icon-180.png">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="preload" href="assets/icons.svg?v=9" as="image" type="image/svg+xml">
-<link rel="stylesheet" href="assets/css/base.css?v=9">
-<link rel="stylesheet" href="assets/css/themes.css?v=9">
+<link rel="preload" href="assets/icons.svg?v=10" as="image" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/base.css?v=10">
+<link rel="stylesheet" href="assets/css/themes.css?v=10">
 <script>try{var t=JSON.parse(localStorage.getItem("alr-v2")||"{}").theme;if(t==="questlog")t="ironforge";if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
 <header class="top" id="top">
   <div class="bar">
-    <div class="brand"><svg class="brand-mark" aria-hidden="true"><use href="assets/icons.svg?v=9#ui-shield"/></svg><span>Legacy Route</span></div>
+    <div class="brand"><svg class="brand-mark" aria-hidden="true"><use href="assets/icons.svg?v=10#ui-shield"/></svg><span>Legacy Route</span></div>
     <div class="search">
       <input id="q" type="search" placeholder="Search…" autocomplete="off" aria-label="Search the guide">
       <kbd>/</kbd>
@@ -63,7 +63,7 @@
     <button class="chip" data-f="support" aria-pressed="false">Support alts</button>
   </div>
   <nav class="sections" aria-label="Sections">
-    <a href="#dashboard">Dashboard</a><a href="#army-section">Tracker</a><a href="#basics">Roster</a><a href="#route">Route</a><a href="#legacy">Legacy Points</a><a href="#launch">Launch checks</a>
+    <a href="#dashboard">Dashboard</a><a href="#army-section">Tracker</a><a href="#basics">Roster</a><a href="#route">Route</a><a href="#legacy">Legacy Points</a><a href="#launch">To test</a>
   </nav>
 </header>
 
@@ -104,7 +104,8 @@
       <label>Other Legacy points <input type="number" class="num-in" id="opt-extra" min="0" max="99" inputmode="numeric"></label>
     </div>
     <div class="army" id="army"></div>
-    <p class="faint">Tap Park when you log out in an inn. Rested is an estimate (5% of a level per 8 hours, max 1.5 levels).</p>
+    <div class="spel" id="spel"></div>
+    <p class="faint">Tap Park when you log out in an inn. Rested is an estimate (5% of a level per 8 hours, max 1.5 levels). Tap a dungeon when its final boss dies.</p>
   </details>
 </section>
 
@@ -115,15 +116,18 @@
       <header><i data-cls="shaman" data-size="lg"></i><div><b>Dwarf Shaman</b><small>Main · to 35</small></div></header>
       <dl>
         <dt>Start</dt><dd><span class="who"><i data-race="dwarf"></i>Coldridge Valley, Dun Morogh</span></dd>
+        <dt>Leaves</dt><dd>Loch Modan at 14</dd>
         <dt>Professions</dt><dd><span class="profs"><span class="pi"><i data-prof="skinning"></i>Skinning</span> <span class="pi"><i data-prof="mining"></i>Mining → <i data-prof="leatherworking"></i>Leatherworking</span></span></dd>
         <dt>Sends</dt><dd>Leather, copper; greens for disenchanting</dd>
         <dt>Gets</dt><dd>Bags, potions</dd>
+        <dt>Note</dt><dd>Shaman trainers are only in Ironforge: train when the route passes through.</dd>
       </dl>
     </article>
     <article class="rc" data-f="priest" style="--cls:var(--c-priest)">
       <header><i data-cls="priest" data-size="lg"></i><div><b>Night Elf Priest</b><small>Alt 2 · to 35</small></div></header>
       <dl>
         <dt>Start</dt><dd><span class="who"><i data-race="nightelf"></i>Shadowglen, Teldrassil</span></dd>
+        <dt>Leaves</dt><dd>Teldrassil at 12</dd>
         <dt>Professions</dt><dd><span class="profs"><span class="pi"><i data-prof="enchanting"></i>Enchanting</span> <span class="pi"><i data-prof="tailoring"></i>Tailoring</span></span></dd>
         <dt>Sends</dt><dd>Bags, enchants</dd>
         <dt>Gets</dt><dd>Linen for tailoring, greens for disenchanting</dd>
@@ -133,6 +137,7 @@
       <header><i data-cls="warrior" data-size="lg"></i><div><b>Night Elf Warrior</b><small>Alt 3 · to 35</small></div></header>
       <dl>
         <dt>Start</dt><dd><span class="who"><i data-race="nightelf"></i>Shadowglen, Teldrassil</span></dd>
+        <dt>Leaves</dt><dd>Teldrassil at 12</dd>
         <dt>Professions</dt><dd><span class="profs"><span class="pi"><i data-prof="mining"></i>Mining → <i data-prof="engineering"></i>Engineering</span> <span class="pi"><i data-prof="blacksmithing"></i>Blacksmithing</span></span></dd>
         <dt>Sends</dt><dd>Ore, bars; Linen for tailoring, greens for disenchanting</dd>
         <dt>Gets</dt><dd>Bags, potions, bars</dd>
@@ -142,6 +147,7 @@
       <header><i data-cls="warlock" data-size="lg"></i><div><b>Human Warlock</b><small>Alt 4 · to 35</small></div></header>
       <dl>
         <dt>Start</dt><dd><span class="who"><i data-race="human"></i>Northshire, Elwynn</span></dd>
+        <dt>Leaves</dt><dd>Elwynn at 11–12</dd>
         <dt>Professions</dt><dd><span class="profs"><span class="pi"><i data-prof="herbalism"></i>Herbalism</span> <span class="pi"><i data-prof="alchemy"></i>Alchemy</span></span></dd>
         <dt>Sends</dt><dd>Potions; Linen for tailoring</dd>
         <dt>Gets</dt><dd>Bags, herbs</dd>
@@ -149,9 +155,9 @@
     </article>
     <article class="rc support" data-f="support">
       <header><div><b>Support alts</b><small>Alts 5–9 · to 25</small></div></header>
-      <div class="members"><span class="who"><i data-cls="paladin"></i>Paladin</span><span class="who"><i data-cls="hunter"></i>Hunter</span><span class="who"><i data-cls="rogue"></i>Rogue</span><span class="who"><i data-cls="druid"></i>Druid</span><span class="who"><i data-cls="mage"></i>Mage</span></div>
+      <div class="members"><span class="who"><i data-cls="paladin"></i><i data-race="human"></i>Human Paladin</span><span class="who"><i data-cls="hunter"></i><i data-race="skyborne"></i>Skyborne Hunter</span><span class="who"><i data-cls="rogue"></i><i data-race="dwarf"></i>Dwarf Rogue</span><span class="who"><i data-cls="druid"></i><i data-race="skyborne"></i>Skyborne Druid</span><span class="who"><i data-cls="mage"></i><i data-race="gnome"></i>Gnome Mage</span></div>
       <dl>
-        <dt>Race</dt><dd>Any</dd>
+        <dt>Leaves</dt><dd><span class="who"><i data-race="skyborne"></i>Skyborne: Zephras Isle at 14–15, by way of Dalaran. Others: as their race above (Gnome as Dwarf).</span></dd>
         <dt>Professions</dt><dd>Any. Druid or Hunter: Mining + Herbalism, bars to the Warrior, herbs to the Warlock.</dd>
         <dt>Job</dt><dd>Rested banks. Each class at 25 is a Legacy Point.</dd>
       </dl>
@@ -187,6 +193,7 @@
     <h3>4. Warlock (Northshire)</h3>
     <ul>
       <li>Herbalism + Alchemy. Mail potions to every alt and Linen for tailoring to the Priest.</li>
+      <li>Elwynn east in one pass: the lake, Guard Thomas's bridge, the logging camp, Stone Cairn Lake. Turn in when your bags are full of finished quests. Skip the tiny new quests.</li>
       <li>Class quests: Imp, Voidwalker.</li>
       <li>Optional: create the support alts and park them.</li>
     </ul>
@@ -197,18 +204,22 @@
   <summary>Phase 2: Prep <span class="lv">Each 10–14</span></summary>
   <div class="phase">
     <p class="done"><b>Done when:</b> core four are 14 with the Hall of Thanes quests, parked.</p>
-    <h3>Night Elves (Priest + Warrior) at 10</h3>
-    <ul>
-      <li>Darkshore to 12, then boat to Stormwind.</li>
-    </ul>
     <h3>Shaman at 10</h3>
     <ul>
-      <li>Thelsamar to 12, then tram to Stormwind.</li>
+      <li>Dun Morogh, then lower Loch Modan, to 14.</li>
+    </ul>
+    <h3>Night Elves (Priest + Warrior) at 10</h3>
+    <ul>
+      <li>Dolanaar and the western chains to 12, then Darkshore to 14. Ferry back to Teldrassil for turn-ins.</li>
+      <li>Boat from Auberdine to Stormwind Harbor, tram to Ironforge.</li>
+    </ul>
+    <h3>Warlock at 10</h3>
+    <ul>
+      <li>Westbrook and Hogger last, out of Elwynn at 11–12.</li>
+      <li>Westfall to 14: The People's Militia parts 1–2. Tram to Ironforge.</li>
     </ul>
     <h3>Core four</h3>
     <ul>
-      <li>Hogger (Elwynn), The People's Militia parts 1–2 (Westfall).</li>
-      <li>Easy Redridge quests to ~80% into 14.</li>
       <li>Dun Morogh: grab the Hall of Thanes quests below.</li>
       <li>Cozy Sleeping Bag from 14: ~3% bonus XP for 2 hours.</li>
     </ul>
@@ -230,8 +241,8 @@
     <h3>Core four, rested</h3>
     <ul>
       <li>Hall of Thanes: about a level and a half, to 16.</li>
-      <li>People's Militia part 3, then the Defias chain to the escort: 18. Fill with Darkshore, not Redridge.</li>
-      <li>Optional: Ruins of Lordaeron (15–20). Its quests are inside (Captain Truman).</li>
+      <li>Westfall: finish The People's Militia, then the Defias chain to the escort: 18. Fill with Darkshore, not Redridge.</li>
+      <li>Boats: Stormwind Harbor ↔ Auberdine. Night Elves skip the Wetlands run.</li>
     </ul>
     <h3>Grab the quests</h3>
     <h4>Deadmines</h4>
@@ -253,19 +264,20 @@
     <ul>
       <li>Deadmines with every quest. With a full group, farm Miners' Union Cards.</li>
       <li>Keep VanCleef's Unsent Letter for the Stockade.</li>
-      <li>Stormwind book deliveries, then Redridge (Yowler, murlocs) to 20.</li>
+      <li>Stormwind book deliveries, then Redridge (Yowler, murlocs) to 20. Night Elves can finish Darkshore instead.</li>
       <li>Tailoring or Leatherworking to 150 first: your first Legacy Point.</li>
     </ul>
   </div>
 </details>
 
 <details class="phase-d">
-  <summary>Phase 5: Blackfathom prep <span class="lv">Each 20–23</span></summary>
+  <summary>Phase 5: Blackfathom + Wailing Caverns prep <span class="lv">Each 20–23</span></summary>
   <div class="phase">
-    <p class="done"><b>Done when:</b> core four are 23 with every Blackfathom quest, parked.</p>
+    <p class="done"><b>Done when:</b> core four are 23 with every Blackfathom and Wailing Caverns quest, parked.</p>
     <h3>Core four</h3>
     <ul>
       <li>Darkshore, then Redridge, to 23.</li>
+      <li>Ashenvale to the Barrens for the Ratchet pickups.</li>
       <li>Crafts to 225 from 20. Spare silver goes into professions.</li>
       <li>Warrior: swap Mining for Engineering. Banked bars first, then the Auction House.</li>
     </ul>
@@ -279,6 +291,13 @@
       <li>Warlock: <b>The Orb of Soran'ruk</b> · Doan Karhan, Barrens</li>
     </ul>
     <p class="inside"><b>Inside:</b> Blackfathom Villainy (Thaelrid, after In Search of Thaelrid), The Heart of the Void (Aku'mai).</p>
+    <h4>Wailing Caverns</h4>
+    <ul>
+      <li><b>Deviate Hides, Deviate Eradication</b> · Nalpak, cave above the entrance</li>
+      <li><b>Smart Drinks</b> · Mebok Mizzyrix, Ratchet<span class="crumb"><b>First:</b> Raptor Horns (Mebok).</span></li>
+      <li><b>Trouble at the Docks</b> · Crane Operator Bigglefuzz, Ratchet</li>
+    </ul>
+    <p class="inside"><b>Inside:</b> The Glowing Shard (Mutanus).</p>
     <h3>Class quests at 20</h3>
     <ul>
       <li>Shaman: Call of Water (Eldrun Stormbreaker, Ironforge).</li>
@@ -290,13 +309,14 @@
 </details>
 
 <details class="phase-d">
-  <summary>Phase 6: Blackfathom + Stockade <span class="lv">Each 23–25</span></summary>
+  <summary>Phase 6: Blackfathom, Wailing Caverns, Stockade <span class="lv">Each 23–25</span></summary>
   <div class="phase">
     <p class="done"><b>Done when:</b> core four are 25 with crafts at 225 (16 points).</p>
     <h3>Core four, rested</h3>
     <ul>
       <li>Blackfathom Deeps: to 24.</li>
-      <li>Stockade: to 25.</li>
+      <li>Wailing Caverns: do the Disciple of Naralex escort. Mutanus only spawns after it, and Novice Spelunker needs him.</li>
+      <li>Stockade: to 25. Quests only, it's on no Spelunker list.</li>
     </ul>
     <h3>Grab the quests</h3>
     <h4>Stockade</h4>
@@ -311,21 +331,25 @@
 </details>
 
 <details class="phase-d">
-  <summary>Phase 7: Support alts + Excavation Site <span class="lv">Core 25–29 · Support 1–14</span></summary>
+  <summary>Phase 7: Support alts + Dalaran trip <span class="lv">Core 25–29 · Support 1–14</span></summary>
   <div class="phase">
-    <p class="done"><b>Done when:</b> support alts are 14; core four have the Excavation Site quests.</p>
+    <p class="done"><b>Done when:</b> support alts are 14; core four have run Ruins of Lordaeron and Shadowfang Keep and have the Excavation Site quests.</p>
     <h3>Support alts</h3>
     <ul>
       <li>Phases 1–2, to 14.</li>
+      <li>Skyborne Druid + Hunter: Zephras Isle to 14–15, skycutter to Dalaran, Skyborne Portal to Stormwind, then Westfall. At 15, Ruins of Lordaeron is close to Dalaran.</li>
       <li>Druid or Hunter: Mining + Herbalism. Mail bars to the Warrior and herbs to the Warlock.</li>
     </ul>
     <h3>Core four</h3>
     <ul>
       <li>Ashenvale → Thousand Needles → Wetlands.</li>
+      <li>Boats: Menethil → Southshore → Auberdine, one way. Take it to Southshore, then go up to Dalaran. Use the Stormwind portal instead if it's live.</li>
+      <li>Ruins of Lordaeron: Novice Spelunker needs it. Its quests are inside (Captain Truman).</li>
+      <li>Shadowfang Keep: no Alliance quests besides class quests. Run it for the kill.</li>
       <li>Shaman at 30: Call of Air (Eldrun Stormbreaker → Veyric Thunderhame, Arathi).</li>
     </ul>
     <h3>Grab the quests</h3>
-    <h4>Excavation Site</h4>
+    <h4>Excavation Site, all from 24</h4>
     <ul>
       <li><b>Lost in the Thicket Things</b> · Caitlin Grassman, Menethil Harbor<span class="crumb"><b>Lead-in:</b> Seeking Caitlin (Llana, Astranaar).</span></li>
       <li><b>Songblade Search</b> · Dorin Songblade, Lakeshire</li>
@@ -339,10 +363,12 @@
 <details class="phase-d">
   <summary>Phase 8: Push to 35 <span class="lv">Core 28–35 · Support 14–25</span></summary>
   <div class="phase">
-    <p class="done"><b>Done when:</b> core four are 35, support alts are 25 (21 points).</p>
+    <p class="done"><b>Done when:</b> core four are 35, support alts are 25 (22 points with Novice Spelunker).</p>
     <h3>Core four</h3>
     <ul>
-      <li>Excavation Site → City of Dalaran → Gnomeregan → Razorfen Kraul → Scarlet Monastery.</li>
+      <li>Hub: Southshore. Emissary Jacques (City of Dalaran, from 30) and Loremaster Dibbs (Drowned City) are there.</li>
+      <li>Excavation Site → City of Dalaran → Gnomeregan → Razorfen Kraul → Scarlet Monastery, all four wings → Drowned City.</li>
+      <li>Experienced Spelunker counts each Scarlet wing. It also needs Krol'dok Stronghold (Riverglades, 38+), past this route.</li>
       <li>Finish any profession short of 225.</li>
     </ul>
     <h3>Grab the quests</h3>
@@ -371,7 +397,14 @@
     <h4>Scarlet Monastery</h4>
     <ul>
       <li><b>Mythology of the Titans</b> · Librarian Mae Paledust, Ironforge</li>
+      <li><b>Past Due</b> · Magus Olvek, Dalaran. Arcanist Doan, Library.</li>
       <li><b>In the Name of the Light (34)</b> · Raleigh the Devout, Southshore<span class="crumb"><b>First:</b> Down the Scarlet Path (Brother Crowley, Stormwind → Brother Anton, Desolace).</span></li>
+    </ul>
+    <h4>Drowned City</h4>
+    <ul>
+      <li><b>Take Two With Water, Magics of the Drowned City</b> · Loremaster Dibbs, Southshore<span class="crumb"><b>Lead-in:</b> An Acquaintance in Southshore (Brother Nimetz, Rebel Camp, Stranglethorn).</span></li>
+      <li><b>Ancient Gurubashi Secrets (34)</b> · Archmage Timear, Alterac Mountains</li>
+      <li><b>Shady Saltseers, The Saltseer Captain (34)</b> · Krazek, Booty Bay</li>
     </ul>
     <h3>Support alts</h3>
     <ul>
@@ -398,6 +431,8 @@
       <h2>How many points</h2>
       <ul>
         <li><b>21</b> once all nine classes are 25 and the six crafts are 225.</li>
+        <li><b>+1</b> for Novice Spelunker: the final boss of Hall of Thanes, Deadmines, Wailing Caverns, Ruins of Lordaeron, Shadowfang Keep and Excavation Site.</li>
+        <li><b>+1</b> for Experienced Spelunker: City of Dalaran, Blackfathom, Gnomeregan, Razorfen Kraul, four Scarlet wings, Drowned City, Krol'dok.</li>
         <li><b>16 spendable</b> at launch.</li>
         <li><b>45+</b> long term, from 60s and professions.</li>
         <li><b>55</b> for the Spectral Bear mount.</li>
@@ -407,14 +442,16 @@
 </section>
 
 <section class="sec" id="launch">
-  <h2>Check at launch</h2>
+  <h2>Still to test</h2>
   <ul class="small">
+    <li>Spelunker kills: account-wide or per character? Kill Durgen (Hall of Thanes) on one character, then check Novice Spelunker on another. The tracker counts them account-wide.</li>
+    <li>Stormwind → Dalaran portal: the last beta build removed it; Dalaran → Stormwind stayed.</li>
+    <li>Spelunker lists come from beta write-ups; check the in-game Legacy panel.</li>
+    <li>Nov 14: kill XP is zeroed when a party member is 12+ levels above the mob. Turn-ins aren't covered.</li>
     <li>Perk costs aren't published; builds assume 1 point per rank.</li>
-    <li>Novice Spelunker dungeon list disputed; Ruins of Lordaeron and Excavation Site are on every version.</li>
     <li>16-point spend cap; the beta has also tested 30.</li>
-    <li>Quest pickups come from beta data; a few chains may change.</li>
   </ul>
-  <p class="faint" style="margin-top:24px">Based on beta 1.60.1. Sources: Blizzard posts, beta client data, Nutrichi/wowforever, fitzforge/polestar, Dungeon Questie.</p>
+  <p class="faint" style="margin-top:24px">Current as of Nov 17, 2026: dungeon quest XP −50%, kill XP +50%. Sources: Blizzard posts, beta client data, player testing, Nutrichi/wowforever, fitzforge/polestar, Dungeon Questie.</p>
 </section>
 
 <div class="search-empty" id="search-empty">No matches.</div>
@@ -431,6 +468,6 @@
 <button class="totop" id="totop" type="button" aria-label="Back to top">&#8593;</button>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="assets/js/app.js?v=9"></script>
+<script src="assets/js/app.js?v=10"></script>
 </body>
 </html>

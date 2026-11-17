@@ -23,7 +23,7 @@ Live site: https://kunomaclis.github.io/Legacy-Route/
 - Icons in content: `<i data-cls="shaman"></i>`, `<i data-race="dwarf"></i>`, `<i data-prof="mining"></i>`.
 - After changing CSS, JS or the icon sprite, bump the `?v=` number everywhere it appears (`index.html`, `SPRITE` in `assets/js/app.js`, and `sw.js` along with `CACHE`). Otherwise browsers can pair a new page with an old script for up to 10 minutes.
 
-Progress (levels, skills, ticked steps, parked times, look) is stored in each browser's localStorage under `alr-v2`.
+Progress (levels, skills, ticked steps, parked times, Spelunker kills, look) is stored in each browser's localStorage under `alr-v2`.
 
 ## Credits
 

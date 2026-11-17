@@ -43,7 +43,7 @@
 [data-theme="ironforge"] .chip[aria-pressed="true"]:not([style]) { background: linear-gradient(#ffa75a, #c8601f); border-color: #c8601f; color: #1c0d03; }
 [data-theme="ironforge"] .search input { background: rgba(0, 0, 0, .35); border-color: rgba(200, 120, 60, .32); }
 [data-theme="ironforge"] .panel, [data-theme="ironforge"] details.phase-d, [data-theme="ironforge"] details.tracker,
-[data-theme="ironforge"] .char, [data-theme="ironforge"] .rc, [data-theme="ironforge"] .card, [data-theme="ironforge"] .stat {
+[data-theme="ironforge"] .char, [data-theme="ironforge"] .rc, [data-theme="ironforge"] .spel-set, [data-theme="ironforge"] .card, [data-theme="ironforge"] .stat {
   background: linear-gradient(180deg, #221d18, #17140f);
   border-color: rgba(200, 120, 60, .26);
   box-shadow: inset 0 1px 0 rgba(255, 200, 150, .06), inset 0 0 0 3px rgba(0, 0, 0, .25), 0 10px 28px rgba(0, 0, 0, .4);
@@ -99,7 +99,7 @@
 [data-theme="stormwind"] .chip[aria-pressed="true"]:not([style]) { background: linear-gradient(#f3d27a, #c99630); border-color: #c99630; color: #1a1205; }
 [data-theme="stormwind"] .search input { background: rgba(0, 0, 0, .3); border-color: rgba(227, 180, 72, .3); }
 [data-theme="stormwind"] .panel, [data-theme="stormwind"] details.phase-d, [data-theme="stormwind"] details.tracker,
-[data-theme="stormwind"] .char, [data-theme="stormwind"] .rc, [data-theme="stormwind"] .card, [data-theme="stormwind"] .stat {
+[data-theme="stormwind"] .char, [data-theme="stormwind"] .rc, [data-theme="stormwind"] .spel-set, [data-theme="stormwind"] .card, [data-theme="stormwind"] .stat {
   background: linear-gradient(180deg, rgba(26, 50, 100, .72), rgba(11, 24, 52, .78));
   border-color: rgba(227, 180, 72, .28);
   box-shadow: inset 0 1px 0 rgba(255, 230, 160, .08), 0 10px 30px rgba(0, 0, 0, .3);
